@@ -31,6 +31,13 @@ const Login = lazy(() => import('../../views/Login'))
 const Register = lazy(() => import('../../views/Register'))
 const ForgotPassword = lazy(() => import('../../views/ForgotPassword'))
 const Error = lazy(() => import('../../views/Error'))
+const Alta = lazy(() => import('../../components/home/Alta'))
+const Arrancador = lazy(() => import('../../pages/Arrancador'))
+const BalanceCero = lazy(() => import('../../pages/BalanceCero'))
+const BalanceN = lazy(() => import('../../pages/BalanceN'))
+const Fertilizantes = lazy(() => import('../../pages/Fertilizantes'))
+const FormulaAbono = lazy(() => import('../../pages/FormulaAbono'))
+const Rendimiento = lazy(() => import('../../pages/Rendimiento'))
 
 // ** Merge Routes
 const Routes = [
@@ -74,6 +81,34 @@ const Routes = [
     meta: {
       layout: 'blank'
     }
+  },
+  {
+    path: '/arrancador',
+    element: <Arrancador />
+  },
+  {
+    path: '/Alta',
+    element: <Alta />
+  },
+  {
+    element: <BalanceCero />,
+    path: '/balanceCero'
+  },
+  {
+    element: <BalanceN />,
+    path: '/balanceN'
+  },
+  {
+    element: <Fertilizantes />,
+    path: '/fertilizantes'
+  },
+  {
+    element: <FormulaAbono />,
+    path: '/formulaAbono'
+  },
+  {
+    element: <Rendimiento />,
+    path: '/rendimiento'
   }
 ]
 
