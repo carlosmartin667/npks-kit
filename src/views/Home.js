@@ -1,4 +1,5 @@
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
+import WizardModernAlta from '../components/Alta/wizard/WizardModernAlta'
 
 const Home = () => {
   return (
@@ -8,17 +9,7 @@ const Home = () => {
           <CardTitle>Kick start your project 🚀</CardTitle>
         </CardHeader>
         <CardBody>
-          <CardText>All the best for your new project.</CardText>
-          <CardText>
-            Please make sure to read our{' '}
-            <CardLink
-              href='https://pixinvent.com/demo/vuexy-react-admin-dashboard-template/documentation/'
-              target='_blank'
-            >
-              Template Documentation
-            </CardLink>{' '}
-            to understand where to go from here and how to use our template.
-          </CardText>
+          <WizardModernAlta/>
         </CardBody>
       </Card>
     </div>
