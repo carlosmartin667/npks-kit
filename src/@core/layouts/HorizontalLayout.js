@@ -123,19 +123,21 @@ const HorizontalLayout = props => {
       <Navbar
         expand='lg'
         container={false}
-        className={classnames('header-navbar navbar-fixed align-items-center navbar-shadow navbar-brand-center', {
+        className={classnames('header-navbar navbar-fixed align-items-center  navbar-brand-center', {
           'navbar-scrolled': navbarScrolled
         })}
       >
+
+        {/* clase del primer div: navbar-header !navbar (abajo) sirve para centrar el logo */}
         {!navbar && (
-          <div className='navbar-header d-xl-block d-none'>
+          <div className='d-xl-block d-none'>
             <ul className='nav navbar-nav'>
               <NavItem>
-                <Link to='/' className='navbar-brand'>
+                <Link to='/' className='navbar-brand containerLogo-styles'>
                   <span className='brand-logo'>
                     <img src={themeConfig.app.appLogoImage} alt='logo' />
                   </span>
-                  <h2 className='brand-text mb-0'>{themeConfig.app.appName}</h2>
+                  <h2 className='brand-text color-npks-styles fs-3 fw-bolde mb-0'>{themeConfig.app.appName}</h2>
                 </Link>
               </NavItem>
             </ul>
@@ -153,7 +155,7 @@ const HorizontalLayout = props => {
             expand='sm'
             light={skin !== 'dark'}
             dark={skin === 'dark' || bgColorCondition}
-            className={classnames(`header-navbar navbar-horizontal navbar-shadow menu-border`, {
+            className={classnames(`header-navbar navbar-horizontal d-none menu-border`, {
               [navbarClasses[navbarType]]: navbarType !== 'static',
               'floating-nav': (!navbarClasses[navbarType] && navbarType !== 'static') || navbarType === 'floating'
             })}

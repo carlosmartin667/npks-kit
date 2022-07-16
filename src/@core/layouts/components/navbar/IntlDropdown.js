@@ -53,6 +53,6 @@ const IntlDropdown = () => {
       </DropdownMenu>
     </UncontrolledDropdown>
   )
-}
+} 
 
 export default IntlDropdown

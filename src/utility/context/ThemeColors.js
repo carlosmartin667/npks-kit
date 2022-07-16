@@ -8,6 +8,17 @@ const ThemeContext = ({ children }) => {
   // ** State
   const [colors, setColors] = useState({})
 
+  // ** State form register
+  const [username, setUsername] = useState({value: '', validation: null})
+  const [email, setEmail] = useState({value: '', validation: null})
+  const [password, setPassword] = useState({value: '', validation: null})
+  const [options, setOptions] = useState({value: '', validation: null})
+
+  // ** State terms register
+  const [terms, setTerms] = useState(false)
+  const [formValidation, setFormValidation] = useState(null)
+
+
   //** ComponentDidMount
   useEffect(() => {
     if (window !== 'undefined') {
@@ -50,7 +61,7 @@ const ThemeContext = ({ children }) => {
     }
   }, [])
 
-  return <ThemeColors.Provider value={{ colors }}>{children}</ThemeColors.Provider>
+  return <ThemeColors.Provider value={{ colors, username, setUsername, email, setEmail, password, setPassword, options, setOptions, terms, setTerms, formValidation, setFormValidation }}>{children}</ThemeColors.Provider>
 }
 
 export { ThemeColors, ThemeContext }

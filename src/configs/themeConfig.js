@@ -3,22 +3,22 @@
 //Template config options
 const themeConfig = {
   app: {
-    appName: 'Vuexy',
+    appName: 'NPKS',
     appLogoImage: require('@src/assets/images/logo/logo.svg').default
   },
   layout: {
-    isRTL: false,
+    isRTL: false, //Boolean
     skin: 'light', // light, dark, bordered, semi-dark
-    routerTransition: 'fadeIn', // fadeIn, fadeInLeft, zoomIn, none or check this for more transition https://animate.style/
-    type: 'vertical', // vertical, horizontal
-    contentWidth: 'boxed', // full, boxed
+    routerTransition: 'fadeInLeft', // fadeIn, fadeInLeft, zoomIn, none or check this for more transition https://animate.style/
+    type: 'horizontal', // vertical, horizontal
+    contentWidth: 'full', // full, boxed
     menu: {
-      isHidden: false,
-      isCollapsed: false
+      isHidden: false, // Boolean
+      isCollapsed: true // Boolean
     },
     navbar: {
       // ? For horizontal menu, navbar type will work for navMenu type
-      type: 'floating', // static , sticky , floating, hidden
+      type: 'floating', // static , sticky, floating, hidden
       backgroundColor: 'white' // BS color options [primary, success, etc]
     },
     footer: {

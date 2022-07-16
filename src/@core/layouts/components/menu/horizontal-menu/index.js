@@ -3,9 +3,9 @@ import HorizontalNavMenuItems from './HorizontalNavMenuItems'
 
 const HorizontalMenu = ({ menuData }) => {
   return (
-    <div className='navbar-container main-menu-content'>
+    <div className='navbar-container main-menu-content d-none'>
       <ul className='nav navbar-nav' id='main-menu-navigation'>
-        <HorizontalNavMenuItems submenu={false} items={menuData} />
+        <HorizontalNavMenuItems submenu={false} items={menuData} />  
       </ul>
     </div>
   )
