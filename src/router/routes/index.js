@@ -30,6 +30,7 @@ const SecondPage = lazy(() => import('../../views/SecondPage'))
 const Login = lazy(() => import('../../views/Login'))
 const Register = lazy(() => import('../../views/Register'))
 const ForgotPassword = lazy(() => import('../../views/ForgotPassword'))
+
 const Error = lazy(() => import('../../views/Error'))
 const Alta = lazy(() => import('../../components/home/Alta'))
 const Arrancador = lazy(() => import('../../pages/Arrancador'))
@@ -76,7 +77,7 @@ const Routes = [
     }
   },
   {
-    path: '/error',
+    path: '*',
     element: <Error />,
     meta: {
       layout: 'blank'
@@ -91,8 +92,8 @@ const Routes = [
     element: <Alta />
   },
   {
-    element: <BalanceCero />,
-    path: '/balanceCero'
+    path: '/balanceCero',
+    element: <BalanceCero />
   },
   {
     element: <BalanceN />,

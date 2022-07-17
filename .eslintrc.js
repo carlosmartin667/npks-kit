@@ -2,21 +2,21 @@ module.exports = {
   env: {
     node: true,
     es6: true,
-    browser: true
+    browser: true,
   },
 
   parserOptions: {
     ecmaVersion: 2020,
-    sourceType: 'module',
+    sourceType: "module",
     ecmaFeatures: {
       jsx: true,
       modules: true,
-      experimentalObjectRestSpread: true
-    }
+      experimentalObjectRestSpread: true,
+    },
   },
   rules: {
-    'no-console': 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    "no-console": "off",
+    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
 
     // // Best Practices
     // eqeqeq: 'error',
@@ -72,7 +72,7 @@ module.exports = {
     // 'object-shorthand': 'error',
     // 'prefer-const': 'error',
     // 'prefer-template': 'error'
-  }
+  },
 
   // rules: {
   //   'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
@@ -81,4 +81,4 @@ module.exports = {
   //   'max-len': 'off',
   //   camelcase: ['error', { properties: 'never', ignoreDestructuring: true, ignoreImports: true }]
   // }
-}
+};

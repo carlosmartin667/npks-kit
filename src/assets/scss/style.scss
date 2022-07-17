@@ -9,3 +9,82 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+.error_input_register {
+	outline: 1px solid #da2525;
+
+	&:focus {
+	border: 1px solid #da2525;
+	}
+}
+
+.error_input_message_register {
+	color: #da2525;
+}
+
+// =========================================================
+
+.padding-content-styles {
+	padding: 110px 40px 0 40px !important; 
+}
+
+.menu-ul-styles {
+	width: auto;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	flex-flow: row nowrap;
+	gap: 25px;
+
+	margin: 0;
+	padding: 0;
+}
+
+.Navlink-style-dark {
+	color: #d0d2d6;
+	font-size: 13px;
+
+	&:hover {
+		color: #11d311;
+	}
+
+	padding: 0;
+	margin: 0;
+
+	display: flex;
+	align-items: center;
+	flex-flow: row nowrap;
+	gap: 5px;
+}
+
+.Navlink-style-light {
+	color: #6e6b7b;
+	font-size: 13px;
+
+	&:hover {
+		color: #11d311;
+	}
+
+	padding: 0;
+	margin: 0;
+
+	display: flex;
+	align-items: center;
+	flex-flow: row nowrap;
+	gap: 5px;
+}
+
+.containerLogo-styles {
+
+	padding: 0 0 0 30px;
+
+	display: flex;
+	align-items: center;
+	flex-flow: row nowrap;
+	gap: 10px;
+}
+
+.color-npks-styles {
+	color: #11d311;
+	font-weight: 700;
+}

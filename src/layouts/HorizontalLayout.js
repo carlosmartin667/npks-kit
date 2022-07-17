@@ -8,6 +8,7 @@ import Layout from '@layouts/HorizontalLayout'
 // ** Menu Items Array
 import navigation from '@src/navigation/horizontal'
 
+
 const HorizontalLayout = props => {
   // const [menuData, setMenuData] = useState([])
 

@@ -1,6 +1,6 @@
 import { Mail, Home } from 'react-feather'
 
-export default [
+export const Links = [
   {
     id: 'home',
     title: 'Home',
