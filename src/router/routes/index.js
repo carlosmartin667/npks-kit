@@ -132,7 +132,7 @@ const MergeLayoutRoutes = (layout, defaultLayout) => {
     if (window.localStorage.getItem("key")) {
       console.log("hola");
     } else {
-      alert("sss")
+      console.log("llamda");
     } 
     Routes.filter(route => {
       let isBlank = false
