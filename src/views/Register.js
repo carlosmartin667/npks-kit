@@ -23,6 +23,7 @@ import '@styles/react/pages/page-authentication.scss'
 
 // ** useContext - State fomr
 import { ThemeColors } from "../utility/context/ThemeColors"
+import ModalRegister from "../components/Login/ModalRegister"
 
 const Register = () => {
   // ** Context
@@ -144,10 +145,9 @@ const Register = () => {
                 <Input type='checkbox' id='terms' checked={terms} onChange={(e) => setTerms(e.target.checked)} />
                 <Label className='form-check-label' for='terms'>
                   Acepto la 
-                  <Link className='ms-25' to='/login'>
-                   política de privacidad y los términos
-                  </Link>
+                  <ModalRegister />
                 </Label>
+                
                 {/* onClick={e => e.preventDefault()} */}
               </div>
 

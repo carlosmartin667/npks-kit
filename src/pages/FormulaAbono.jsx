@@ -1,9 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ApiDefaultUsers } from "../api/indext";
+import { useLocalStorage } from "../api/useLocalStorage";
 
 const FormulaAbono = () => {
   const { PostUsersRegister, PostUsersLogin, PostUsersEdit } =
     ApiDefaultUsers();
+
+  const [token, settoken] = useLocalStorage("token", "");
+  
 
   const TestPostUsersLogin = async () => {
     const email = "carlos@gmail.com";
@@ -17,6 +21,7 @@ const FormulaAbono = () => {
       const { data } = resultado;
       console.log(data);
       console.log("fin de la ejecucion");
+      settoken(data.token);
 
       const resultadoEdit = await PostUsersEdit(
         data._id,
@@ -24,7 +29,6 @@ const FormulaAbono = () => {
         email,
         data.token
       );
-      
     }
   };
   useEffect(() => {
