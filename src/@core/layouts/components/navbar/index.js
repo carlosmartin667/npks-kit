@@ -160,8 +160,8 @@ const ThemeNavbar = props => {
           <NavLink className='nav-link-style'>
             <ThemeToggler />
           </NavLink>
-          
-        </NavItem>
+      </NavItem>
+      
     </Fragment>
   )
 }
