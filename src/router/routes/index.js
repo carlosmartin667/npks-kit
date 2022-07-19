@@ -113,6 +113,7 @@ const Routes = [
   }
 ]
 
+
 const getRouteMeta = route => {
   if (isObjEmpty(route.element.props)) {
     if (route.meta) {
@@ -128,6 +129,11 @@ const MergeLayoutRoutes = (layout, defaultLayout) => {
   const LayoutRoutes = []
 
   if (Routes) {
+    if (window.localStorage.getItem("key")) {
+      console.log("hola");
+    } else {
+      console.log("llamda");
+    } 
     Routes.filter(route => {
       let isBlank = false
       // ** Checks if Route layout or Default layout matches current layout
