@@ -56,12 +56,7 @@ const UserDropdown = () => {
 
         <DropdownItem tag={Link} to='/login'>
           <Power size={14} className='me-75' />
-          <span className='align-middle'>Iniciar Sesión</span>
-        </DropdownItem>
-
-        <DropdownItem tag={Link} to='/login'>
-          <Power size={14} className='me-75' />
-          <span className='align-middle'>Registrate</span>
+          <span className='align-middle'>Cerrar Sesión</span>
         </DropdownItem>
       </DropdownMenu>
     </UncontrolledDropdown>

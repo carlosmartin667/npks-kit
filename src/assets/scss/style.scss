@@ -10,16 +10,22 @@ NOTE:
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
 
+.color-ejemplo {
+	color: #77dd77;
+}
+
 .error_input_register {
-	outline: 1px solid #da2525;
+	border: none;
+	outline: 1px solid #ff6961;
 
 	&:focus {
-	border: 1px solid #da2525;
+	border: none;
+	outline: 1px solid #ff6961;
 	}
 }
 
 .error_input_message_register {
-	color: #da2525;
+	color: #ff6961;
 }
 
 // =========================================================
@@ -45,7 +51,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 	font-size: 13px;
 
 	&:hover {
-		color: #11d311;
+		color: #77dd77;
 	}
 
 	padding: 0;
@@ -62,7 +68,7 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 	font-size: 13px;
 
 	&:hover {
-		color: #11d311;
+		color: #77dd77;
 	}
 
 	padding: 0;
@@ -85,6 +91,6 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 }
 
 .color-npks-styles {
-	color: #11d311;
+	color: #77dd77;
 	font-weight: 700;
 }
