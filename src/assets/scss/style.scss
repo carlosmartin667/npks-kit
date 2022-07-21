@@ -11,86 +11,89 @@ PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
 
 .color-ejemplo {
-	color: #77dd77;
+  color: #77dd77;
 }
 
 .error_input_register {
-	border: none;
-	outline: 1px solid #ff6961;
+  border: none;
+  outline: 1px solid #ff6961;
+  border-radius: 5px;
 
-	&:focus {
-	border: none;
-	outline: 1px solid #ff6961;
-	}
+  &:focus {
+    border: none;
+    outline: 1px solid #ff6961;
+    border-radius: 5px;
+  }
 }
 
 .error_input_message_register {
-	color: #ff6961;
+  color: #ff6961;
 }
 
 // =========================================================
 
 .padding-content-styles {
-	padding: 110px 40px 0 40px !important; 
+  padding: 110px 40px 0 40px !important;
 }
 
 .menu-ul-styles {
-	width: auto;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	flex-flow: row nowrap;
-	gap: 25px;
+  width: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  gap: 25px;
 
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .Navlink-style-dark {
-	color: #d0d2d6;
-	font-size: 13px;
+  color: #d0d2d6;
+  font-size: 13px;
 
-	&:hover {
-		color: #77dd77;
-	}
+  &:hover {
+    color: #77dd77;
+  }
 
-	padding: 0;
-	margin: 0;
+  padding: 0;
+  margin: 0;
 
-	display: flex;
-	align-items: center;
-	flex-flow: row nowrap;
-	gap: 5px;
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  gap: 5px;
 }
 
 .Navlink-style-light {
-	color: #6e6b7b;
-	font-size: 13px;
+  color: #6e6b7b;
+  font-size: 13px;
 
-	&:hover {
-		color: #77dd77;
-	}
+  &:hover {
+    color: #77dd77;
+  }
 
-	padding: 0;
-	margin: 0;
+  padding: 0;
+  margin: 0;
 
-	display: flex;
-	align-items: center;
-	flex-flow: row nowrap;
-	gap: 5px;
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  gap: 5px;
 }
 
 .containerLogo-styles {
+  padding: 0 0 0 30px;
 
-	padding: 0 0 0 30px;
-
-	display: flex;
-	align-items: center;
-	flex-flow: row nowrap;
-	gap: 10px;
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  gap: 10px;
 }
 
 .color-npks-styles {
-	color: #77dd77;
-	font-weight: 700;
+  color: #77dd77;
+  font-weight: 700;
 }
+
+// =====================================================================================

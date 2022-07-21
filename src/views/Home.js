@@ -1,15 +1,15 @@
 import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
-import WizardModernAlta from '../components/Alta/wizard/WizardModernAlta'
+import TableCompany from "./tables/TableCompany"
 
 const Home = () => {
   return (
     <div>
       <Card>
         <CardHeader>
-          <CardTitle>Kick start your project 🚀</CardTitle>
+          <CardTitle>Mis Lotes</CardTitle>
         </CardHeader>
         <CardBody>
-          <WizardModernAlta/>
+          <TableCompany />
         </CardBody>
       </Card>
     </div>
