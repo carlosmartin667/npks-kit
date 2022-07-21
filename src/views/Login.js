@@ -1,73 +1,101 @@
-import { useSkin } from '@hooks/useSkin'
-import { Link } from 'react-router-dom'
-import InputPasswordToggle from '@components/input-password-toggle'
-import { Row, Col, CardTitle, CardText, Form, Label, Input, Button } from 'reactstrap'
-import '@styles/react/pages/page-authentication.scss'
+import { useSkin } from "@hooks/useSkin";
+import { Link } from "react-router-dom";
+import InputPasswordToggle from "@components/input-password-toggle";
+import {
+  Row,
+  Col,
+  CardTitle,
+  CardText,
+  Form,
+  Label,
+  Input,
+  Button,
+} from "reactstrap";
+import "@styles/react/pages/page-authentication.scss";
 
 // ** import logo icon
-import Logo from "../assets/images/logo/logo.svg"
-
+import Logo from "../assets/images/logo/logo.svg";
 
 const Login = () => {
-  const { skin } = useSkin()
+  const { skin } = useSkin();
 
   // const illustration = skin === 'dark' ? 'login-v2-dark.svg' : 'login-v2.svg', source = require(`@src/assets/images/pages/${illustration}`).default
 
-  const illustration = skin === 'dark' ? 'npks-animate.png' : 'npks-animate.png', source = require(`@src/assets/images/logo/${illustration}`).default
+  const illustration =
+      skin === "dark" ? "npks-animate.png" : "npks-animate.png",
+    source = require(`@src/assets/images/logo/${illustration}`).default;
 
   return (
-    <div className='auth-wrapper auth-cover'>
-      <Row className='auth-inner m-0'>
-        <Link className='brand-logo' to='/'>
+    <div className="auth-wrapper auth-cover">
+      <Row className="auth-inner m-0">
+        <Link className="brand-logo" to="/login">
           <img src={Logo} alt={"Logo"} />
-         
-          <h2 className='brand-text text-primary ms-1'>NPKS</h2>
+
+          <h2 className="brand-text text-primary ms-1">NPKS</h2>
         </Link>
-        <Col className='d-none d-lg-flex align-items-center p-5' lg='8' sm='12'>
-          <div className='w-100 d-lg-flex align-items-center justify-content-center px-5'>
-            <img className='img-fluid' src={source} alt='Login Cover' />
+        <Col className="d-none d-lg-flex align-items-center p-5" lg="8" sm="12">
+          <div className="w-100 d-lg-flex align-items-center justify-content-center px-5">
+            <img className="img-fluid" src={source} alt="Login Cover" />
           </div>
         </Col>
         {/* auth-bg */}
-        <Col className='d-flex align-items-center auth-bg px-2 p-lg-5' lg='4' sm='12'>
-          <Col className='px-xl-2 mx-auto' sm='8' md='6' lg='12'>
-            <CardTitle tag='h2' className='fw-bold mb-1'>
-            Te damos la bienvenida a NPKS
+        <Col
+          className="d-flex align-items-center auth-bg px-2 p-lg-5"
+          lg="4"
+          sm="12"
+        >
+          <Col className="px-xl-2 mx-auto" sm="8" md="6" lg="12">
+            <CardTitle tag="h2" className="fw-bold mb-1">
+              Te damos la bienvenida a NPKS
             </CardTitle>
-            <CardText className='mb-2'>La plataforma que te ayudará a nutrir tus cultivos
-            de manera ágil y sencilla logrando la máxima eficiencia en fertilización.
+            <CardText className="mb-2">
+              La plataforma que te ayudará a nutrir tus cultivos de manera ágil
+              y sencilla logrando la máxima eficiencia en fertilización.
             </CardText>
-            <Form className='auth-login-form mt-2' onSubmit={e => e.preventDefault()}>
-              <div className='mb-1'>
-                <Label className='form-label' for='login-email'>
-                Correo electrónico
+            <Form
+              className="auth-login-form mt-2"
+              onSubmit={(e) => e.preventDefault()}
+            >
+              <div className="mb-1">
+                <Label className="form-label" for="login-email">
+                  Correo electrónico
                 </Label>
-                <Input type='email' id='login-email' placeholder='john@ejemplo.com' autoFocus />
+                <Input
+                  type="email"
+                  id="login-email"
+                  placeholder="john@ejemplo.com"
+                  autoFocus
+                />
               </div>
-              <div className='mb-1'>
-                <div className='d-flex justify-content-between'>
-                  <Label className='form-label' for='login-password'>
-                  Contraseña
+
+              <div className="mb-1">
+                <div className="d-flex justify-content-between">
+                  <Label className="form-label" for="login-password">
+                    Contraseña
                   </Label>
-                  <Link to='/forgot-password'>
+                  <Link to="/forgot-password">
                     <small>¿Olvidó su contraseña?</small>
                   </Link>
                 </div>
-                <InputPasswordToggle className='input-group-merge' id='login-password' />
+                <InputPasswordToggle
+                  className="input-group-merge"
+                  id="login-password"
+                />
               </div>
-              <div className='form-check mb-1'>
-                <Input type='checkbox' id='remember-me' />
-                <Label className='form-check-label' for='remember-me'>
-                Recuérdame
+
+              <div className="form-check mb-1">
+                <Input type="checkbox" id="remember-me" />
+                <Label className="form-check-label" for="remember-me">
+                  Recuérdame
                 </Label>
               </div>
-              <Button tag={Link} to='/home' color='primary' block>
+              <Button tag={Link} to="/home" color="primary" block>
                 Inicia sesión
               </Button>
             </Form>
-            <p className='text-center mt-2'>
-              <span className='me-25'>¿Nuevo en nuestra plataforma?</span>
-              <Link to='/register'>
+            <p className="text-center mt-2">
+              <span className="me-25">¿Nuevo en nuestra plataforma?</span>
+              <Link to="/register">
                 <span>Crear una cuenta</span>
               </Link>
             </p>
@@ -92,7 +120,7 @@ const Login = () => {
         </Col>
       </Row>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
