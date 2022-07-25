@@ -137,7 +137,7 @@ const HorizontalLayout = props => {
                   <span className='brand-logo'>
                     <img src={themeConfig.app.appLogoImage} alt='logo' />
                   </span>
-                  <h2 className='brand-text color-npks-styles fs-3 fw-bolde mb-0'>{themeConfig.app.appName}</h2>
+                  <h2 className='text-primary fs-3 fw-bolder mb-0'>{themeConfig.app.appName}</h2>
                 </Link>
               </NavItem>
             </ul>
