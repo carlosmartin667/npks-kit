@@ -21,12 +21,12 @@ const WizardModernAlta = () => {
   const [stepper, setStepper] = useState(null)
 
   const steps = [
-    {
-      id: 'LoteManjeo',
-      title: 'Lote y Manjeo',
-      icon: <FileText size={18} />,
-      content: <LoteManjeo stepper={stepper} type='wizard-modern' />
-    },
+    // {
+    //   id: 'LoteManjeo',
+    //   title: 'Lote y Manjeo',
+    //   icon: <FileText size={18} />,
+    //   content: <LoteManjeo stepper={stepper} type='wizard-modern' />
+    // },
     {
       id: 'Suelo',
       title: 'Suelo',

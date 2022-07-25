@@ -12,11 +12,8 @@ import '@styles/react/libs/react-select/_react-select.scss'
 const Suelo = ({ stepper }) => {
   return (
     <Fragment>
-      <div className='content-header'>
-        <h3 className='mb-0'>Suelo</h3>
-      </div>
       <Form onSubmit={e => e.preventDefault()}>
-        <Card>
+
           <CardBody>
             <h3>Suelo</h3>
             <Row className='match-height mt-1'>
@@ -35,8 +32,9 @@ const Suelo = ({ stepper }) => {
               </Col>
             </Row>
           </CardBody >
-        </Card >
-        <Card >
+
+
+       
           <CardBody>
             <h3>Nuevo Estrado</h3>
             <Row className='match-height mt-1'>
@@ -86,12 +84,12 @@ const Suelo = ({ stepper }) => {
               </Col>
             </Row>
           </CardBody >
-        </Card >
-        <div className='d-flex justify-content-between'>
-          <Button color='primary' className='btn-prev' onClick={() => stepper.previous()}>
+   
+        <div className='d-flex justify-content-end'>
+          {/* <Button color='primary' className='btn-prev' onClick={() => stepper.previous()}>
             <ArrowLeft size={14} className='align-middle me-sm-25 me-0'></ArrowLeft>
             <span className='align-middle d-sm-inline-block d-none'>Atras</span>
-          </Button>
+          </Button> */}
           <Button color='primary' className='btn-next' onClick={() => stepper.next()}>
             <span className='align-middle d-sm-inline-block d-none'>Siguiente</span>
             <ArrowRight size={14} className='align-middle ms-sm-25 ms-0'></ArrowRight>

@@ -5,12 +5,7 @@ const Home = () => {
   return (
     <div>
       <Card>
-        <CardHeader>
-          <CardTitle>Mis Lotes</CardTitle>
-        </CardHeader>
-        <CardBody>
           <TableCompany />
-        </CardBody>
       </Card>
     </div>
   )

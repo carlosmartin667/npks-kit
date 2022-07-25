@@ -14,6 +14,10 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
   color: #77dd77;
 }
 
+.color-logo {
+  color: #77dd77;
+}
+
 .error_input_register {
   border: none;
   outline: 1px solid #ff6961;
@@ -97,3 +101,37 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 }
 
 // =====================================================================================
+
+.name-accoutn-user {
+  font-size: 16px;
+}
+
+.btn-close-accoutn {
+  color: #ff6961;
+  cursor: pointer;
+
+  &:hover {
+    color: #ff6961;
+  }
+}
+
+.gap-15-styles {
+  gap: 3px;
+}
+
+.margin-none-styles {
+  margin: 0;
+}
+
+.padding-none-styles {
+  padding: 0;
+}
+
+.hoverDelete {
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.hoverDelete:hover {
+  color: #ff6961;
+}

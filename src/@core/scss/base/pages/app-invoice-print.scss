@@ -69,7 +69,8 @@ body {
     padding-right: 5rem;
   }
   .table-responsive {
-    overflow-x: hidden;
+    // overflow-x: hidden;
+    overflow-x: scroll;
   }
   hr {
     display: none;

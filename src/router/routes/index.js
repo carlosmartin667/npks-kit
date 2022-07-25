@@ -33,6 +33,8 @@ const ForgotPassword = lazy(() => import("../../views/ForgotPassword"));
 const VerifyEmailBasic = lazy(() => import("../../views/VerifyEmailBasic"));
 
 const Error = lazy(() => import("../../views/Error"));
+const EditLote = lazy(() => import("../../components/home/EditLote"))
+const NewLote = lazy(() => import("../../components/home/NewLote"))
 const Alta = lazy(() => import("../../components/home/Alta"));
 const Arrancador = lazy(() => import("../../pages/Arrancador"));
 const BalanceCero = lazy(() => import("../../pages/BalanceCero"));
@@ -40,6 +42,7 @@ const BalanceN = lazy(() => import("../../pages/BalanceN"));
 const Fertilizantes = lazy(() => import("../../pages/Fertilizantes"));
 const FormulaAbono = lazy(() => import("../../pages/FormulaAbono"));
 const Rendimiento = lazy(() => import("../../pages/Rendimiento"));
+const AccountContainer = lazy(() => import("../../views/AccountContainer"))
 
 // ** Merge Routes
 const Routes = [
@@ -85,6 +88,10 @@ const Routes = [
     },
   },
   {
+    path: "/profile",
+    element: <AccountContainer />
+  },
+  {
     path: "*",
     element: <Error />,
     meta: {
@@ -98,6 +105,14 @@ const Routes = [
   {
     path: "/Alta",
     element: <Alta />,
+  },
+  {
+    path: "/edit-lote",
+    element: <EditLote />,
+  },
+  {
+    path: "/new-lote",
+    element: <NewLote />,
   },
   {
     path: "/balanceCero",

@@ -1,4 +1,4 @@
-// ** Reactstrap Imports
+//** Reactstrap Imports
 import { Card, CardBody, CardText } from 'reactstrap'
 
 const ProfileAbout = ({ data }) => {
