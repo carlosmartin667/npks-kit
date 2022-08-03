@@ -27,6 +27,7 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
+  Tooltip,
 } from "reactstrap";
 
 // ** Import Link from react-router-dom
@@ -34,13 +35,20 @@ import { Link } from "react-router-dom";
 
 // ** import icon ToolBox
 import toolBox from "@src/assets/images/icons/toolbox.svg";
-
-// ** import dataContext from LoteProvider
 import { DataContext } from "../../utility/context/LoteProvider";
 
+// ** import dataContext from LoteProvider
+
 const TableCompany = () => {
-  const { data, deleteTask } = useContext(DataContext);
+  const { data, deleteData, setDataToEdit, setData } = useContext(DataContext);
+
   const [verModal, setVerModal] = useState(false);
+  const [deleteLoteModal, setDeleteLoteModal] = useState(false);
+
+  // ** tooltip
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+
+  const toggle = () => setTooltipOpen(!tooltipOpen);
 
   const medidaDesktop = document.documentElement.clientWidth;
 
@@ -115,40 +123,72 @@ const TableCompany = () => {
   const renderData = () => {
     return (
       <>
-        {data.map((col, index) => (
+        <tr>
+          <td>
+            <div className="d-flex aling-items-center pb-1 pt-1">
+              <img className="me-75" src={toolBox} alt="name" />
+              <div className="d-flex flex-column">
+                <Link
+                  to="/new-lote"
+                  className="align-middle fw-bolder"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="bottom"
+                  title="Crear nuevo Lote"
+                >
+                  + Lote
+                </Link>
+              </div>
+            </div>
+          </td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        {data.map((dato, index) => (
           <>
             <tr key={index}>
               {/* NOMBRE */}
               <td>
                 <div className="d-flex aling-items-center">
-                  <img className="me-75" src={toolBox} alt={col.name} />
+                  <img className="me-75" src={toolBox} alt={dato.name} />
                   <div className="d-flex flex-column">
-                    <Link to="/new-lote" className="align-middle fw-bolder">
-                      {col.name}
+                    <Link
+                      to={"/new-lote"}
+                      onClick={() => setDataToEdit(dato)}
+                      className="align-middle fw-bolder"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="bottom"
+                      title="Editar Lote"
+                    >
+                      {dato.name}
                     </Link>
+
                     <span className="font-small-2 text-muted">
-                      {col.description}
+                      {dato.description}
                     </span>
                   </div>
                 </div>
               </td>
               {/* CAMPO */}
               <td>
-                <span className="fw-bolder mb-25">{col.field}</span>
+                <span className="fw-bolder mb-25">{dato.field}</span>
               </td>
               {/* LOCALIDAD */}
               <td className="text-nowrap">
                 <div className="d-flex flex-column">
-                  <span className="fw-bolder mb-25">{col.location}</span>
+                  <span className="fw-bolder mb-25">{dato.location}</span>
                   <span className="font-small-2 text-muted">
-                    {col.province}
+                    {dato.province}
                   </span>
                 </div>
               </td>
               {/* CULTIVO */}
               <td>
                 <div className="d-flex align-items-center">
-                  <span className="fw-bolder ms-1">{col.crop}</span>
+                  <span className="fw-bolder ms-1">{dato.crop}</span>
                   {/* {col.cropUp ? (<TrendingUp size={15} className="text-success" />) : (<TrendingDown size={15} className="text-danger" />)} */}
                 </div>
               </td>
@@ -156,10 +196,10 @@ const TableCompany = () => {
               <td>
                 <Badge
                   pill
-                  color={col.cropUp ? "light-primary" : "light-danger"}
+                  color={dato.cropUp ? "light-primary" : "light-danger"}
                   className="ms-1"
                 >
-                  {col.date}
+                  {dato.date}
                 </Badge>
               </td>
               <td>
@@ -175,7 +215,7 @@ const TableCompany = () => {
 
                   <DropdownMenu>
                     <DropdownItem className="w-100">
-                      {col.crop && col.date ? (
+                      {dato.crop && dato.date ? (
                         <Link to="/rendimiento">
                           <Monitor className="me-50" size={15} />{" "}
                           <span className="align-middle">Ver</span>
@@ -210,14 +250,13 @@ const TableCompany = () => {
                 <ModalHeader>Atención</ModalHeader>
                 <ModalBody>
                   <h4 className="mb-2">
-                    Para poder ver los resultados de su lote, necesita agregar
+                    Para poder ver los resultados de su lote necesita agregar
                     una recomendación.
                   </h4>
                   <span>
-                    Puede crear una recomendación a traves de la tabla en la
-                    columna{" "}
+                    Agrega o Edita una recomendación desde{" "}
                     <span className="color-ejemplo fw-bold">
-                      MIS RECOMENDACIONES
+                      "Agregar / Editar"
                     </span>
                     .
                   </span>
@@ -231,12 +270,25 @@ const TableCompany = () => {
                   </Button>
                 </ModalFooter>
               </Modal>
+
               <td>
-                <span
-                  className="hoverDelete"
-                  onClick={() => deleteTask(col.id)}
-                >
-                  <Trash className="me-50" size={15} />
+                <span className="hoverDelete" title="Eliminar Lote">
+                  <Trash
+                    className="me-50"
+                    size={15}
+                    // onClick={() => setDeleteLoteModal(true)}
+                    onClick={() => deleteData(dato.id)}
+                  />
+
+                  {/* <Tooltip
+                    placement="left"
+                    isOpen={tooltipOpen}
+                    autohide={true}
+                    target="deleteLote"
+                    toggle={toggle}
+                  >
+                    Eliminar Lote
+                  </Tooltip> */}
                 </span>
               </td>
             </tr>
@@ -250,11 +302,12 @@ const TableCompany = () => {
     <>
       <CardHeader className="d-flex align-items-center justify-content-between">
         <CardTitle>Mis Lotes</CardTitle>
-        {data.length === 0 && (
+
+        {/* {data.length === 0 && (
           <Link to="/new-lote" className="btn btn-primary">
             + Lote
           </Link>
-        )}
+        )} */}
       </CardHeader>
 
       <CardBody>
@@ -308,6 +361,7 @@ const TableCompany = () => {
             <tbody>{renderData()}</tbody>
           </Table>
         )}
+        {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       </CardBody>
     </>
   );

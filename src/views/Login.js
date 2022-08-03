@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { useSkin } from "@hooks/useSkin";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputPasswordToggle from "@components/input-password-toggle";
 import {
   Row,
@@ -52,20 +53,12 @@ const Login = () => {
               La plataforma que te ayudará a nutrir tus cultivos de manera ágil
               y sencilla logrando la máxima eficiencia en fertilización.
             </CardText>
-            <Form
-              className="auth-login-form mt-2"
-              onSubmit={(e) => e.preventDefault()}
-            >
+            <Form className="auth-login-form mt-2">
               <div className="mb-1">
                 <Label className="form-label" for="login-email">
                   Correo electrónico
                 </Label>
-                <Input
-                  type="email"
-                  id="login-email"
-                  placeholder="john@ejemplo.com"
-                  autoFocus
-                />
+                <Input type="email" id="login-email" autoFocus />
               </div>
 
               <div className="mb-1">
@@ -78,7 +71,7 @@ const Login = () => {
                   </Link>
                 </div>
                 <InputPasswordToggle
-                  className="input-group-merge"
+                  // "input-group-merge"
                   id="login-password"
                 />
               </div>
@@ -89,7 +82,7 @@ const Login = () => {
                   Recuérdame
                 </Label>
               </div>
-              <Button tag={Link} to="/home" color="primary" block>
+              <Button color="primary" block>
                 Inicia sesión
               </Button>
             </Form>

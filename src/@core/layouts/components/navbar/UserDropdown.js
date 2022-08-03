@@ -39,7 +39,7 @@ const UserDropdown = () => {
 
   return (
     <>
-      <div className="user-nav d-sm-flex flex-column d-none me-1 gap-15-styles">
+      <div className="user-nav d-flex flex-column  me-1 gap-15-styles">
         <span className="name-accoutn-user fw-bolde text-end">Pepito-NPKS</span>
         <span
           onClick={() => setCenteredModal(!centeredModal)}

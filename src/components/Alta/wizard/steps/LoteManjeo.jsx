@@ -19,28 +19,14 @@ import {
 } from "reactstrap";
 
 const LoteManjeo = () => {
-  // ** useContext
   const {
-    data,
-    setData,
-    deleteTask,
+    dataForm,
+    handleChange,
     handleSubmit,
-    nameLote,
-    setNameLote,
-    fieldLote,
-    setFieldLote,
-    locationLote,
-    setLocationLote,
-    cityLote,
-    setCityLote,
-    dateLote,
-    setDateLote,
-    cropLote,
-    setCropLote,
-    provinceLote,
-    setProvinceLote,
+    dataToEdit,
+    backModal,
+    setBackModal,
   } = useContext(DataContext);
-
   return (
     <>
       <Card>
@@ -52,142 +38,149 @@ const LoteManjeo = () => {
           <Form onSubmit={handleSubmit}>
             <Row>
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="nameMulti">
+                <Label className="form-label" htmlFor="name">
                   Nombre
                 </Label>
                 <Input
                   type="text"
                   name="name"
-                  id="nameMulti"
+                  id="name"
                   placeholder="Nombre"
-                  value={nameLote}
-                  onChange={(e) => setNameLote(e.target.value)}
+                  value={dataForm.name}
+                  onChange={handleChange}
                 />
               </Col>
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="lastNameMulti">
+                <Label className="form-label" for="field">
                   Campo o Establecimiento
                 </Label>
                 <Input
                   type="text"
-                  name="lastname"
-                  id="lastNameMulti"
+                  name="field"
+                  id="field"
                   placeholder="Campo o Establecimiento"
-                  value={fieldLote}
-                  onChange={(e) => setFieldLote(e.target.value)}
+                  value={dataForm.field}
+                  onChange={handleChange}
                 />
               </Col>
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="cityMulti">
-                  Cantidad de Hectárias
+                <Label className="form-label" for="amountOfHectarea">
+                  Cantidad de Hectáreas
                 </Label>
                 <Input
                   type="text"
-                  name="city"
-                  id="cityMulti"
-                  placeholder="Cantidad de Hectárias"
+                  name="amountOfHectarea"
+                  id="amountOfHectarea"
+                  placeholder="Cantidad de Hectáreas"
+                  value={dataForm.amountOfHectarea}
+                  onChange={handleChange}
                 />
               </Col>
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="CountryMulti">
+                <Label className="form-label" for="location">
                   Localidad
                 </Label>
                 <Input
                   type="text"
-                  name="country"
-                  id="CountryMulti"
+                  name="location"
+                  id="location"
                   placeholder="Localidad"
-                  value={locationLote}
-                  onChange={(e) => setLocationLote(e.target.value)}
+                  value={dataForm.location}
+                  onChange={handleChange}
                 />
               </Col>
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="CountryMulti">
+                <Label className="form-label" for="province">
                   Provincia
                 </Label>
                 <Input
                   type="text"
-                  name="country"
-                  id="CountryMulti"
-                  placeholder="Localidad"
-                  value={provinceLote}
-                  onChange={(e) => setProvinceLote(e.target.value)}
-                />
-              </Col>
-              <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="CountryMulti">
-                  Pais
-                </Label>
-                <Input
-                  type="text"
-                  name="country"
-                  id="CountryMulti"
-                  placeholder="Localidad"
+                  name="province"
+                  id="province"
+                  placeholder="Provincia"
+                  value={dataForm.province}
+                  onChange={handleChange}
                 />
               </Col>
 
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label me-2 fs-5" for="CountryMulti">
-                  Realiza siembra directa
-                </Label>
-                <Input
-                  type="checkbox"
-                  name="country"
-                  id="CountryMulti"
-                  placeholder="Realiza siembra directa"
-                />
+                <div className="form-check form-switch">
+                  <Label className="form-label me-2 fs-5" for="performSowing">
+                    Realiza siembra directa
+                  </Label>
+                  <Input
+                    type="checkbox"
+                    role="switch"
+                    name="performSowing"
+                    id="performSowing"
+                    placeholder="Realiza siembra directa"
+                    class="form-check-input"
+                    checked={dataForm.performSowing}
+                    onChange={handleChange}
+                  />
+                </div>
               </Col>
 
               <span className="mb-5"></span>
 
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="CompanyMulti">
+                <Label className="form-label" for="predecessorCrop">
                   Cultivo antecesor
                 </Label>
                 <Input
                   type="text"
-                  name="company"
-                  id="CompanyMulti"
+                  name="predecessorCrop"
+                  id="predecessorCrop"
                   placeholder="Cultivo antecesor"
+                  value={dataForm.predecessorCrop}
+                  onChange={handleChange}
                 />
               </Col>
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="EmailMulti">
+                <Label className="form-label" for="cropYield">
                   Rendimiento del cultivo antecesor en qq/ha
                 </Label>
                 <Input
-                  type="email"
-                  name="Email"
-                  id="EmailMulti"
+                  type="text"
+                  name="cropYield"
+                  id="cropYield"
                   placeholder="Rendimiento del cultivo antecesor en qq/ha"
+                  value={dataForm.cropYield}
+                  onChange={handleChange}
                 />
               </Col>
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="EmailMulti">
+                <Label className="form-label" for="elapsedTime">
                   Tiempo transcurrido entre cosecha y siembra
                 </Label>
                 <Input
-                  type="email"
-                  name="Email"
-                  id="EmailMulti"
+                  type="text"
+                  name="elapsedTime"
+                  id="elapsedTime"
                   placeholder="Tiempo transcurrido entre cosecha y siembra"
+                  value={dataForm.elapsedTime}
+                  onChange={handleChange}
                 />
               </Col>
-              <Col sm="12">
-                <div className="d-flex align-items-center justify-content-end">
-                  <Button
-                    className="btn btn-primary"
-                    color="primary"
-                    type="submit"
-                  >
-                    Guardar
-                  </Button>
-                  {/* <Button outline color="secondary" type="reset">
-                  Reset
-                </Button> */}
-                </div>
-              </Col>
             </Row>
+
+            <div className="d-flex justify-content-end mt-1">
+              <Button
+                outline
+                color="danger"
+                onClick={() => setBackModal(!backModal)}
+              >
+                Volver
+              </Button>
+
+              <Button
+                className="btn btn-primary ms-2"
+                color="primary"
+                type="submit"
+              >
+                {dataToEdit ? "Editar" : "Guardar"}
+              </Button>
+            </div>
           </Form>
         </CardBody>
       </Card>
