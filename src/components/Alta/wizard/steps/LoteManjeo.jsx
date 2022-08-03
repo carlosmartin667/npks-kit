@@ -178,7 +178,7 @@ const LoteManjeo = () => {
                 color="primary"
                 type="submit"
               >
-                {dataToEdit ? "Editar" : "Guardar"}
+                Guardar
               </Button>
             </div>
           </Form>
