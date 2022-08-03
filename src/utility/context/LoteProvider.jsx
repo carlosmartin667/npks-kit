@@ -6,25 +6,30 @@ import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 
 export const DataContext = createContext();
 
-const initialData = [
-  {
-    id: 1,
-    name: "+ Lote",
-    field: null,
-    location: null,
-    province: null,
-    country: null,
-    date: null,
-    crop: null,
-    cropUp: null,
-  },
+const DataLoteYManejo = [
+  // {
+  //   id: 1,
+  //   name: "+ Lote",
+  //   field: null,
+  //   amountOfHectarea: null,
+  //   location: null,
+  //   province: null,
+  //   performSowing: true,
+  //   predecessorCrop: null,
+  //   cropYield: null,
+  //   elapsedTime: null,
+  // },
   {
     id: 2,
     name: "Lote 1",
     field: "Gastaldi",
+    amountOfHectarea: null,
     location: "Villa María",
     province: "Córdoba",
-    country: "Argentina",
+    performSowing: true,
+    predecessorCrop: null,
+    cropYield: null,
+    elapsedTime: null,
     date: "15/12/2022",
     crop: "Maíz",
     cropUp: true,
@@ -33,173 +38,158 @@ const initialData = [
     id: 3,
     name: "Lote 2",
     field: "Aleman",
+    amountOfHectarea: null,
     location: "Pasco",
     province: "Córdoba",
-    country: "Argentina",
-    date: null,
-    crop: null,
-    cropUp: null,
+    performSowing: true,
+    predecessorCrop: null,
+    cropYield: null,
+    elapsedTime: null,
   },
-  // {
-  //   id: 1,
-  //   // img: require("@src/assets/images/icons/toolbox.svg").default,
-  //   name: "+ Lote",
-  //   // description: 'Alta productividad',
-  //   // icon: <Monitor size={18} />,
-  //   field: null,
-  //   location: null,
-  //   city: null,
-  //   date: null,
-  //   crop: null,
-  //   cropUp: null,
-  //   // btnDelete: <Trash className="me-50" size={15} />,
-  // },
-  // {
-  //   id: 2,
-  //   // img: require("@src/assets/images/icons/toolbox.svg").default,
-  //   name: "Lote 1",
-  //   // description: 'Alta productividad',
-  //   // icon: <Monitor size={18} />,
-  //   field: "Gastaldi",
-  //   location: "Villa María",
-  //   provinceLote: "Córdoba",
-  //   date: "15/12/2022",
-  //   crop: "Maíz",
-  //   cropUp: true,
-  //   // btnDelete: <Trash className="me-50" size={15} />,
-  // },
-  // {
-  //   img: require("@src/assets/images/icons/book.svg").default,
-  //   name: "Lote 5",
-  //   // description: null,
-  //   icon: <Monitor size={18} />,
-  //   countryside: "El Mimoso",
-  //   location: "Río IV",
-  //   city: "Córdoba",
-  //   date: "11/11/2022",
-  //   crop: "Soja",
-  //   cropUp: false,
-  //   btnDelete: <Trash className="me-50" size={15} />,
-  // },
-  // {
-  //   id: 3,
-  //   // img: require("@src/assets/images/icons/book.svg").default,
-  //   name: "Lote 2",
-  //   // description: 'Baja productividad',
-  //   // icon: <Monitor size={18} />,
-  //   field: "Aleman",
-  //   location: "Pasco",
-  //   city: "Córdoba",
-  //   date: null,
-  //   crop: null,
-  //   cropUp: null,
-  //   // btnDelete: <Trash className="me-50" size={15} />,
-  // },
-  // {
-  //   img: require("@src/assets/images/icons/toolbox.svg").default,
-  //   name: "Lote 3",
-  //   // description: null,
-  //   icon: <Monitor size={18} />,
-  //   countryside: "Antonio",
-  //   location: "Esperanza",
-  //   city: "Santa Fe",
-  //   date: "01/04/2022",
-  //   crop: "Alfalfa",
-  //   cropUp: true,
-  //   btnDelete: <Trash className="me-50" size={15} />,
-  // },
 ];
 
 export default function LoteProvider({ children }) {
-  // ** State modal Account
-  const [centeredModal, setCenteredModal] = useState(false);
-
-  // ** State form Lote y Manejo
-  const [data, setData] = useState(initialData);
-  const [nameLote, setNameLote] = useState("");
-  const [fieldLote, setFieldLote] = useState("");
-
-  const [locationLote, setLocationLote] = useState("");
-  const [cityLote, setCityLote] = useState("");
-
-  const [dateLote, setDateLote] = useState("");
-  const [cropLote, setCropLote] = useState("");
-
-  const [provinceLote, setProvinceLote] = useState("");
-  const [countryLote, setCountryLote] = useState("");
-
+  // ** import navigate from "react-router-dom"
   const navigate = useNavigate();
 
-  const deleteTask = (id) => {
-    setData(data.filter((dataa) => dataa.id !== id));
+  // ** State modal Account
+  const [centeredModal, setCenteredModal] = useState(false);
+  const [backModal, setBackModal] = useState(false);
+  const [deleteLoteModal, setDeleteLoteModal] = useState(false);
+
+  // ** Initial state
+  const [data, setData] = useState(DataLoteYManejo);
+
+  const [dataForm, setDataForm] = useState({
+    id: null,
+    name: "",
+    field: "",
+    amountOfHectarea: "",
+    location: "",
+    province: "",
+    performSowing: true,
+    predecessorCrop: "",
+    cropYield: "",
+    elapsedTime: "",
+    date: "",
+    crop: "",
+  });
+
+  const [dataToEdit, setDataToEdit] = useState(null);
+
+  const handleChange = (e) => {
+    const { name, value, checked, type } = e.target;
+
+    setDataForm({
+      ...dataForm,
+      [name]: type === "checkbox" ? checked : value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // nameLote === "",
-    //   fieldLote === "",
-    //   locationLote === "",
-    //   cityLote === "",
-    //   dateLote === "",
-    //   cropLote === "",
-    // provinceLote === '',
-    // countryLote === '',
-
-    if ((nameLote === "", fieldLote === "", provinceLote === "")) {
-      setCenteredModal(!centeredModal);
+    if (
+      dataForm.name !== "" &&
+      dataForm.field !== "" &&
+      dataForm.amountOfHectarea !== "" &&
+      dataForm.location !== "" &&
+      dataForm.province !== "" &&
+      dataForm.predecessorCrop !== "" &&
+      dataForm.cropYield !== "" &&
+      dataForm.elapsedTime !== ""
+    ) {
+      if (dataForm.id === null) {
+        createData(dataForm);
+        setDataForm({
+          id: null,
+          name: "",
+          field: "",
+          amountOfHectarea: "",
+          location: "",
+          province: "",
+          performSowing: true,
+          predecessorCrop: "",
+          cropYield: "",
+          elapsedTime: "",
+          date: "",
+          crop: "",
+        });
+      } else {
+        updateData(dataForm);
+        setDataForm({
+          id: null,
+          name: "",
+          field: "",
+          amountOfHectarea: "",
+          location: "",
+          province: "",
+          performSowing: true,
+          predecessorCrop: "",
+          cropYield: "",
+          elapsedTime: "",
+          date: "",
+          crop: "",
+        });
+      }
     } else {
-      setData(
-        data.concat({
-          ...data,
-          id: +new Date(),
-          name: nameLote,
-          field: fieldLote,
-          location: locationLote,
-          province: provinceLote,
-          country: countryLote,
-          city: cityLote,
-          date: dateLote,
-          crop: cropLote,
-        })
-      );
-
-      setNameLote("");
-      setFieldLote("");
-      setLocationLote("");
-      setCityLote("");
-      setDateLote("");
-      setCropLote("");
-      setProvinceLote("");
-      setCountryLote("");
-      navigate("/home");
+      setCenteredModal(!centeredModal);
     }
   };
+
+  const createData = (dato) => {
+    dato.id = +new Date();
+    setData([...data, dato]);
+
+    navigate("/");
+  };
+
+  const updateData = (dato) => {
+    let newDataLote = data.map((el) => (el.id === dato.id ? dato : el));
+    setData(newDataLote);
+    navigate("/");
+  };
+
+  const deleteData = (id) => {
+    alert("ELIMINAR LOTE con ID: " + id);
+    setData(data.filter((dato) => dato.id !== id));
+  };
+
+  useEffect(() => {
+    if (dataToEdit) {
+      setDataForm(dataToEdit);
+    } else {
+      setDataForm({
+        id: null,
+        name: "",
+        field: "",
+        amountOfHectarea: "",
+        location: "",
+        province: "",
+        performSowing: true,
+        predecessorCrop: "",
+        cropYield: "",
+        elapsedTime: "",
+        date: "",
+        crop: "",
+      });
+    }
+  }, [dataToEdit]);
 
   return (
     <>
       <DataContext.Provider
         value={{
-          data,
-          setData,
-          deleteTask,
+          dataForm,
+          handleChange,
           handleSubmit,
-          nameLote,
-          setNameLote,
-          fieldLote,
-          setFieldLote,
-          locationLote,
-          setLocationLote,
-          cityLote,
-          setCityLote,
-          dateLote,
-          setDateLote,
-          cropLote,
-          setCropLote,
-          provinceLote,
-          setProvinceLote,
-          countryLote,
-          setCountryLote,
+          deleteData,
+          setData,
+          data,
+          setDataToEdit,
+          dataToEdit,
+          backModal,
+          setBackModal,
         }}
       >
         {children}
@@ -214,15 +204,54 @@ export default function LoteProvider({ children }) {
           {/* toggle={() => setCenteredModal(!centeredModal)} */}
           <ModalHeader>Campos obligatorios</ModalHeader>
           <ModalBody>
-            <h4>
-              Para añadir un nuevo lote o editarlo, es necesario cumplir con
-              todos los campos.
-            </h4>
+            <h4>Es necesario completar todos los campos para Guardar</h4>
           </ModalBody>
           <ModalFooter>
             <Button
               color="primary"
               onClick={() => setCenteredModal(!centeredModal)}
+            >
+              Aceptar
+            </Button>
+          </ModalFooter>
+        </Modal>
+      ) : null}
+
+      {backModal ? (
+        <Modal
+          isOpen={backModal}
+          // toggle={() => setCenteredModal(!centeredModal)}
+          className="modal-dialog-centered"
+        >
+          {/* toggle={() => setCenteredModal(!centeredModal)} */}
+          <ModalHeader>¡Atención!</ModalHeader>
+          <ModalBody>
+            <h4>No se guardarán los cambios</h4>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={() => setBackModal(!backModal)}>
+              Canselar
+            </Button>
+            <Button
+              color="danger"
+              onClick={() => {
+                setBackModal(!backModal);
+                setDataForm({
+                  id: null,
+                  name: "",
+                  field: "",
+                  amountOfHectarea: "",
+                  location: "",
+                  province: "",
+                  performSowing: true,
+                  predecessorCrop: "",
+                  cropYield: "",
+                  elapsedTime: "",
+                  date: "",
+                  crop: "",
+                });
+                navigate("/");
+              }}
             >
               Aceptar
             </Button>
