@@ -82,9 +82,11 @@ const Login = () => {
                   Recuérdame
                 </Label>
               </div>
-              <Button color="primary" block>
-                Inicia sesión
-              </Button>
+              <Link to="/home">
+                <Button color="primary" block>
+                  Inicia sesión
+                </Button>
+              </Link>
             </Form>
             <p className="text-center mt-2">
               <span className="me-25">¿Nuevo en nuestra plataforma?</span>

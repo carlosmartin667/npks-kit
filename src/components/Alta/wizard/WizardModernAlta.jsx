@@ -1,24 +1,24 @@
 // ** React Imports
-import { useRef, useState } from 'react'
+import { useRef, useState } from "react";
 
 // ** Custom Components
-import Wizard from '@components/wizard'
+import Wizard from "@components/wizard";
 
 // ** Steps
-import Cultivo from './steps/Cultivo'
-import Fertilizante from './steps/Fertilizante'
-import Suelo from './steps/Suelo'
-import LoteManjeo from './steps/LoteManjeo'
+import Cultivo from "./steps/Cultivo";
+import Fertilizante from "./steps/Fertilizante";
+import Suelo from "./steps/Suelo";
+import LoteManjeo from "./steps/LoteManjeo";
 
 // ** Icons Imports
-import { FileText, User, MapPin, Link } from 'react-feather'
+import { FileText, User, MapPin, Link } from "react-feather";
 
 const WizardModernAlta = () => {
   // ** Ref
-  const ref = useRef(null)
+  const ref = useRef(null);
 
   // ** State
-  const [stepper, setStepper] = useState(null)
+  const [stepper, setStepper] = useState(null);
 
   const steps = [
     // {
@@ -28,38 +28,38 @@ const WizardModernAlta = () => {
     //   content: <LoteManjeo stepper={stepper} type='wizard-modern' />
     // },
     {
-      id: 'Suelo',
-      title: 'Suelo',
+      id: "Suelo",
+      title: "Suelo",
       icon: <User size={18} />,
-      content: <Suelo stepper={stepper} type='wizard-modern' />
+      content: <Suelo stepper={stepper} type="wizard-modern" />,
     },
     {
-      id: 'Cultivo',
-      title: 'Cultivo',
+      id: "Cultivo",
+      title: "Cultivo",
       icon: <MapPin size={18} />,
-      content: <Cultivo stepper={stepper} type='wizard-modern' />
+      content: <Cultivo stepper={stepper} type="wizard-modern" />,
     },
     {
-      id: 'Fertilizante',
-      title: 'Fertilizante',
+      id: "Fertilizante",
+      title: "Fertilizante",
       icon: <Link size={18} />,
-      content: <Fertilizante stepper={stepper} type='wizard-modern' />
-    }
-  ]
+      content: <Fertilizante stepper={stepper} type="wizard-modern" />,
+    },
+  ];
 
   return (
-    <div className='modern-horizontal-wizard'>
+    <div className="modern-horizontal-wizard">
       <Wizard
-        type='modern-horizontal'
+        type="modern-horizontal"
         ref={ref}
         steps={steps}
         options={{
-          linear: false
+          linear: false,
         }}
-        instance={el => setStepper(el)}
+        instance={(el) => setStepper(el)}
       />
     </div>
-  )
-}
+  );
+};
 
-export default WizardModernAlta
+export default WizardModernAlta;

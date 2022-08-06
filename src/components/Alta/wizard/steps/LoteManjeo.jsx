@@ -31,7 +31,7 @@ const LoteManjeo = () => {
     <>
       <Card>
         <CardHeader>
-          <CardTitle tag="h4">Lote y Manejo</CardTitle>
+          <CardTitle tag="h4">Lotes</CardTitle>
         </CardHeader>
 
         <CardBody>
@@ -76,19 +76,7 @@ const LoteManjeo = () => {
                   onChange={handleChange}
                 />
               </Col>
-              <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="location">
-                  Localidad
-                </Label>
-                <Input
-                  type="text"
-                  name="location"
-                  id="location"
-                  placeholder="Localidad"
-                  value={dataForm.location}
-                  onChange={handleChange}
-                />
-              </Col>
+
               <Col md="6" sm="12" className="mb-1">
                 <Label className="form-label" for="province">
                   Provincia
@@ -104,6 +92,20 @@ const LoteManjeo = () => {
               </Col>
 
               <Col md="6" sm="12" className="mb-1">
+                <Label className="form-label" for="location">
+                  Localidad
+                </Label>
+                <Input
+                  type="text"
+                  name="location"
+                  id="location"
+                  placeholder="Localidad"
+                  value={dataForm.location}
+                  onChange={handleChange}
+                />
+              </Col>
+
+              {/* <Col md="6" sm="12" className="mb-1">
                 <div className="form-check form-switch">
                   <Label className="form-label me-2 fs-5" for="performSowing">
                     Realiza siembra directa
@@ -119,9 +121,9 @@ const LoteManjeo = () => {
                     onChange={handleChange}
                   />
                 </div>
-              </Col>
+              </Col> */}
 
-              <span className="mb-5"></span>
+              {/* <span className="mb-5"></span>
 
               <Col md="6" sm="12" className="mb-1">
                 <Label className="form-label" for="predecessorCrop">
@@ -161,6 +163,26 @@ const LoteManjeo = () => {
                   value={dataForm.elapsedTime}
                   onChange={handleChange}
                 />
+              </Col> */}
+            </Row>
+
+            <Row>
+              <Col md="6" sm="12" className="mb-1">
+                <div className="form-check form-switch">
+                  <Label className="form-label me-2 fs-5" for="performSowing">
+                    Realiza siembra directa
+                  </Label>
+                  <Input
+                    type="checkbox"
+                    role="switch"
+                    name="performSowing"
+                    id="performSowing"
+                    placeholder="Realiza siembra directa"
+                    class="form-check-input"
+                    checked={dataForm.performSowing}
+                    onChange={handleChange}
+                  />
+                </div>
               </Col>
             </Row>
 
