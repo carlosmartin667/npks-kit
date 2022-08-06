@@ -79,6 +79,58 @@ const Cultivo = ({ stepper }) => {
                   placeholder="1"
                 />
               </Col>
+
+              <span className="mt-5"></span>
+
+              <Col md="6" sm="12" className="mb-1">
+                <Label className="form-label" for="predecessorCrop">
+                  Cultivo antecesor
+                </Label>
+                <Input
+                  type="text"
+                  name="predecessorCrop"
+                  id="predecessorCrop"
+                  placeholder="Cultivo antecesor"
+                />
+              </Col>
+              <Col md="6" sm="12" className="mb-1">
+                <Label className="form-label" for="cropYield">
+                  Rendimiento del cultivo antecesor en qq/ha
+                </Label>
+                <Input
+                  type="text"
+                  name="cropYield"
+                  id="cropYield"
+                  placeholder="Rendimiento del cultivo antecesor en qq/ha"
+                />
+              </Col>
+              <Col md="6" sm="12" className="mb-1">
+                <Label className="form-label" for="elapsedTime">
+                  Tiempo transcurrido entre cosecha y siembra
+                </Label>
+                <Input
+                  type="text"
+                  name="elapsedTime"
+                  id="elapsedTime"
+                  placeholder="Tiempo transcurrido entre cosecha y siembra"
+                />
+              </Col>
+
+              <Col md="6" sm="12" className="mt-2">
+                <div className="form-check form-switch">
+                  <Label className="form-label me-2 fs-5" for="performSowing">
+                    Realiza siembra directa
+                  </Label>
+                  <Input
+                    type="checkbox"
+                    role="switch"
+                    name="performSowing"
+                    id="performSowing"
+                    placeholder="Realiza siembra directa"
+                    class="form-check-input"
+                  />
+                </div>
+              </Col>
             </Row>
           </Form>
         </CardBody>
