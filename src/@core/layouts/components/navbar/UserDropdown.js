@@ -40,7 +40,9 @@ const UserDropdown = () => {
   return (
     <>
       <div className="user-nav d-flex flex-column  me-1 gap-15-styles">
-        <span className="name-accoutn-user fw-bolde text-end">Pepito-NPKS</span>
+        <span className="name-accoutn-user fw-bolde text-end">
+          Pepito-Nutrixya
+        </span>
         <span
           onClick={() => setCenteredModal(!centeredModal)}
           className="btn-close-accoutn text-end"
@@ -93,7 +95,7 @@ const UserDropdown = () => {
     // <UncontrolledDropdown tag='li' className='dropdown-user nav-item'>
     //   <DropdownToggle href='/' tag='a' className='nav-link dropdown-user-link' onClick={e => e.preventDefault()}>
     //     <div className='user-nav d-sm-flex d-none'>
-    //       <span className='user-name fw-bold'>User NPKS</span>
+    //       <span className='user-name fw-bold'>User Nutrixya</span>
     //       <span className='user-status'>User</span>
     //     </div>
     //     <Avatar img={defaultAvatar} imgHeight='40' imgWidth='40' status='online' />

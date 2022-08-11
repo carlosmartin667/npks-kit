@@ -37,8 +37,6 @@ import { Link } from "react-router-dom";
 import toolBox from "@src/assets/images/icons/toolbox.svg";
 import { DataContext } from "../../utility/context/LoteProvider";
 
-// ** import dataContext from LoteProvider
-
 const TableCompany = () => {
   const { data, deleteData, setDataToEdit, setData } = useContext(DataContext);
 
@@ -51,74 +49,6 @@ const TableCompany = () => {
   const toggle = () => setTooltipOpen(!tooltipOpen);
 
   const medidaDesktop = document.documentElement.clientWidth;
-
-  // const data = [
-  //   {
-  //     // img: require("@src/assets/images/icons/toolbox.svg").default,
-  //     name: "+ Lote",
-  //     // description: 'Alta productividad',
-  //     // icon: <Monitor size={18} />,
-  //     countryside: null,
-  //     location: null,
-  //     city: null,
-  //     date: null,
-  //     crop: null,
-  //     cropUp: null,
-  //     // btnDelete: <Trash className="me-50" size={15} />,
-  //   },
-  // {
-  //   // img: require("@src/assets/images/icons/toolbox.svg").default,
-  //   name: "Lote 1",
-  //   // description: 'Alta productividad',
-  //   // icon: <Monitor size={18} />,
-  //   countryside: "Gastaldi",
-  //   location: "Villa María",
-  //   city: "Córdoba",
-  //   date: "15/12/2022",
-  //   crop: "Maíz",
-  //   cropUp: true,
-  //   // btnDelete: <Trash className="me-50" size={15} />,
-  // },
-  // {
-  //   img: require("@src/assets/images/icons/book.svg").default,
-  //   name: "Lote 5",
-  //   // description: null,
-  //   icon: <Monitor size={18} />,
-  //   countryside: "El Mimoso",
-  //   location: "Río IV",
-  //   city: "Córdoba",
-  //   date: "11/11/2022",
-  //   crop: "Soja",
-  //   cropUp: false,
-  //   btnDelete: <Trash className="me-50" size={15} />,
-  // },
-  // {
-  //   // img: require("@src/assets/images/icons/book.svg").default,
-  //   name: "Lote 2",
-  //   // description: 'Baja productividad',
-  //   // icon: <Monitor size={18} />,
-  //   countryside: "Aleman",
-  //   location: "Pasco",
-  //   city: "Córdoba",
-  //   date: null,
-  //   crop: null,
-  //   cropUp: null,
-  //   // btnDelete: <Trash className="me-50" size={15} />,
-  // },
-  // {
-  //   img: require("@src/assets/images/icons/toolbox.svg").default,
-  //   name: "Lote 3",
-  //   // description: null,
-  //   icon: <Monitor size={18} />,
-  //   countryside: "Antonio",
-  //   location: "Esperanza",
-  //   city: "Santa Fe",
-  //   date: "01/04/2022",
-  //   crop: "Alfalfa",
-  //   cropUp: true,
-  //   btnDelete: <Trash className="me-50" size={15} />,
-  // },
-  // ];
 
   const renderData = () => {
     return (

@@ -7,18 +7,6 @@ import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 export const DataContext = createContext();
 
 const DataLoteYManejo = [
-  // {
-  //   id: 1,
-  //   name: "+ Lote",
-  //   field: null,
-  //   amountOfHectarea: null,
-  //   location: null,
-  //   province: null,
-  //   performSowing: true,
-  //   predecessorCrop: null,
-  //   cropYield: null,
-  //   elapsedTime: null,
-  // },
   {
     id: 2,
     name: "Lote 1",
@@ -26,13 +14,6 @@ const DataLoteYManejo = [
     amountOfHectarea: null,
     location: "Villa María",
     province: "Córdoba",
-    performSowing: true,
-    predecessorCrop: null,
-    cropYield: null,
-    elapsedTime: null,
-    date: "15/12/2022",
-    crop: "Maíz",
-    cropUp: true,
   },
   {
     id: 3,
@@ -41,10 +22,6 @@ const DataLoteYManejo = [
     amountOfHectarea: null,
     location: "Pasco",
     province: "Córdoba",
-    performSowing: true,
-    predecessorCrop: null,
-    cropYield: null,
-    elapsedTime: null,
   },
 ];
 
@@ -67,12 +44,6 @@ export default function LoteProvider({ children }) {
     amountOfHectarea: "",
     location: "",
     province: "",
-    performSowing: true,
-    predecessorCrop: "",
-    cropYield: "",
-    elapsedTime: "",
-    date: "",
-    crop: "",
   });
 
   const [dataToEdit, setDataToEdit] = useState(null);
@@ -94,10 +65,7 @@ export default function LoteProvider({ children }) {
       dataForm.field !== "" &&
       dataForm.amountOfHectarea !== "" &&
       dataForm.location !== "" &&
-      dataForm.province !== "" &&
-      dataForm.predecessorCrop !== "" &&
-      dataForm.cropYield !== "" &&
-      dataForm.elapsedTime !== ""
+      dataForm.province !== ""
     ) {
       if (dataForm.id === null) {
         createData(dataForm);
@@ -108,12 +76,6 @@ export default function LoteProvider({ children }) {
           amountOfHectarea: "",
           location: "",
           province: "",
-          performSowing: true,
-          predecessorCrop: "",
-          cropYield: "",
-          elapsedTime: "",
-          date: "",
-          crop: "",
         });
       } else {
         updateData(dataForm);
@@ -124,12 +86,6 @@ export default function LoteProvider({ children }) {
           amountOfHectarea: "",
           location: "",
           province: "",
-          performSowing: true,
-          predecessorCrop: "",
-          cropYield: "",
-          elapsedTime: "",
-          date: "",
-          crop: "",
         });
       }
     } else {
@@ -166,12 +122,6 @@ export default function LoteProvider({ children }) {
         amountOfHectarea: "",
         location: "",
         province: "",
-        performSowing: true,
-        predecessorCrop: "",
-        cropYield: "",
-        elapsedTime: "",
-        date: "",
-        crop: "",
       });
     }
   }, [dataToEdit]);
@@ -243,12 +193,6 @@ export default function LoteProvider({ children }) {
                   amountOfHectarea: "",
                   location: "",
                   province: "",
-                  performSowing: true,
-                  predecessorCrop: "",
-                  cropYield: "",
-                  elapsedTime: "",
-                  date: "",
-                  crop: "",
                 });
                 navigate("/");
               }}

@@ -23,7 +23,7 @@ const VerifyEmailBasic = () => {
             >
               <img src={Logo} alt={"logo icon"} />
 
-              <h2 className="brand-text text-primary ms-1">NPKS</h2>
+              <h2 className="brand-text text-primary ms-1">Nutrixya</h2>
             </Link>
             <CardTitle tag="h2" className="fw-bolder mb-1">
               Verifica tu correo electrónico ✉️

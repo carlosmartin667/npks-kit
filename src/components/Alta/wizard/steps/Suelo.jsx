@@ -1,5 +1,5 @@
 // ** React Imports
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 
 import { ArrowLeft, ArrowRight } from "react-feather";
 
@@ -22,6 +22,15 @@ import {
   AccordionBody,
   AccordionHeader,
   AccordionItem,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  UncontrolledAlert,
+  Alert,
+  Toast,
+  ToastHeader,
+  ToastBody,
 } from "reactstrap";
 
 // ** import ions from react-icons
@@ -46,6 +55,11 @@ const Suelo = ({ stepper }) => {
   const [estratoDos, setEstratoDos] = useState(false);
   const [estratoTres, setEstratoTres] = useState(false);
 
+  const [profundidadEstratoDos, setProfundidadEstratoDos] = useState("20 a 40");
+
+  const [modalEstratoDos, setModalEstratoDos] = useState(false);
+  const [modalEstratoTres, setModalEstratoTres] = useState(false);
+
   return (
     <>
       <Card>
@@ -61,9 +75,11 @@ const Suelo = ({ stepper }) => {
                   Nivel de compactación
                 </Label>
                 <Input type="select" name="options" id="register-select">
-                  <option value={"Compacto"}>Compacto</option>
                   <option value={"Mullido"}>Mullido</option>
                   <option value={"Normal"}>Normal</option>
+                  <option selected value={"Compacto"}>
+                    Compacto
+                  </option>
                   <option value={"Muy compacto"}>Muy compacto</option>
                 </Input>
               </Col>
@@ -73,11 +89,11 @@ const Suelo = ({ stepper }) => {
                   Limitación por anegamiento
                 </Label>
                 <Input type="select" name="options" id="register-select">
-                  <option value={"Suelo moderadamente bien drenado"}>
-                    Suelo moderadamente bien drenado
-                  </option>
                   <option value={"Suelo imperfectamente drenado o peor"}>
                     Suelo imperfectamente drenado o peor
+                  </option>
+                  <option selected value={"Suelo moderadamente bien drenado"}>
+                    Suelo moderadamente bien drenado
                   </option>
                   <option value={"Suelo bien drenado o mejor"}>
                     Suelo bien drenado o mejor
@@ -322,7 +338,7 @@ const Suelo = ({ stepper }) => {
               {estratoDos ? (
                 <>
                   <AccordionItem>
-                    <AccordionHeader targetId="2" className="fs-3 ">
+                    <AccordionHeader targetId="2" className="fs-3">
                       Estrato 2
                     </AccordionHeader>
                     <AccordionBody accordionId="2">
@@ -340,9 +356,16 @@ const Suelo = ({ stepper }) => {
                             type="select"
                             name="options"
                             id="register-select"
+                            onChange={(e) => {
+                              e.preventDefault();
+                              let selectedValue = e.target.value;
+                              setProfundidadEstratoDos(selectedValue);
+                            }}
                           >
                             <option value={"20 a 40"}>20 a 40</option>
-                            <option value={"20 a 60"}>20 a 60</option>
+                            {estratoTres !== false ? null : (
+                              <option value={"20 a 60"}>20 a 60</option>
+                            )}
                           </Input>
 
                           {/* S-SO4  */}
@@ -540,22 +563,39 @@ const Suelo = ({ stepper }) => {
                       <Button color="primary" outline block>
                         Agregar estrato +
                       </Button> */}
+
+                          <Label className="mt-1">Eliminar estrato</Label>
+                          <Button
+                            color="danger"
+                            outline
+                            block
+                            onClick={(e) => {
+                              e.preventDefault(),
+                                setModalEstratoDos(!modalEstratoDos);
+                            }}
+                          >
+                            Eliminar
+                          </Button>
                         </Col>
                       </Row>
                     </AccordionBody>
                   </AccordionItem>
 
-                  {!estratoTres ? (
-                    <Button
-                      color="primary"
-                      outline
-                      block
-                      onClick={(e) => {
-                        e.preventDefault(), setEstratoTres(true);
-                      }}
-                    >
-                      Agregar estrato +
-                    </Button>
+                  {profundidadEstratoDos === "20 a 40" ? (
+                    <>
+                      {!estratoTres ? (
+                        <Button
+                          color="primary"
+                          outline
+                          block
+                          onClick={(e) => {
+                            e.preventDefault(), setEstratoTres(true);
+                          }}
+                        >
+                          Agregar estrato +
+                        </Button>
+                      ) : null}
+                    </>
                   ) : null}
                 </>
               ) : null}
@@ -768,6 +808,19 @@ const Suelo = ({ stepper }) => {
                       <Button color="primary" outline block disabled>
                         Agregar estrato +
                       </Button> */}
+
+                        <Label className="mt-1">Eliminar estrato</Label>
+                        <Button
+                          color="danger"
+                          outline
+                          block
+                          onClick={(e) => {
+                            e.preventDefault(),
+                              setModalEstratoTres(!modalEstratoTres);
+                          }}
+                        >
+                          Eliminar
+                        </Button>
                       </Col>
                     </Row>
                   </AccordionBody>
@@ -795,6 +848,74 @@ const Suelo = ({ stepper }) => {
           </div>
         </CardFooter>
       </Card>
+
+      {modalEstratoDos ? (
+        <Modal
+          isOpen={modalEstratoDos}
+          // toggle={() => setCenteredModal(!centeredModal)}
+          className="modal-dialog-centered"
+        >
+          {/* toggle={() => setCenteredModal(!centeredModal)} */}
+          <ModalHeader>¡ATENCIÓN!</ModalHeader>
+          <ModalBody>
+            <h4>¿Está seguro que desea eliminar el estrato?</h4>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              color="primary"
+              onClick={() => {
+                setModalEstratoDos(!modalEstratoDos);
+              }}
+            >
+              Cancelar
+            </Button>
+
+            <Button
+              color="danger"
+              onClick={() => {
+                setEstratoDos(false),
+                  setEstratoTres(false),
+                  setModalEstratoDos(!modalEstratoDos);
+              }}
+            >
+              Aceptar
+            </Button>
+          </ModalFooter>
+        </Modal>
+      ) : null}
+
+      {modalEstratoTres ? (
+        <Modal
+          isOpen={modalEstratoTres}
+          // toggle={() => setCenteredModal(!centeredModal)}
+          className="modal-dialog-centered"
+        >
+          {/* toggle={() => setCenteredModal(!centeredModal)} */}
+          <ModalHeader>¡ATENCIÓN!</ModalHeader>
+          <ModalBody>
+            <h4>¿Está seguro que desea eliminar el estrato?</h4>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              color="primary"
+              onClick={() => {
+                setModalEstratoTres(!modalEstratoTres);
+              }}
+            >
+              Cancelar
+            </Button>
+
+            <Button
+              color="danger"
+              onClick={() => {
+                setEstratoTres(false), setModalEstratoTres(!modalEstratoTres);
+              }}
+            >
+              Aceptar
+            </Button>
+          </ModalFooter>
+        </Modal>
+      ) : null}
     </>
   );
 };

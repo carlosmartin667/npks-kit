@@ -3,31 +3,31 @@
 //Template config options
 const themeConfig = {
   app: {
-    appName: 'NPKS',
-    appLogoImage: require('@src/assets/images/logo/logo.svg').default
+    appName: "Nutrixya",
+    appLogoImage: require("@src/assets/images/logo/logo.svg").default,
   },
   layout: {
     isRTL: false, //Boolean
-    skin: 'light', // light, dark, bordered, semi-dark
-    routerTransition: 'fadeInLeft', // fadeIn, fadeInLeft, zoomIn, none or check this for more transition https://animate.style/
-    type: 'horizontal', // vertical, horizontal
-    contentWidth: 'full', // full, boxed
+    skin: "light", // light, dark, bordered, semi-dark
+    routerTransition: "fadeInLeft", // fadeIn, fadeInLeft, zoomIn, none or check this for more transition https://animate.style/
+    type: "horizontal", // vertical, horizontal
+    contentWidth: "full", // full, boxed
     menu: {
       isHidden: false, // Boolean
-      isCollapsed: true // Boolean
+      isCollapsed: true, // Boolean
     },
     navbar: {
       // ? For horizontal menu, navbar type will work for navMenu type
-      type: 'floating', // static , sticky, floating, hidden
-      backgroundColor: 'white' // BS color options [primary, success, etc]
+      type: "floating", // static , sticky, floating, hidden
+      backgroundColor: "white", // BS color options [primary, success, etc]
     },
     footer: {
-      type: 'static' // static, sticky, hidden
+      type: "static", // static, sticky, hidden
     },
     customizer: false,
     scrollTop: true, // Enable scroll to top button
-    toastPosition: 'top-right'
-  }
-}
+    toastPosition: "top-right",
+  },
+};
 
-export default themeConfig
+export default themeConfig;
