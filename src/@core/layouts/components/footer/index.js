@@ -1,13 +1,17 @@
 // ** Icons Import
-import { Heart } from 'react-feather'
+import { Heart } from "react-feather";
 
 const Footer = () => {
   return (
-    <p className='clearfix mb-0'>
-      <span className='float-md-end d-block d-md-inline-block mt-25'>
-        COPYRIGHT © {new Date().getFullYear()}{' '}
-        <a href='https://www.npks.com.ar/' target='_blank' rel='noopener noreferrer'>
-        NPKS
+    <p className="clearfix mb-0">
+      <span className="float-md-end d-block d-md-inline-block mt-25">
+        COPYRIGHT © {new Date().getFullYear()}{" "}
+        <a
+          href="https://www.Nutrixya.com.ar/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Nutrixya
         </a>
         {/* <span className='d-none d-sm-inline-block'>, All rights Reserved</span> */}
       </span>
@@ -15,9 +19,8 @@ const Footer = () => {
         Hand-crafted & Made with
         <Heart size={14} />
       </span> */}
-     
     </p>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

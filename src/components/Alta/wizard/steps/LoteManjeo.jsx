@@ -166,26 +166,6 @@ const LoteManjeo = () => {
               </Col> */}
             </Row>
 
-            <Row>
-              <Col md="6" sm="12" className="mb-1">
-                <div className="form-check form-switch">
-                  <Label className="form-label me-2 fs-5" for="performSowing">
-                    Realiza siembra directa
-                  </Label>
-                  <Input
-                    type="checkbox"
-                    role="switch"
-                    name="performSowing"
-                    id="performSowing"
-                    placeholder="Realiza siembra directa"
-                    class="form-check-input"
-                    checked={dataForm.performSowing}
-                    onChange={handleChange}
-                  />
-                </div>
-              </Col>
-            </Row>
-
             <div className="d-flex justify-content-end mt-1">
               <Button
                 outline

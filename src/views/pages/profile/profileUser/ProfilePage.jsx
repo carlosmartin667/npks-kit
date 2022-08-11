@@ -16,9 +16,9 @@ const ProfilePage = () => {
           />
           <div className="d-flex flex-column gap-15-styles">
             <CardText className="fs-2 fw-bolder margin-none-styles">
-              Pepito-NPKS
+              Pepito-Nutrixya
             </CardText>
-            <CardText>pepito-npks@gmail.com</CardText>
+            <CardText>pepito-Nutrixya@gmail.com</CardText>
           </div>
         </div>
       </div>

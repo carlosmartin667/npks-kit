@@ -86,34 +86,41 @@ const Cultivo = ({ stepper }) => {
                 <Label className="form-label" for="predecessorCrop">
                   Cultivo antecesor
                 </Label>
-                <Input
-                  type="text"
-                  name="predecessorCrop"
-                  id="predecessorCrop"
-                  placeholder="Cultivo antecesor"
-                />
+                <Input type="select" id="register-select">
+                  <option value={"Alfalfa"}>Alfalfa</option>
+                  <option value={"Algodón"}>Algodón</option>
+                  <option value={"Arroz"}>Arroz</option>
+                  <option selected value={"Maíz"}>
+                    Maíz
+                  </option>
+                  <option value={"Otro"}>Otro</option>
+                </Input>
               </Col>
+
               <Col md="6" sm="12" className="mb-1">
                 <Label className="form-label" for="cropYield">
                   Rendimiento del cultivo antecesor en qq/ha
                 </Label>
                 <Input
-                  type="text"
-                  name="cropYield"
-                  id="cropYield"
-                  placeholder="Rendimiento del cultivo antecesor en qq/ha"
+                  type="number"
+                  name="elapsedTime"
+                  id="elapsedTime"
+                  placeholder="90"
                 />
               </Col>
+
               <Col md="6" sm="12" className="mb-1">
                 <Label className="form-label" for="elapsedTime">
                   Tiempo transcurrido entre cosecha y siembra
                 </Label>
-                <Input
-                  type="text"
-                  name="elapsedTime"
-                  id="elapsedTime"
-                  placeholder="Tiempo transcurrido entre cosecha y siembra"
-                />
+
+                <Input type="select" id="register-select">
+                  <option selected value={"Menos de 2 meses"}>
+                    Menos de 2 meses
+                  </option>
+                  <option value={"De 2 a 4 meses"}>De 2 a 4 meses</option>
+                  <option value={"Mas de 4 meses"}>Mas de 4 meses</option>
+                </Input>
               </Col>
 
               <Col md="6" sm="12" className="mt-2">

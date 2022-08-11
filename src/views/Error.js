@@ -24,7 +24,7 @@ const Error = () => {
       <Link className="brand-logo" to="/login">
         <img src={Logo} alt="IconLogo" />
 
-        <h2 className="brand-text text-primary ms-1">NPKS</h2>
+        <h2 className="brand-text text-primary ms-1">Nutrixya</h2>
       </Link>
 
       <div className="misc-inner p-2 p-sm-3">

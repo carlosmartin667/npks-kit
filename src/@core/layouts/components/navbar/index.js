@@ -18,7 +18,7 @@ import { NavItem, NavLink } from "reactstrap";
 
 import { Link } from "react-router-dom";
 
-// ** import Logo NPKS
+// ** import Logo Nutrixya
 import Logo from "../../../../assets/images/logo/logo.svg";
 
 const ThemeNavbar = (props) => {
@@ -166,7 +166,7 @@ const ThemeNavbar = (props) => {
               <span className="brand-logo">
                 <img src={Logo} alt="logo" />
               </span>
-              <h2 className="text-primary fs-3 fw-bolder mb-0">NPKS</h2>
+              <h2 className="text-primary fs-3 fw-bolder mb-0">Nutrixya</h2>
             </Link>
           </NavItem>
         </ul>
