@@ -3,6 +3,7 @@ import { Fragment } from "react";
 
 // ** Icons Imports
 import { ArrowLeft, ArrowRight } from "react-feather";
+import { FiHelpCircle } from "react-icons/fi";
 
 // ** Reactstrap Imports
 import {
@@ -18,6 +19,7 @@ import {
   CardFooter,
   CardTitle,
   CardSubtitle,
+  UncontrolledTooltip,
 } from "reactstrap";
 
 const Cultivo = ({ stepper }) => {
@@ -39,14 +41,63 @@ const Cultivo = ({ stepper }) => {
                   <option value={"Alfalfa"}>Alfalfa</option>
                   <option value={"Algodón"}>Algodón</option>
                   <option value={"Arroz"}>Arroz</option>
-                  <option value={"Maíz"}>Maíz</option>
-                  <option value={"Otro"}>Otro</option>
+                  <option value={"Avena forrajera"}>Avena forrajera</option>
+                  <option value={"Avena grano"}>Avena grano</option>
+                  <option value={"Blue grass heno"}>Blue grass heno</option>
+                  <option value={"Canola (Colza)"}>Canola (Colza)</option>
+                  <option value={"Caña de azúcar"}>Caña de azúcar</option>
+                  <option value={"Cártamo"}>Cártamo</option>
+                  <option value={"Caupí"}>Caupí</option>
+                  <option value={"Cebada"}>Cebada</option>
+                  <option value={"Cebada forrajera"}>Cebada forrajera</option>
+                  <option value={"Centeno (grano)"}>Centeno (grano)</option>
+                  <option value={"Coastal heno"}>Coastal heno</option>
+                  <option value={"Falaris + T. subterráneo"}>
+                    Falaris + T. subterráneo
+                  </option>
+                  <option value={"Garbanzo"}>Garbanzo</option>
+                  <option value={"Girasol"}>Girasol</option>
+                  <option value={"Haba"}>Haba</option>
+                  <option value={"Lenteja"}>Lenteja</option>
+                  <option value={"Lino"}>Lino</option>
+                  <option selected value={"Maíz grano"}>
+                    Maíz grano
+                  </option>
+                  <option value={"Maíz silo"}>Maíz silo</option>
+                  <option value={"Maní"}>Maní</option>
+                  <option value={"Papa"}>Papa</option>
+                  <option value={"Poroto (frijol)"}>Poroto (frijol)</option>
+                  <option value={"Pradera mixta"}>Pradera mixta</option>
+                  <option value={"Pradera natural"}>Pradera natural</option>
+                  <option value={"Raigráss"}>Raigráss</option>
+                  <option value={"Remolacha azucarera"}>
+                    Remolacha azucarera
+                  </option>
+                  <option value={"Soja"}>Soja</option>
+                  <option value={"Sorgo forrajero"}>Sorgo forrajero</option>
+                  <option value={"Sorgo granífero"}>Sorgo granífero</option>
+                  <option value={"T. blanco + Raigráss"}>
+                    T. blanco + Raigráss
+                  </option>
+                  <option value={"Tabaco"}>Tabaco</option>
+                  <option value={"Trébol rosado"}>Trébol rosado</option>
+                  <option value={"Trébol subterráneo"}>
+                    Trébol subterráneo
+                  </option>
+                  <option value={"Trigo"}>Trigo</option>
                 </Input>
               </Col>
 
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="lastNameMulti">
-                  Rendimiento objetivo
+                <Label
+                  className="form-label mt-1 d-flex align-items-center justify-content-between"
+                  for="lastNameMulti"
+                >
+                  Rendimiento objetivo (qq/ha){" "}
+                  <FiHelpCircle
+                    id="rendimientoObjetivo"
+                    className="fs-5 me-1"
+                  />
                 </Label>
                 <Input
                   type="number"
@@ -54,6 +105,17 @@ const Cultivo = ({ stepper }) => {
                   id="lastNameMulti"
                   placeholder="90"
                 />
+
+                <UncontrolledTooltip
+                  placement="right"
+                  target="rendimientoObjetivo"
+                >
+                  <span className="fw-bolder">
+                    Rendimiento objetivo (qq/ha){" "}
+                  </span>{" "}
+                  Rendimiento que pretende alcanzar expresado en quintales por
+                  hectárea. <br />{" "}
+                </UncontrolledTooltip>
               </Col>
 
               <Col md="6" sm="12" className="mb-1">
@@ -69,8 +131,12 @@ const Cultivo = ({ stepper }) => {
               </Col>
 
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="cityMulti">
-                  Precio del producto en U$S/tn
+                <Label
+                  className="form-label mt-1 d-flex align-items-center justify-content-between"
+                  for="cityMulti"
+                >
+                  Precio del producto en U$S/tn{" "}
+                  <FiHelpCircle id="precioDelProducto" className="fs-5 me-1" />
                 </Label>
                 <Input
                   type="number"
@@ -78,6 +144,17 @@ const Cultivo = ({ stepper }) => {
                   id="cityMulti"
                   placeholder="1"
                 />
+
+                <UncontrolledTooltip
+                  placement="right"
+                  target="precioDelProducto"
+                >
+                  <span className="fw-bolder">
+                    Precio del producto en U$S/tn{" "}
+                  </span>{" "}
+                  Precio del grano o producto expresado en dólares por tonelada.{" "}
+                  <br />{" "}
+                </UncontrolledTooltip>
               </Col>
 
               <span className="mt-5"></span>
@@ -88,30 +165,79 @@ const Cultivo = ({ stepper }) => {
                 </Label>
                 <Input type="select" id="register-select">
                   <option value={"Alfalfa"}>Alfalfa</option>
-                  <option value={"Algodón"}>Algodón</option>
                   <option value={"Arroz"}>Arroz</option>
-                  <option selected value={"Maíz"}>
-                    Maíz
+                  <option
+                    value={"Avena/cebada/centeno/trigo/raigráss forrajeros "}
+                  >
+                    Avena/cebada/centeno/trigo/raigráss forrajeros{" "}
                   </option>
-                  <option value={"Otro"}>Otro</option>
+                  <option
+                    selected
+                    value={"Avena/cebada/centeno/trigo/raigráss grano"}
+                  >
+                    Avena/cebada/centeno/trigo/raigráss grano
+                  </option>
+                  <option value={"Colza"}>Colza</option>
+                  <option value={"Garbanzo"}>Garbanzo</option>
+                  <option value={"Girasol"}>Girasol</option>
+                  <option value={"Maíz grano/sorgo"}>Maíz grano/sorgo</option>
+                  <option value={"Maíz silo"}>Maíz silo</option>
+                  <option value={"Maní"}>Maní</option>
+                  <option value={"Pastura predominante gramínea"}>
+                    Pastura predominante gramínea
+                  </option>
+                  <option value={"Pastura gramínea con leguminosa"}>
+                    Pastura gramínea con leguminosa
+                  </option>
+                  <option value={"Potrero duroPastura gramínea con leguminosa"}>
+                    Potrero duro
+                  </option>
+                  <option selected value={"Soja"}>
+                    Soja
+                  </option>
+                  <option
+                    value={
+                      "Trigo con vicia/triticale con vicia/similar forrajero"
+                    }
+                  >
+                    Trigo con vicia/triticale con vicia/similar forrajero
+                  </option>
+                  <option
+                    value={
+                      "Trigo con vicia/triticale con vicia/similar cultivo cobertura"
+                    }
+                  >
+                    Trigo con vicia/triticale con vicia/similar cultivo
+                    cobertura
+                  </option>
+                  <option value={"Vicia/caupí/otra leguminosa invernal verde"}>
+                    Vicia/caupí/otra leguminosa invernal verde
+                  </option>
+                  <option value={"Vicia/caupí/otra leguminosa post cosecha"}>
+                    Vicia/caupí/otra leguminosa post cosecha
+                  </option>
                 </Input>
               </Col>
 
               <Col md="6" sm="12" className="mb-1">
                 <Label className="form-label" for="cropYield">
-                  Rendimiento del cultivo antecesor en qq/ha
+                  Rendimiento del cultivo antecesor (qq/ha)
                 </Label>
                 <Input
                   type="number"
                   name="elapsedTime"
                   id="elapsedTime"
-                  placeholder="90"
+                  placeholder="28"
                 />
               </Col>
 
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="elapsedTime">
-                  Tiempo transcurrido entre cosecha y siembra
+                <Label
+                  className="form-label mt-1 d-flex align-items-center justify-content-between"
+                  for="elapsedTime"
+                >
+                  Tiempo transcurrido entre cosecha y siembra{" "}
+                  <FiHelpCircle id="tiempoTranscurrido" className="fs-5 me-1" />
                 </Label>
 
                 <Input type="select" id="register-select">
@@ -121,6 +247,17 @@ const Cultivo = ({ stepper }) => {
                   <option value={"De 2 a 4 meses"}>De 2 a 4 meses</option>
                   <option value={"Mas de 4 meses"}>Mas de 4 meses</option>
                 </Input>
+
+                <UncontrolledTooltip
+                  placement="right"
+                  target="tiempoTranscurrido"
+                >
+                  <span className="fw-bolder">
+                    Tiempo transcurrido entre cosecha y siembra:{" "}
+                  </span>{" "}
+                  Tiempo transcurrido entre la cosecha del antecesor y la
+                  siembra del cultivo a fertilizar <br />{" "}
+                </UncontrolledTooltip>
               </Col>
 
               <Col md="6" sm="12" className="mt-2">
