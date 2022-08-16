@@ -1,5 +1,5 @@
 // ** React Imports
-import { Fragment } from "react";
+import { useContext } from "react";
 
 // ** Icons Imports
 import { ArrowLeft, ArrowRight } from "react-feather";
@@ -241,11 +241,11 @@ const Cultivo = ({ stepper }) => {
                 </Label>
 
                 <Input type="select" id="register-select">
-                  <option selected value={"Menos de 2 meses"}>
-                    Menos de 2 meses
-                  </option>
+                  <option value={"Menos de 2 meses"}>Menos de 2 meses</option>
                   <option value={"De 2 a 4 meses"}>De 2 a 4 meses</option>
-                  <option value={"Mas de 4 meses"}>Mas de 4 meses</option>
+                  <option selected value={"Mas de 4 meses"}>
+                    Mas de 4 meses
+                  </option>
                 </Input>
 
                 <UncontrolledTooltip

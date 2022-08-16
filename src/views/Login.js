@@ -20,11 +20,12 @@ import Logo from "../assets/images/logo/logo.svg";
 const Login = () => {
   const { skin } = useSkin();
 
-  // const illustration = skin === 'dark' ? 'login-v2-dark.svg' : 'login-v2.svg', source = require(`@src/assets/images/pages/${illustration}`).default
+  const illustration = skin === "dark" ? "login-v2-dark.svg" : "login-v2.svg",
+    source = require(`@src/assets/images/pages/${illustration}`).default;
 
-  const illustration =
-      skin === "dark" ? "npks-animate.png" : "npks-animate.png",
-    source = require(`@src/assets/images/logo/${illustration}`).default;
+  // const illustration =
+  //     skin === "dark" ? "npks-animate.png" : "npks-animate.png",
+  //   source = require(`@src/assets/images/logo/${illustration}`).default;
 
   return (
     <div className="auth-wrapper auth-cover">

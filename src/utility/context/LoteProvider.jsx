@@ -10,7 +10,7 @@ const DataLoteYManejo = [
   {
     id: 2,
     name: "Lote 1",
-    field: "Gastaldi",
+    field: "San Antonio",
     amountOfHectarea: null,
     location: "Villa María",
     province: "Córdoba",
@@ -18,7 +18,7 @@ const DataLoteYManejo = [
   {
     id: 3,
     name: "Lote 2",
-    field: "Aleman",
+    field: "Las Catitas",
     amountOfHectarea: null,
     location: "Pasco",
     province: "Córdoba",
@@ -28,6 +28,23 @@ const DataLoteYManejo = [
 export default function LoteProvider({ children }) {
   // ** import navigate from "react-router-dom"
   const navigate = useNavigate();
+
+  // ** State Otro Arrancador
+  const [isCompleteArrancador, setIsCompleteArrancador] = useState(false);
+
+  const [contenidoNitrogeno, setContenidoNitrogeno] = useState("");
+  const [contenidoFosforo, setContenidoFosforo] = useState("");
+  const [contenidoPotasio, setContenidoPotasio] = useState("");
+  const [contenidoAzufre, setContenidoAzufre] = useState("");
+
+  const [eficienciasNitrogeno, setEficienciasNitrogeno] = useState("");
+  const [eficienciasFosforo, setEficienciasFosforo] = useState("");
+  const [eficienciasPotasio, setEficienciasPotasio] = useState("");
+  const [eficienciasAzufre, setEficienciasAzufre] = useState("");
+
+  const handleCompleteArrancador = () => {
+    setIsCompleteArrancador(!isCompleteArrancador);
+  };
 
   // ** State modal Account
   const [centeredModal, setCenteredModal] = useState(false);
@@ -47,6 +64,7 @@ export default function LoteProvider({ children }) {
   });
 
   const [dataToEdit, setDataToEdit] = useState(null);
+  const [addRecomendacion, setAddRecomendacion] = useState(null);
 
   const handleChange = (e) => {
     const { name, value, checked, type } = e.target;
@@ -91,6 +109,12 @@ export default function LoteProvider({ children }) {
     } else {
       setCenteredModal(!centeredModal);
     }
+  };
+
+  const handleWizard = (e) => {
+    e.preventDefault();
+
+    alert("SI FUNCAAA");
   };
 
   const createData = (dato) => {
@@ -140,6 +164,27 @@ export default function LoteProvider({ children }) {
           dataToEdit,
           backModal,
           setBackModal,
+          handleWizard,
+          // State arrancador
+          handleCompleteArrancador,
+          isCompleteArrancador,
+          setIsCompleteArrancador,
+          contenidoNitrogeno,
+          setContenidoNitrogeno,
+          contenidoFosforo,
+          setContenidoFosforo,
+          contenidoPotasio,
+          setContenidoPotasio,
+          contenidoAzufre,
+          setContenidoAzufre,
+          eficienciasNitrogeno,
+          setEficienciasNitrogeno,
+          eficienciasFosforo,
+          setEficienciasFosforo,
+          eficienciasPotasio,
+          setEficienciasPotasio,
+          eficienciasAzufre,
+          setEficienciasAzufre,
         }}
       >
         {children}
@@ -180,7 +225,7 @@ export default function LoteProvider({ children }) {
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={() => setBackModal(!backModal)}>
-              Canselar
+              Cancelar
             </Button>
             <Button
               color="danger"
