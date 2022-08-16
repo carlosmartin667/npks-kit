@@ -157,7 +157,7 @@ const Suelo = ({ stepper }) => {
                       <UncontrolledTooltip placement="right" target="Fosforo">
                         <span className="fw-bolder">P</span> Fosforo extraíble.
                         Técnica Bray y Kurtz Nº1 <br />{" "}
-                        <span className="fw-bolder">Unidad</span>: ppm o mg/kg
+                        <span className="fw-bolder">Unidades</span>: ppm o mg/kg
                       </UncontrolledTooltip>
 
                       {/* CIC */}
@@ -204,7 +204,7 @@ const Suelo = ({ stepper }) => {
                       >
                         <span className="fw-bolder">Densidad del suelo</span>{" "}
                         Densidad del estrato <br />{" "}
-                        <span className="fw-bolder">Unidades</span>: gr/cm3
+                        <span className="fw-bolder">Unidad</span>: gr/cm3
                       </UncontrolledTooltip>
 
                       {/* N total */}
@@ -394,7 +394,7 @@ const Suelo = ({ stepper }) => {
                           >
                             <span className="fw-bolder">P</span> Fosforo
                             extraíble. Técnica Bray y Kurtz Nº1 <br />{" "}
-                            <span className="fw-bolder">Unidad</span>: ppm o
+                            <span className="fw-bolder">Unidades</span>: ppm o
                             mg/kg
                           </UncontrolledTooltip>
 
@@ -444,7 +444,7 @@ const Suelo = ({ stepper }) => {
                               Densidad del suelo
                             </span>{" "}
                             Densidad del estrato <br />{" "}
-                            <span className="fw-bolder">Unidades</span>: gr/cm3
+                            <span className="fw-bolder">Unidad</span>: gr/cm3
                           </UncontrolledTooltip>
 
                           {/* N total */}
@@ -646,7 +646,8 @@ const Suelo = ({ stepper }) => {
                         <UncontrolledTooltip placement="right" target="Fosforo">
                           <span className="fw-bolder">P</span> Fosforo
                           extraíble. Técnica Bray y Kurtz Nº1 <br />{" "}
-                          <span className="fw-bolder">Unidad</span>: ppm o mg/kg
+                          <span className="fw-bolder">Unidades</span>: ppm o
+                          mg/kg
                         </UncontrolledTooltip>
 
                         {/* CIC */}
@@ -693,7 +694,7 @@ const Suelo = ({ stepper }) => {
                         >
                           <span className="fw-bolder">Densidad del suelo</span>{" "}
                           Densidad del estrato <br />{" "}
-                          <span className="fw-bolder">Unidades</span>: gr/cm3
+                          <span className="fw-bolder">Unidad</span>: gr/cm3
                         </UncontrolledTooltip>
 
                         {/* N total */}
