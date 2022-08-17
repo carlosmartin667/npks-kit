@@ -47,7 +47,7 @@ const Fertilizante = ({ stepper }) => {
   } = useContext(DataContext);
 
   const [arrancadorAbonoOrganico, setArrancadorAbonoOrganico] =
-    useState("Arrancador");
+    useState("Ninguno");
 
   const [selectedDefaultArrancador, setSelectedDefaultArrancador] = useState(
     "Fosfato monoamónico MAP"
@@ -78,28 +78,11 @@ const Fertilizante = ({ stepper }) => {
                 setArrancadorAbonoOrganico(selectedValue);
               }}
             >
-              <option value={"Ninguno"}>Ninguno</option>
-              <option selected value={"Arrancador"}>
-                Arrancador
+              <option selected value={"Ninguno"}>
+                Ninguno
               </option>
-              <option value={"Estiércol vacuno sólido"}>
-                Estiércol vacuno sólido
-              </option>
-              <option value={"Purín de vacuno"}>Purín de vacuno</option>
-              <option value={"Purín vaca lechera"}>Purín vaca lechera</option>
-              <option value={"Estiércol feedlot vacuno"}>
-                Estiércol feedlot vacuno
-              </option>
-              <option value={"Estiércol cerdo solido"}>
-                Estiércol cerdo solido
-              </option>
-              <option value={"Purín de cerdo"}>Purín de cerdo</option>
-              <option value={"Estiércol solido de aves"}>
-                Estiércol solido de aves
-              </option>
-              <option value={"Purín de aves"}>Purín de aves</option>
-              <option value={"Estiércol equino"}>Estiércol equino</option>
-              <option value={"Estiércol ovino"}>Estiércol ovino</option>
+              <option value={"Arrancador"}>Arrancador</option>
+              <option value={"Abono orgánico"}>Abono orgánico</option>
             </Input>
 
             <UncontrolledTooltip placement="right" target="Arrancador">
@@ -109,75 +92,151 @@ const Fertilizante = ({ stepper }) => {
             </UncontrolledTooltip>
           </Col>
 
-          <Col md="6" sm="12" className="mb-1">
-            <Label
-              className="form-label mt-1 d-flex align-items-center justify-content-between"
-              for="register-select"
-            >
-              Cantidad (kg/ha)
-              <FiHelpCircle id="Cantidad" className="fs-5 me-1" />
-            </Label>
-            <Input type="number" placeholder="11" />
-            <UncontrolledTooltip placement="right" target="Cantidad">
-              <span className="fw-bolder">Cantidad (kg/ha): </span> Cantidad en
-              kg/ha del arrancador o abono orgánico que utiliza a la siembra.{" "}
-              <br />{" "}
-            </UncontrolledTooltip>
-          </Col>
+          {arrancadorAbonoOrganico === "Ninguno" ? null : (
+            <>
+              <Col md="6" sm="12" className="mb-1">
+                <Label
+                  className="form-label mt-1 d-flex align-items-center justify-content-between"
+                  for="register-select"
+                >
+                  Cantidad (kg/ha)
+                  <FiHelpCircle id="Cantidad" className="fs-5 me-1" />
+                </Label>
+                <Input type="number" placeholder="11" />
+                <UncontrolledTooltip placement="right" target="Cantidad">
+                  <span className="fw-bolder">Cantidad (kg/ha): </span> Cantidad
+                  en kg/ha del arrancador o abono orgánico que utiliza a la
+                  siembra. <br />{" "}
+                </UncontrolledTooltip>
+              </Col>
 
-          <Col md="6" sm="12" className="mb-3">
-            <Label
-              className="form-label d-flex align-items-center justify-content-between"
-              for="register-select"
-            >
-              Precio (u$s/tn) <FiHelpCircle id="Precio" className="fs-5 me-1" />
-            </Label>
-            <Input type="number" placeholder="11" />
-            <UncontrolledTooltip placement="right" target="Precio">
-              <span className="fw-bolder">Precio (u$s/tn): </span> Precio en
-              u$s/tn de dicho arrancador o abono orgánico. <br />{" "}
-            </UncontrolledTooltip>
-          </Col>
+              {arrancadorAbonoOrganico === "Arrancador" ? (
+                <>
+                  <Col md="6" sm="12" className="mb-3">
+                    <Label
+                      className="form-label d-flex align-items-center justify-content-between"
+                      htmlFor="arrancadorOAbonoOrganico"
+                    >
+                      Arrancador{" "}
+                      <FiHelpCircle
+                        id="arrancadorOAbonoOrganico"
+                        className="fs-5 me-1"
+                      />
+                    </Label>
+                    <Input
+                      type="select"
+                      onChange={(e) => {
+                        e.preventDefault();
+                        let selectedValue = e.target.value;
+                        setSelectedDefaultArrancador(selectedValue);
+                      }}
+                    >
+                      <option value={"Fosfato monoamónico MAP"}>
+                        Fosfato monoamónico MAP
+                      </option>
+
+                      <option value={"Fosfato diamónico DAP"}>
+                        Fosfato diamónico DAP
+                      </option>
+
+                      <option value={"Súper fosfato simple SPS"}>
+                        Súper fosfato simple SPS
+                      </option>
+
+                      <option value={"Súper fosfato triple SPT"}>
+                        Súper fosfato triple SPT
+                      </option>
+
+                      <option value={"Urea"}>Urea</option>
+
+                      <option value={"Otro"}>Otro</option>
+                    </Input>
+                    <UncontrolledTooltip
+                      placement="right"
+                      target="arrancadorOAbonoOrganico"
+                    >
+                      <span className="fw-bolder">Arrancador: </span> Seleccione
+                      un arrancador o agregue datos en “otro”. <br />{" "}
+                    </UncontrolledTooltip>
+                  </Col>
+                </>
+              ) : null}
+
+              {arrancadorAbonoOrganico === "Abono orgánico" ? (
+                <>
+                  <Col md="6" sm="12" className="mb-3">
+                    <Label
+                      className="form-label d-flex align-items-center justify-content-between"
+                      htmlFor="arrancadorOAbonoOrganico"
+                    >
+                      Abono orgánico{" "}
+                      {/* <FiHelpCircle
+                        id="arrancadorOAbonoOrganico"
+                        className="fs-5 me-1"
+                      /> */}
+                    </Label>
+                    <Input
+                      type="select"
+                      onChange={(e) => {
+                        e.preventDefault();
+                        let selectedValue = e.target.value;
+                        setSelectedDefaultArrancador(selectedValue);
+                      }}
+                    >
+                      <option selected value={"Estiércol vacuno sólido"}>
+                        Estiércol vacuno sólido
+                      </option>
+                      <option value={"Purín de vacuno"}>Purín de vacuno</option>
+                      <option value={"Purín vaca lechera"}>
+                        Purín vaca lechera
+                      </option>
+                      <option value={"Estiércol feedlot vacuno"}>
+                        Estiércol feedlot vacuno
+                      </option>
+                      <option value={"Estiércol cerdo solido"}>
+                        Estiércol cerdo solido
+                      </option>
+                      <option value={"Purín de cerdo"}>Purín de cerdo</option>
+                      <option value={"Estiércol solido de aves"}>
+                        Estiércol solido de aves
+                      </option>
+                      <option value={"Purín de aves"}>Purín de aves</option>
+                      <option value={"Estiércol equino"}>
+                        Estiércol equino
+                      </option>
+                      <option value={"Estiércol ovino"}>Estiércol ovino</option>
+                    </Input>
+                    {/* <UncontrolledTooltip
+                      placement="right"
+                      target="arrancadorOAbonoOrganico"
+                    >
+                      <span className="fw-bolder">Arrancador: </span> Seleccione
+                      un arrancador o agregue datos en “otro”. <br />{" "}
+                    </UncontrolledTooltip> */}
+                  </Col>
+                </>
+              ) : null}
+
+              <Col md="6" sm="12" className="mb-3">
+                <Label
+                  className="form-label d-flex align-items-center justify-content-between"
+                  for="register-select"
+                >
+                  Precio (u$s/tn){" "}
+                  <FiHelpCircle id="Precio" className="fs-5 me-1" />
+                </Label>
+                <Input type="number" placeholder="11" />
+                <UncontrolledTooltip placement="right" target="Precio">
+                  <span className="fw-bolder">Precio (u$s/tn): </span> Precio en
+                  u$s/tn de dicho arrancador o abono orgánico. <br />{" "}
+                </UncontrolledTooltip>
+              </Col>
+            </>
+          )}
         </Row>
 
         {arrancadorAbonoOrganico === "Arrancador" ? (
           <>
-            <Row>
-              <Col md="6" sm="12" className="mb-3">
-                <Label
-                  className="form-label d-flex align-items-center justify-content-between mt-1"
-                  htmlFor="arrancadorOAbonoOrganico"
-                >
-                  Arrancador{" "}
-                  <FiHelpCircle
-                    id="arrancadorOAbonoOrganico"
-                    className="fs-5 me-1"
-                  />
-                </Label>
-                <Input
-                  type="select"
-                  onChange={(e) => {
-                    e.preventDefault();
-                    let selectedValue = e.target.value;
-                    setSelectedDefaultArrancador(selectedValue);
-                  }}
-                >
-                  <option value={"Fosfato monoamónico MAP"}>
-                    Fosfato monoamónico MAP
-                  </option>
-
-                  <option value={"Otro"}>Otro</option>
-                </Input>
-                <UncontrolledTooltip
-                  placement="right"
-                  target="arrancadorOAbonoOrganico"
-                >
-                  <span className="fw-bolder">Arrancador: </span> Seleccione un
-                  arrancador o agregue datos en “otro”. <br />{" "}
-                </UncontrolledTooltip>
-              </Col>
-            </Row>
-
             <Row>
               <Table borderless responsive>
                 <thead>

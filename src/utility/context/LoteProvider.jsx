@@ -14,6 +14,9 @@ const DataLoteYManejo = [
     amountOfHectarea: null,
     location: "Villa María",
     province: "Córdoba",
+    crop: "Maíz",
+    date: "11/09/2023",
+    cropUp: true,
   },
   {
     id: 3,
