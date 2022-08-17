@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 // ** React Imports
 import { Link } from "react-router-dom";
@@ -33,7 +33,12 @@ import {
 // ** Default Avatar Image
 import defaultAvatar from "@src/assets/images/portrait/small/avatar-s-11.jpg";
 
+// ** import DataContext
+import { DataContext } from "../../../../utility/context/LoteProvider";
+
 const UserDropdown = () => {
+  const { nombreUsuario } = useContext(DataContext);
+
   // ** State modal Account
   const [centeredModal, setCenteredModal] = useState(false);
 
@@ -41,7 +46,7 @@ const UserDropdown = () => {
     <>
       <div className="user-nav d-flex flex-column  me-1 gap-15-styles">
         <span className="name-accoutn-user fw-bolde text-end">
-          Pepito-Nutrixya
+          {nombreUsuario}
         </span>
         <span
           onClick={() => setCenteredModal(!centeredModal)}
