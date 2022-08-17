@@ -4,9 +4,9 @@ import ProfilePage from './pages/profile/profileUser/ProfilePage'
 const AccountContainer = () => {
   return (
     <Card>
-      <CardHeader>
+      {/* <CardHeader>
         <CardTitle>Profile</CardTitle>
-      </CardHeader>
+      </CardHeader> */}
       <CardBody>
         <ProfilePage />
       </CardBody>
