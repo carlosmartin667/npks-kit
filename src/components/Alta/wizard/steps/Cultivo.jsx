@@ -1,5 +1,5 @@
 // ** React Imports
-import { useContext } from "react";
+import React, { useContext } from "react";
 
 // ** Icons Imports
 import { ArrowLeft, ArrowRight } from "react-feather";
@@ -22,7 +22,11 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 
+import { DataContext } from "../../../../utility/context/LoteProvider";
+
 const Cultivo = ({ stepper }) => {
+  const { handleChange, dataForm } = useContext(DataContext);
+
   return (
     <>
       <Card>
@@ -37,7 +41,12 @@ const Cultivo = ({ stepper }) => {
                 <Label className="form-label" for="register-select">
                   Cultivo a fertilizar
                 </Label>
-                <Input type="select" name="options" id="register-select">
+                <Input
+                  type="select"
+                  name="crop"
+                  id="register-select"
+                  onChange={handleChange}
+                >
                   <option value={"Alfalfa"}>Alfalfa</option>
                   <option value={"Algodón"}>Algodón</option>
                   <option value={"Arroz"}>Arroz</option>
@@ -124,9 +133,10 @@ const Cultivo = ({ stepper }) => {
                 </Label>
                 <Input
                   type="date"
-                  name="city"
                   id="cityMulti"
+                  name="date"
                   placeholder="8/03/2022"
+                  onChange={handleChange}
                 />
               </Col>
 
@@ -272,6 +282,7 @@ const Cultivo = ({ stepper }) => {
                     id="performSowing"
                     placeholder="Realiza siembra directa"
                     class="form-check-input"
+                    defaultChecked={true}
                   />
                 </div>
               </Col>

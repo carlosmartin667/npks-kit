@@ -1,5 +1,5 @@
 // ** React Imports
-import { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useState } from "react";
 
 // ** Icons Imports
 import { ArrowLeft } from "react-feather";
@@ -25,9 +25,6 @@ const Fertilizante = ({ stepper }) => {
   const {
     handleWizard,
     // ** state Arrancador
-    isCompleteArrancador,
-    setIsCompleteArrancador,
-    handleCompleteArrancador,
     contenidoNitrogeno,
     setContenidoNitrogeno,
     contenidoFosforo,
@@ -102,7 +99,7 @@ const Fertilizante = ({ stepper }) => {
                   Cantidad (kg/ha)
                   <FiHelpCircle id="Cantidad" className="fs-5 me-1" />
                 </Label>
-                <Input type="number" placeholder="11" />
+                <Input type="number" placeholder="50" />
                 <UncontrolledTooltip placement="right" target="Cantidad">
                   <span className="fw-bolder">Cantidad (kg/ha): </span> Cantidad
                   en kg/ha del arrancador o abono orgánico que utiliza a la
@@ -183,7 +180,7 @@ const Fertilizante = ({ stepper }) => {
                         setSelectedDefaultArrancador(selectedValue);
                       }}
                     >
-                      <option selected value={"Estiércol vacuno sólido"}>
+                      <option value={"Estiércol vacuno sólido"}>
                         Estiércol vacuno sólido
                       </option>
                       <option value={"Purín de vacuno"}>Purín de vacuno</option>
@@ -225,7 +222,7 @@ const Fertilizante = ({ stepper }) => {
                   Precio (u$s/tn){" "}
                   <FiHelpCircle id="Precio" className="fs-5 me-1" />
                 </Label>
-                <Input type="number" placeholder="11" />
+                <Input type="number" placeholder="1100" />
                 <UncontrolledTooltip placement="right" target="Precio">
                   <span className="fw-bolder">Precio (u$s/tn): </span> Precio en
                   u$s/tn de dicho arrancador o abono orgánico. <br />{" "}
@@ -248,154 +245,404 @@ const Fertilizante = ({ stepper }) => {
                     <th>Azufre</th>
                   </tr>
                 </thead>
-                {selectedDefaultArrancador === "Fosfato monoamónico MAP" ? (
+
+                {selectedDefaultArrancador === "Fosfato monoamónico MAP" && (
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        Contenido Kg/Kg{" "}
+                        <FiHelpCircle id="ContenidoKg" className="fs-5 ms-1" />
+                      </th>
+                      <td>0.11kg/kg</td>
+                      <td>0.21kg/kg</td>
+                      <td>0kg/kg</td>
+                      <td>0kg/kg</td>
+                    </tr>
+
+                    <UncontrolledTooltip placement="right" target="ContenidoKg">
+                      <span className="fw-bolder">Contenido Kg/Kg: </span>{" "}
+                      Composición del fertilizante expresada en en kg/kg de cada
+                      elemento. Ejemplo: Fosfato monoamónico: <br />
+                      <br />
+                      Composición (%) : N 11- P2O5 48- K2O 0<br />
+                      Composición (kg/kg): N 0.11- P 0.21- K 0
+                    </UncontrolledTooltip>
+
+                    <tr>
+                      <th scope="row">
+                        Eficiencias %{" "}
+                        <FiHelpCircle id="Eficiencias" className="fs-5 ms-1" />
+                      </th>
+                      <td>65%</td>
+                      <td>50%</td>
+                      <td>0%</td>
+                      <td>0%</td>
+                    </tr>
+
+                    <UncontrolledTooltip placement="right" target="Eficiencias">
+                      <span className="fw-bolder">Eficiencias %: </span>{" "}
+                      Eficiencia de cada elemento, en función del tipo de
+                      fertilizante, método de aplicación, condiciones
+                      ambientales, tipo de suelo.
+                    </UncontrolledTooltip>
+                  </tbody>
+                )}
+
+                {selectedDefaultArrancador === "Fosfato diamónico DAP" && (
                   <>
+                    {/* Fosfato diamónico DAP */}
                     <tbody>
                       <tr>
-                        <th scope="row">Contenido Kg/Kg</th>
-                        <td>0.11kg/kg</td>
-                        <td>0.21kg/kg</td>
+                        <th scope="row">
+                          Contenido Kg/Kg{" "}
+                          <FiHelpCircle
+                            id="ContenidoKg"
+                            className="fs-5 ms-1"
+                          />
+                        </th>
+                        <td>0.18kg/kg</td>
+                        <td>0.19kg/kg</td>
                         <td>0kg/kg</td>
                         <td>0kg/kg</td>
                       </tr>
+
+                      <UncontrolledTooltip
+                        placement="right"
+                        target="ContenidoKg"
+                      >
+                        <span className="fw-bolder">Contenido Kg/Kg: </span>{" "}
+                        Composición del fertilizante expresada en en kg/kg de
+                        cada elemento. Ejemplo: Fosfato monoamónico: <br />
+                        <br />
+                        Composición (%) : N 11- P2O5 48- K2O 0<br />
+                        Composición (kg/kg): N 0.11- P 0.21- K 0
+                      </UncontrolledTooltip>
+
                       <tr>
-                        <th scope="row">Eficiencias %</th>
+                        <th scope="row">
+                          Eficiencias %{" "}
+                          <FiHelpCircle
+                            id="Eficiencias"
+                            className="fs-5 ms-1"
+                          />
+                        </th>
                         <td>65%</td>
                         <td>50%</td>
                         <td>0%</td>
                         <td>0%</td>
                       </tr>
+
+                      <UncontrolledTooltip
+                        placement="right"
+                        target="Eficiencias"
+                      >
+                        <span className="fw-bolder">Eficiencias %: </span>{" "}
+                        Eficiencia de cada elemento, en función del tipo de
+                        fertilizante, método de aplicación, condiciones
+                        ambientales, tipo de suelo.
+                      </UncontrolledTooltip>
                     </tbody>
                   </>
-                ) : (
+                )}
+
+                {selectedDefaultArrancador === "Súper fosfato simple SPS" && (
                   <>
-                    {isCompleteArrancador === false ? (
-                      <>
-                        <tbody>
-                          <tr>
-                            <th scope="row">Contenido Kg/Kg</th>
-                            <td>
-                              <Input
-                                type="text"
-                                name="contenidoNitrogeno"
-                                value={contenidoNitrogeno}
-                                onChange={(e) =>
-                                  setContenidoNitrogeno(e.target.value)
-                                }
-                              />
-                            </td>
-                            <td>
-                              <Input
-                                type="text"
-                                name="contenidoFosforo"
-                                value={contenidoFosforo}
-                                onChange={(e) =>
-                                  setContenidoFosforo(e.target.value)
-                                }
-                              />
-                            </td>
-                            <td>
-                              <Input
-                                type="text"
-                                name="contenidoPotasio"
-                                value={contenidoPotasio}
-                                onChange={(e) =>
-                                  setContenidoPotasio(e.target.value)
-                                }
-                              />
-                            </td>
-                            <td>
-                              <Input
-                                type="text"
-                                name="contenidoAzufre"
-                                value={contenidoAzufre}
-                                onChange={(e) =>
-                                  setContenidoAzufre(e.target.value)
-                                }
-                              />
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Eficiencias %</th>
-                            <td>
-                              <Input
-                                type="text"
-                                name="eficienciasNitrogeno"
-                                value={eficienciasNitrogeno}
-                                onChange={(e) =>
-                                  setEficienciasNitrogeno(e.target.value)
-                                }
-                              />
-                            </td>
-                            <td>
-                              <Input
-                                type="text"
-                                name="eficienciasFosforo"
-                                value={eficienciasFosforo}
-                                onChange={(e) =>
-                                  setEficienciasFosforo(e.target.value)
-                                }
-                              />
-                            </td>
-                            <td>
-                              <Input
-                                type="text"
-                                name="eficienciasPotasio"
-                                value={eficienciasPotasio}
-                                onChange={(e) =>
-                                  setEficienciasPotasio(e.target.value)
-                                }
-                              />
-                            </td>
-                            <td>
-                              <Input
-                                type="text"
-                                name="eficienciasAzufre"
-                                value={eficienciasAzufre}
-                                onChange={(e) =>
-                                  setEficienciasAzufre(e.target.value)
-                                }
-                              />
-                            </td>
-                          </tr>
-                        </tbody>
-                      </>
-                    ) : (
-                      <tbody>
-                        <tr>
-                          <th scope="row">Contenido Kg/Kg</th>
-                          <td>{contenidoNitrogeno}</td>
-                          <td>{contenidoFosforo}</td>
-                          <td>{contenidoPotasio}</td>
-                          <td>{contenidoAzufre}</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Eficiencias %</th>
-                          <td>{eficienciasNitrogeno}</td>
-                          <td>{eficienciasFosforo}</td>
-                          <td>{eficienciasPotasio}</td>
-                          <td>{eficienciasAzufre}</td>
-                        </tr>
-                      </tbody>
-                    )}
+                    {/* Súper fosfato simple SPS */}
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          Contenido Kg/Kg{" "}
+                          <FiHelpCircle
+                            id="ContenidoKg"
+                            className="fs-5 ms-1"
+                          />
+                        </th>
+                        <td>0kg/kg</td>
+                        <td>0.09kg/kg</td>
+                        <td>0kg/kg</td>
+                        <td>0.12 kg/kg</td>
+                      </tr>
+
+                      <UncontrolledTooltip
+                        placement="right"
+                        target="ContenidoKg"
+                      >
+                        <span className="fw-bolder">Contenido Kg/Kg: </span>{" "}
+                        Composición del fertilizante expresada en en kg/kg de
+                        cada elemento. Ejemplo: Fosfato monoamónico: <br />
+                        <br />
+                        Composición (%) : N 11- P2O5 48- K2O 0<br />
+                        Composición (kg/kg): N 0.11- P 0.21- K 0
+                      </UncontrolledTooltip>
+
+                      <tr>
+                        <th scope="row">
+                          Eficiencias %{" "}
+                          <FiHelpCircle
+                            id="Eficiencias"
+                            className="fs-5 ms-1"
+                          />
+                        </th>
+                        <td>0%</td>
+                        <td>50%</td>
+                        <td>0%</td>
+                        <td>50%</td>
+                      </tr>
+
+                      <UncontrolledTooltip
+                        placement="right"
+                        target="Eficiencias"
+                      >
+                        <span className="fw-bolder">Eficiencias %: </span>{" "}
+                        Eficiencia de cada elemento, en función del tipo de
+                        fertilizante, método de aplicación, condiciones
+                        ambientales, tipo de suelo.
+                      </UncontrolledTooltip>
+                    </tbody>
+                  </>
+                )}
+
+                {selectedDefaultArrancador === "Súper fosfato triple SPT" && (
+                  <>
+                    {/* Súper fosfato triple SPT */}
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          Contenido Kg/Kg{" "}
+                          <FiHelpCircle
+                            id="ContenidoKg"
+                            className="fs-5 ms-1"
+                          />
+                        </th>
+                        <td>0kg/kg</td>
+                        <td>0.2kg/kg</td>
+                        <td>0kg/kg</td>
+                        <td>0kg/kg</td>
+                      </tr>
+
+                      <UncontrolledTooltip
+                        placement="right"
+                        target="ContenidoKg"
+                      >
+                        <span className="fw-bolder">Contenido Kg/Kg: </span>{" "}
+                        Composición del fertilizante expresada en en kg/kg de
+                        cada elemento. Ejemplo: Fosfato monoamónico: <br />
+                        <br />
+                        Composición (%) : N 11- P2O5 48- K2O 0<br />
+                        Composición (kg/kg): N 0.11- P 0.21- K 0
+                      </UncontrolledTooltip>
+
+                      <tr>
+                        <th scope="row">
+                          Eficiencias %{" "}
+                          <FiHelpCircle
+                            id="Eficiencias"
+                            className="fs-5 ms-1"
+                          />
+                        </th>
+                        <td>0%</td>
+                        <td>50%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                      </tr>
+
+                      <UncontrolledTooltip
+                        placement="right"
+                        target="Eficiencias"
+                      >
+                        <span className="fw-bolder">Eficiencias %: </span>{" "}
+                        Eficiencia de cada elemento, en función del tipo de
+                        fertilizante, método de aplicación, condiciones
+                        ambientales, tipo de suelo.
+                      </UncontrolledTooltip>
+                    </tbody>
+                  </>
+                )}
+
+                {selectedDefaultArrancador === "Urea" && (
+                  <>
+                    {/* Urea */}
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          Contenido Kg/Kg{" "}
+                          <FiHelpCircle
+                            id="ContenidoKg"
+                            className="fs-5 ms-1"
+                          />
+                        </th>
+                        <td>0.46kg/kg</td>
+                        <td>0kg/kg</td>
+                        <td>0kg/kg</td>
+                        <td>0kg/kg</td>
+                      </tr>
+
+                      <UncontrolledTooltip
+                        placement="right"
+                        target="ContenidoKg"
+                      >
+                        <span className="fw-bolder">Contenido Kg/Kg: </span>{" "}
+                        Composición del fertilizante expresada en en kg/kg de
+                        cada elemento. Ejemplo: Fosfato monoamónico: <br />
+                        <br />
+                        Composición (%) : N 11- P2O5 48- K2O 0<br />
+                        Composición (kg/kg): N 0.11- P 0.21- K 0
+                      </UncontrolledTooltip>
+
+                      <tr>
+                        <th scope="row">
+                          Eficiencias %{" "}
+                          <FiHelpCircle
+                            id="Eficiencias"
+                            className="fs-5 ms-1"
+                          />
+                        </th>
+                        <td>65%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                      </tr>
+
+                      <UncontrolledTooltip
+                        placement="right"
+                        target="Eficiencias"
+                      >
+                        <span className="fw-bolder">Eficiencias %: </span>{" "}
+                        Eficiencia de cada elemento, en función del tipo de
+                        fertilizante, método de aplicación, condiciones
+                        ambientales, tipo de suelo.
+                      </UncontrolledTooltip>
+                    </tbody>
+                  </>
+                )}
+
+                {selectedDefaultArrancador === "Otro" && (
+                  <>
+                    {/* Otro */}
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          Contenido Kg/Kg{" "}
+                          <FiHelpCircle
+                            id="ContenidoKg"
+                            className="fs-5 ms-1"
+                          />
+                        </th>
+                        <td>
+                          <Input
+                            type="text"
+                            name="contenidoNitrogeno"
+                            value={contenidoNitrogeno}
+                            onChange={(e) =>
+                              setContenidoNitrogeno(e.target.value)
+                            }
+                          />
+                        </td>
+                        <td>
+                          <Input
+                            type="text"
+                            name="contenidoFosforo"
+                            value={contenidoFosforo}
+                            onChange={(e) =>
+                              setContenidoFosforo(e.target.value)
+                            }
+                          />
+                        </td>
+                        <td>
+                          <Input
+                            type="text"
+                            name="contenidoPotasio"
+                            value={contenidoPotasio}
+                            onChange={(e) =>
+                              setContenidoPotasio(e.target.value)
+                            }
+                          />
+                        </td>
+                        <td>
+                          <Input
+                            type="text"
+                            name="contenidoAzufre"
+                            value={contenidoAzufre}
+                            onChange={(e) => setContenidoAzufre(e.target.value)}
+                          />
+                        </td>
+                      </tr>
+
+                      <UncontrolledTooltip
+                        placement="right"
+                        target="ContenidoKg"
+                      >
+                        <span className="fw-bolder">Contenido Kg/Kg: </span>{" "}
+                        Composición del fertilizante expresada en en kg/kg de
+                        cada elemento. Ejemplo: Fosfato monoamónico: <br />
+                        <br />
+                        Composición (%) : N 11- P2O5 48- K2O 0<br />
+                        Composición (kg/kg): N 0.11- P 0.21- K 0
+                      </UncontrolledTooltip>
+
+                      <tr>
+                        <th scope="row">
+                          Eficiencias %{" "}
+                          <FiHelpCircle
+                            id="Eficiencias"
+                            className="fs-5 ms-1"
+                          />
+                        </th>
+                        <td>
+                          <Input
+                            type="text"
+                            name="eficienciasNitrogeno"
+                            value={eficienciasNitrogeno}
+                            onChange={(e) =>
+                              setEficienciasNitrogeno(e.target.value)
+                            }
+                          />
+                        </td>
+                        <td>
+                          <Input
+                            type="text"
+                            name="eficienciasFosforo"
+                            value={eficienciasFosforo}
+                            onChange={(e) =>
+                              setEficienciasFosforo(e.target.value)
+                            }
+                          />
+                        </td>
+                        <td>
+                          <Input
+                            type="text"
+                            name="eficienciasPotasio"
+                            value={eficienciasPotasio}
+                            onChange={(e) =>
+                              setEficienciasPotasio(e.target.value)
+                            }
+                          />
+                        </td>
+                        <td>
+                          <Input
+                            type="text"
+                            name="eficienciasAzufre"
+                            value={eficienciasAzufre}
+                            onChange={(e) =>
+                              setEficienciasAzufre(e.target.value)
+                            }
+                          />
+                        </td>
+                      </tr>
+
+                      <UncontrolledTooltip
+                        placement="right"
+                        target="Eficiencias"
+                      >
+                        <span className="fw-bolder">Eficiencias %: </span>{" "}
+                        Eficiencia de cada elemento, en función del tipo de
+                        fertilizante, método de aplicación, condiciones
+                        ambientales, tipo de suelo.
+                      </UncontrolledTooltip>
+                    </tbody>
                   </>
                 )}
               </Table>
-              {selectedDefaultArrancador ===
-              "Fosfato monoamónico MAP" ? null : (
-                <>
-                  <div className="w-100">
-                    <Button
-                      color="primary"
-                      outline
-                      block
-                      onClick={handleCompleteArrancador}
-                    >
-                      {isCompleteArrancador ? "Editar" : "Completar"}
-                    </Button>
-                  </div>
-                </>
-              )}
             </Row>
             <hr />
           </>
@@ -436,7 +683,7 @@ const Fertilizante = ({ stepper }) => {
             <span className="align-middle d-sm-inline-block d-none">Atras</span>
           </Button>
           <Button type="submit" color="success" className="btn-submit">
-            Submit
+            Guardar
           </Button>
         </div>
       </Form>
