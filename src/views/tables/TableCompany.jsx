@@ -38,7 +38,8 @@ import toolBox from "@src/assets/images/icons/toolbox.svg";
 import { DataContext } from "../../utility/context/LoteProvider";
 
 const TableCompany = () => {
-  const { data, deleteData, setDataToEdit, setData } = useContext(DataContext);
+  const { data, deleteData, setDataToEdit, setData, setAddRecomendacion } =
+    useContext(DataContext);
 
   const [verModal, setVerModal] = useState(false);
   const [deleteLoteModal, setDeleteLoteModal] = useState(false);
@@ -126,7 +127,8 @@ const TableCompany = () => {
               <td>
                 <Badge
                   pill
-                  color={dato.cropUp ? "light-primary" : "light-danger"}
+                  // color={dato.cropUp ? "light-primary" : "light-danger"}
+                  color="light-primary"
                   className="ms-1"
                 >
                   {dato.date}
@@ -159,7 +161,10 @@ const TableCompany = () => {
                     </DropdownItem>
 
                     <DropdownItem className="w-100">
-                      <Link to="/Alta">
+                      <Link
+                        to="/Alta"
+                        onClick={() => setAddRecomendacion(dato)}
+                      >
                         <Edit className="me-50" size={15} />{" "}
                         <span className="align-middle">Agregar / Editar</span>
                       </Link>

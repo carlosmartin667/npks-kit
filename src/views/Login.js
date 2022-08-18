@@ -57,9 +57,14 @@ const Login = () => {
             <Form className="auth-login-form mt-2">
               <div className="mb-1">
                 <Label className="form-label" for="login-email">
-                  Correo electrónico
+                  <em>Mail</em>
                 </Label>
-                <Input type="email" id="login-email" autoFocus />
+                <Input
+                  type="email"
+                  id="login-email"
+                  autoFocus
+                  placeholder="ejemplo@ejemplo.com"
+                />
               </div>
 
               <div className="mb-1">

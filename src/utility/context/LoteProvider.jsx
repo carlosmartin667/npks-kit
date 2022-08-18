@@ -15,7 +15,7 @@ const DataLoteYManejo = [
     location: "Villa María",
     province: "Córdoba",
     crop: "Maíz",
-    date: "11/09/2023",
+    date: "2023-09-11",
     cropUp: true,
   },
   {
@@ -32,9 +32,11 @@ export default function LoteProvider({ children }) {
   // ** import navigate from "react-router-dom"
   const navigate = useNavigate();
 
-  // ** State Otro Arrancador
-  const [isCompleteArrancador, setIsCompleteArrancador] = useState(false);
+  // ** State Cultivo
+  const [dateCultivo, setDateCultivo] = useState("");
+  const [cropCultivo, setCropCultivo] = useState("Maíz grano");
 
+  // ** State Otro Arrancador
   const [contenidoNitrogeno, setContenidoNitrogeno] = useState("");
   const [contenidoFosforo, setContenidoFosforo] = useState("");
   const [contenidoPotasio, setContenidoPotasio] = useState("");
@@ -44,10 +46,6 @@ export default function LoteProvider({ children }) {
   const [eficienciasFosforo, setEficienciasFosforo] = useState("");
   const [eficienciasPotasio, setEficienciasPotasio] = useState("");
   const [eficienciasAzufre, setEficienciasAzufre] = useState("");
-
-  const handleCompleteArrancador = () => {
-    setIsCompleteArrancador(!isCompleteArrancador);
-  };
 
   // ** State setting acount profile
   const [nombre, setNombre] = useState("Martín");
@@ -69,6 +67,9 @@ export default function LoteProvider({ children }) {
     amountOfHectarea: "",
     location: "",
     province: "",
+    crop: "Maíz grano",
+    date: "",
+    cropUp: true,
   });
 
   const [dataToEdit, setDataToEdit] = useState(null);
@@ -122,8 +123,22 @@ export default function LoteProvider({ children }) {
   const handleWizard = (e) => {
     e.preventDefault();
 
-    alert("SI FUNCAAA");
+    addRecomendacionLote(dataForm);
+
+    navigate("/");
   };
+
+  // setDataForm({
+  //       id: null,
+  //       name: "",
+  //       field: "",
+  //       amountOfHectarea: "",
+  //       location: "",
+  //       province: "",
+  //       crop: "",
+  //       date: "",
+  //       cropUp: true,
+  //     }
 
   const createData = (dato) => {
     dato.id = +new Date();
@@ -143,6 +158,11 @@ export default function LoteProvider({ children }) {
     setData(data.filter((dato) => dato.id !== id));
   };
 
+  const addRecomendacionLote = (dato) => {
+    let newDataLote = data.map((el) => (el.id === dato.id ? dato : el));
+    setData(newDataLote);
+  };
+
   useEffect(() => {
     if (dataToEdit) {
       setDataForm(dataToEdit);
@@ -158,10 +178,29 @@ export default function LoteProvider({ children }) {
     }
   }, [dataToEdit]);
 
+  useEffect(() => {
+    if (addRecomendacion) {
+      setDataForm(addRecomendacion);
+    } else {
+      setDataForm({
+        id: null,
+        name: "",
+        field: "",
+        amountOfHectarea: "",
+        location: "",
+        province: "",
+        crop: "",
+        date: "",
+        cropUp: "",
+      });
+    }
+  }, [addRecomendacion]);
+
   return (
     <>
       <DataContext.Provider
         value={{
+          // State global
           dataForm,
           handleChange,
           handleSubmit,
@@ -170,13 +209,14 @@ export default function LoteProvider({ children }) {
           data,
           setDataToEdit,
           dataToEdit,
+          setAddRecomendacion,
           backModal,
           setBackModal,
           handleWizard,
+          // State cultivo
+          setDateCultivo,
+          setCropCultivo,
           // State arrancador
-          handleCompleteArrancador,
-          isCompleteArrancador,
-          setIsCompleteArrancador,
           contenidoNitrogeno,
           setContenidoNitrogeno,
           contenidoFosforo,
