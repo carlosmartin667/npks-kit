@@ -48,9 +48,7 @@ export default function LoteProvider({ children }) {
   const [eficienciasAzufre, setEficienciasAzufre] = useState("");
 
   // ** State setting acount profile
-  const [nombre, setNombre] = useState("Martín");
   const [nombreUsuario, setNombreUsuario] = useState("Martín-Nutrixya");
-  const [localidadUser, setLocalidadUser] = useState("Villa María");
 
   // ** State modal Account
   const [centeredModal, setCenteredModal] = useState(false);
@@ -234,12 +232,9 @@ export default function LoteProvider({ children }) {
           eficienciasAzufre,
           setEficienciasAzufre,
           // ** State setting acount profile
-          nombre,
-          setNombre,
+         
           nombreUsuario,
           setNombreUsuario,
-          localidadUser,
-          setLocalidadUser,
         }}
       >
         {children}
