@@ -54,6 +54,7 @@ export default function LoteProvider({ children }) {
   const [centeredModal, setCenteredModal] = useState(false);
   const [backModal, setBackModal] = useState(false);
   const [deleteLoteModal, setDeleteLoteModal] = useState(false);
+  const [idLoteDelete, setIdLoteDelete] = useState(null);
 
   // ** Initial state
   const [data, setData] = useState(DataLoteYManejo);
@@ -152,8 +153,9 @@ export default function LoteProvider({ children }) {
   };
 
   const deleteData = (id) => {
-    alert("ELIMINAR LOTE con ID: " + id);
+    // alert("ELIMINAR LOTE con ID: " + id);
     setData(data.filter((dato) => dato.id !== id));
+    setDeleteLoteModal(false);
   };
 
   const addRecomendacionLote = (dato) => {
@@ -211,6 +213,10 @@ export default function LoteProvider({ children }) {
           backModal,
           setBackModal,
           handleWizard,
+          idLoteDelete,
+          setIdLoteDelete,
+          deleteLoteModal,
+          setDeleteLoteModal,
           // State cultivo
           setDateCultivo,
           setCropCultivo,
@@ -232,7 +238,7 @@ export default function LoteProvider({ children }) {
           eficienciasAzufre,
           setEficienciasAzufre,
           // ** State setting acount profile
-         
+
           nombreUsuario,
           setNombreUsuario,
         }}
@@ -292,6 +298,28 @@ export default function LoteProvider({ children }) {
                 navigate("/");
               }}
             >
+              Aceptar
+            </Button>
+          </ModalFooter>
+        </Modal>
+      ) : null}
+
+      {deleteLoteModal ? (
+        <Modal
+          isOpen={deleteLoteModal}
+          // toggle={() => setCenteredModal(!centeredModal)}
+          className="modal-dialog-centered"
+        >
+          {/* toggle={() => setCenteredModal(!centeredModal)} */}
+          <ModalHeader>!ATENCIÓN¡</ModalHeader>
+          <ModalBody>
+            <h4>¿Esta seguro que desea eliminar el lote?</h4>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="danger" onClick={() => setDeleteLoteModal(false)}>
+              Cancelar
+            </Button>
+            <Button color="primary" onClick={() => deleteData(idLoteDelete)}>
               Aceptar
             </Button>
           </ModalFooter>
