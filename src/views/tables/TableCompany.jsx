@@ -38,11 +38,19 @@ import toolBox from "@src/assets/images/icons/toolbox.svg";
 import { DataContext } from "../../utility/context/LoteProvider";
 
 const TableCompany = () => {
-  const { data, deleteData, setDataToEdit, setData, setAddRecomendacion } =
-    useContext(DataContext);
+  const {
+    data,
+    deleteData,
+    setDataToEdit,
+    setData,
+    setAddRecomendacion,
+    idLoteDelete,
+    setIdLoteDelete,
+    deleteLoteModal,
+    setDeleteLoteModal,
+  } = useContext(DataContext);
 
   const [verModal, setVerModal] = useState(false);
-  const [deleteLoteModal, setDeleteLoteModal] = useState(false);
 
   // ** tooltip
   const [tooltipOpen, setTooltipOpen] = useState(false);
@@ -211,8 +219,10 @@ const TableCompany = () => {
                   <Trash
                     className="me-50"
                     size={15}
-                    // onClick={() => setDeleteLoteModal(true)}
-                    onClick={() => deleteData(dato.id)}
+                    onClick={() => {
+                      setDeleteLoteModal(true), setIdLoteDelete(dato.id);
+                    }}
+                    // onClick={() => deleteData(dato.id)}
                   />
 
                   {/* <Tooltip

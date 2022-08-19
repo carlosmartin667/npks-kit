@@ -99,7 +99,7 @@ const Cultivo = ({ stepper }) => {
 
               <Col md="6" sm="12" className="mb-1">
                 <Label
-                  className="form-label mt-1 d-flex align-items-center justify-content-between"
+                  className="form-label d-flex align-items-center justify-content-between"
                   for="lastNameMulti"
                 >
                   Rendimiento objetivo (qq/ha){" "}
@@ -113,6 +113,7 @@ const Cultivo = ({ stepper }) => {
                   name="lastname"
                   id="lastNameMulti"
                   placeholder="90"
+                  className="margin-bajo"
                 />
 
                 <UncontrolledTooltip
@@ -140,9 +141,9 @@ const Cultivo = ({ stepper }) => {
                 />
               </Col>
 
-              <Col md="6" sm="12" className="mb-1">
+              <Col md="6" sm="12">
                 <Label
-                  className="form-label mt-1 d-flex align-items-center justify-content-between"
+                  className="form-label d-flex align-items-center justify-content-between"
                   for="cityMulti"
                 >
                   Precio del producto en U$S/tn{" "}
@@ -153,6 +154,7 @@ const Cultivo = ({ stepper }) => {
                   name="city"
                   id="cityMulti"
                   placeholder="1"
+                  className="margin-bajoDos"
                 />
 
                 <UncontrolledTooltip
