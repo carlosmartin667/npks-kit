@@ -57,7 +57,7 @@ const Login = () => {
             <Form className="auth-login-form mt-2">
               <div className="mb-1">
                 <Label className="form-label" for="login-email">
-                  <em>Mail</em>
+                  <em>Email</em>
                 </Label>
                 <Input
                   type="email"
