@@ -100,7 +100,7 @@ const Cultivo = ({ stepper }) => {
               <Col md="6" sm="12" className="mb-1">
                 <Label
                   className="form-label d-flex align-items-center justify-content-between"
-                  for="lastNameMulti"
+                  htmlFor="targetPerformance"
                 >
                   Rendimiento objetivo (qq/ha){" "}
                   <FiHelpCircle
@@ -110,10 +110,12 @@ const Cultivo = ({ stepper }) => {
                 </Label>
                 <Input
                   type="number"
-                  name="lastname"
-                  id="lastNameMulti"
+                  name="targetPerformance"
+                  id="targetPerformance"
                   placeholder="90"
                   className="margin-bajo"
+                  value={dataForm.targetPerformance}
+                  onChange={handleChange}
                 />
 
                 <UncontrolledTooltip
@@ -129,12 +131,12 @@ const Cultivo = ({ stepper }) => {
               </Col>
 
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="cityMulti">
+                <Label className="form-label" htmlFor="date">
                   Fecha de siembra
                 </Label>
                 <Input
                   type="date"
-                  id="cityMulti"
+                  id="date"
                   name="date"
                   placeholder="8/03/2022"
                   onChange={handleChange}
@@ -144,17 +146,19 @@ const Cultivo = ({ stepper }) => {
               <Col md="6" sm="12">
                 <Label
                   className="form-label d-flex align-items-center justify-content-between"
-                  for="cityMulti"
+                  htmlFor="productPrice"
                 >
                   Precio del producto en U$S/tn{" "}
                   <FiHelpCircle id="precioDelProducto" className="fs-5 me-1" />
                 </Label>
                 <Input
                   type="number"
-                  name="city"
-                  id="cityMulti"
+                  name="productPrice"
+                  id="productPrice"
                   placeholder="1"
                   className="margin-bajoDos"
+                  value={dataForm.productPrice}
+                  onChange={handleChange}
                 />
 
                 <UncontrolledTooltip
@@ -172,10 +176,15 @@ const Cultivo = ({ stepper }) => {
               <span className="mt-5"></span>
 
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="predecessorCrop">
+                <Label className="form-label" htmlFor="predecessorCrop">
                   Cultivo antecesor
                 </Label>
-                <Input type="select" id="register-select">
+                <Input
+                  type="select"
+                  name="predecessorCrop"
+                  id="predecessorCrop"
+                  onChange={handleChange}
+                >
                   <option value={"Alfalfa"}>Alfalfa</option>
                   <option value={"Arroz"}>Arroz</option>
                   <option
@@ -232,27 +241,37 @@ const Cultivo = ({ stepper }) => {
               </Col>
 
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="cropYield">
+                <Label
+                  className="form-label"
+                  htmlFor="yieldOfThePredecessorCrop"
+                >
                   Rendimiento del cultivo antecesor (qq/ha)
                 </Label>
                 <Input
                   type="number"
-                  name="elapsedTime"
-                  id="elapsedTime"
+                  name="yieldOfThePredecessorCrop"
+                  id="yieldOfThePredecessorCrop"
                   placeholder="28"
+                  value={dataForm.yieldOfThePredecessorCrop}
+                  onChange={handleChange}
                 />
               </Col>
 
               <Col md="6" sm="12" className="mb-1">
                 <Label
                   className="form-label mt-1 d-flex align-items-center justify-content-between"
-                  for="elapsedTime"
+                  htmlFor="timeElapsedBetweenHarvestAndSowing"
                 >
                   Tiempo transcurrido entre cosecha y siembra{" "}
                   <FiHelpCircle id="tiempoTranscurrido" className="fs-5 me-1" />
                 </Label>
 
-                <Input type="select" id="register-select">
+                <Input
+                  type="select"
+                  name="timeElapsedBetweenHarvestAndSowing"
+                  id="timeElapsedBetweenHarvestAndSowing"
+                  onChange={handleChange}
+                >
                   <option value={"Menos de 2 meses"}>Menos de 2 meses</option>
                   <option value={"De 2 a 4 meses"}>De 2 a 4 meses</option>
                   <option selected value={"Mas de 4 meses"}>
@@ -274,17 +293,20 @@ const Cultivo = ({ stepper }) => {
 
               <Col md="6" sm="12" className="mt-2">
                 <div className="form-check form-switch">
-                  <Label className="form-label me-2 fs-5" for="performSowing">
+                  <Label
+                    className="form-label me-2 fs-5"
+                    htmlFor="performDirectSowing"
+                  >
                     Realiza siembra directa
                   </Label>
                   <Input
                     type="checkbox"
                     role="switch"
-                    name="performSowing"
-                    id="performSowing"
-                    placeholder="Realiza siembra directa"
-                    class="form-check-input"
-                    defaultChecked={true}
+                    name="performDirectSowing"
+                    id="performDirectSowing"
+                    className="form-check-input"
+                    checked={dataForm.performDirectSowing}
+                    onChange={handleChange}
                   />
                 </div>
               </Col>

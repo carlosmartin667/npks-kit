@@ -228,7 +228,7 @@ const Register = () => {
 
                 <div className="mb-1">
                   <Label className="form-label" for="register-email">
-                    <em>Mail</em>
+                    <em>Email</em>
                   </Label>
                   <Input
                     type="email"

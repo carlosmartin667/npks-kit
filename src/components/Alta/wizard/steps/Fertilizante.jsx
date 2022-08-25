@@ -24,6 +24,8 @@ import { DataContext } from "../../../../utility/context/LoteProvider";
 const Fertilizante = ({ stepper }) => {
   const {
     handleWizard,
+    dataForm,
+    handleChange,
     // ** state Arrancador
     contenidoNitrogeno,
     setContenidoNitrogeno,
@@ -60,17 +62,19 @@ const Fertilizante = ({ stepper }) => {
           <Col md="6" sm="12" className="mb-1">
             <Label
               className="form-label mt-1 d-flex align-items-center justify-content-between"
-              for="register-select"
+              htmlFor="starterOrOrganicFertilizer"
             >
               Arrancador o abono orgánico
               <FiHelpCircle id="Arrancador" className="fs-5 me-1" />
             </Label>
             <Input
               type="select"
-              name="options"
-              id="register-select"
+              name="starterOrOrganicFertilizer"
+              id="starterOrOrganicFertilizer"
+              // onChange={handleChange}
               onChange={(e) => {
-                e.preventDefault();
+                // e.preventDefault();
+                handleChange(e);
                 let selectedValue = e.target.value;
                 setArrancadorAbonoOrganico(selectedValue);
               }}
@@ -89,17 +93,25 @@ const Fertilizante = ({ stepper }) => {
             </UncontrolledTooltip>
           </Col>
 
-          {arrancadorAbonoOrganico === "Ninguno" ? null : (
+          {/* {arrancadorAbonoOrganico === "Ninguno" ? null : ( */}
+          {arrancadorAbonoOrganico !== "Ninguno" ? (
             <>
               <Col md="6" sm="12" className="mb-1">
                 <Label
                   className="form-label mt-1 d-flex align-items-center justify-content-between"
-                  for="register-select"
+                  htmlFor="quantity"
                 >
                   Cantidad (kg/ha)
                   <FiHelpCircle id="Cantidad" className="fs-5 me-1" />
                 </Label>
-                <Input type="number" placeholder="50" />
+                <Input
+                  type="number"
+                  name="quantity"
+                  id="quantity"
+                  placeholder="50"
+                  value={dataForm.quantity}
+                  onChange={handleChange}
+                />
                 <UncontrolledTooltip placement="right" target="Cantidad">
                   <span className="fw-bolder">Cantidad (kg/ha): </span> Cantidad
                   en kg/ha del arrancador o abono orgánico que utiliza a la
@@ -112,7 +124,7 @@ const Fertilizante = ({ stepper }) => {
                   <Col md="6" sm="12" className="mb-3">
                     <Label
                       className="form-label d-flex align-items-center justify-content-between"
-                      htmlFor="arrancadorOAbonoOrganico"
+                      htmlFor="starter"
                     >
                       Arrancador{" "}
                       <FiHelpCircle
@@ -122,8 +134,11 @@ const Fertilizante = ({ stepper }) => {
                     </Label>
                     <Input
                       type="select"
+                      name="starter"
+                      id="starter"
                       onChange={(e) => {
-                        e.preventDefault();
+                        // e.preventDefault();
+                        handleChange(e);
                         let selectedValue = e.target.value;
                         setSelectedDefaultArrancador(selectedValue);
                       }}
@@ -164,7 +179,7 @@ const Fertilizante = ({ stepper }) => {
                   <Col md="6" sm="12" className="mb-3">
                     <Label
                       className="form-label d-flex align-items-center justify-content-between"
-                      htmlFor="arrancadorOAbonoOrganico"
+                      htmlFor="organicFertilizer"
                     >
                       Abono orgánico{" "}
                       {/* <FiHelpCircle
@@ -174,8 +189,11 @@ const Fertilizante = ({ stepper }) => {
                     </Label>
                     <Input
                       type="select"
+                      name="organicFertilizer"
+                      id="organicFertilizer"
                       onChange={(e) => {
-                        e.preventDefault();
+                        // e.preventDefault();
+                        handleChange(e);
                         let selectedValue = e.target.value;
                         setSelectedDefaultArrancador(selectedValue);
                       }}
@@ -217,19 +235,26 @@ const Fertilizante = ({ stepper }) => {
               <Col md="6" sm="12" className="mb-3">
                 <Label
                   className="form-label d-flex align-items-center justify-content-between"
-                  for="register-select"
+                  htmlFor="price"
                 >
                   Precio (u$s/tn){" "}
                   <FiHelpCircle id="Precio" className="fs-5 me-1" />
                 </Label>
-                <Input type="number" placeholder="1100" />
+                <Input
+                  type="number"
+                  name="price"
+                  id="price"
+                  placeholder="1100"
+                  value={dataForm.price}
+                  onChange={handleChange}
+                />
                 <UncontrolledTooltip placement="right" target="Precio">
                   <span className="fw-bolder">Precio (u$s/tn): </span> Precio en
                   u$s/tn de dicho arrancador o abono orgánico. <br />{" "}
                 </UncontrolledTooltip>
               </Col>
             </>
-          )}
+          ) : null}
         </Row>
 
         {arrancadorAbonoOrganico === "Arrancador" ? (
@@ -531,39 +556,49 @@ const Fertilizante = ({ stepper }) => {
                         <td>
                           <Input
                             type="text"
-                            name="contenidoNitrogeno"
-                            value={contenidoNitrogeno}
+                            name="nitrogenContent"
+                            id="nitrogenContent"
+                            value={dataForm.nitrogenContent}
                             onChange={(e) =>
-                              setContenidoNitrogeno(e.target.value)
+                              // setContenidoNitrogeno(e.target.value)
+                              handleChange(e)
                             }
                           />
                         </td>
                         <td>
                           <Input
                             type="text"
-                            name="contenidoFosforo"
-                            value={contenidoFosforo}
+                            name="phosphorusContent"
+                            id="phosphorusContent"
+                            value={dataForm.phosphorusContent}
                             onChange={(e) =>
-                              setContenidoFosforo(e.target.value)
+                              // setContenidoFosforo(e.target.value)
+                              handleChange(e)
                             }
                           />
                         </td>
                         <td>
                           <Input
                             type="text"
-                            name="contenidoPotasio"
-                            value={contenidoPotasio}
+                            name="potassiumContent"
+                            id="potassiumContent"
+                            value={dataForm.potassiumContent}
                             onChange={(e) =>
-                              setContenidoPotasio(e.target.value)
+                              // setContenidoPotasio(e.target.value)
+                              handleChange(e)
                             }
                           />
                         </td>
                         <td>
                           <Input
                             type="text"
-                            name="contenidoAzufre"
-                            value={contenidoAzufre}
-                            onChange={(e) => setContenidoAzufre(e.target.value)}
+                            name="sulphurContent"
+                            id="sulphurContent"
+                            value={dataForm.sulphurContent}
+                            onChange={(e) =>
+                              // setContenidoAzufre(e.target.value)
+                              handleChange(e)
+                            }
                           />
                         </td>
                       </tr>
@@ -591,40 +626,46 @@ const Fertilizante = ({ stepper }) => {
                         <td>
                           <Input
                             type="text"
-                            name="eficienciasNitrogeno"
-                            value={eficienciasNitrogeno}
+                            name="nitrogenEfficiencies"
+                            id="nitrogenEfficiencies"
+                            value={dataForm.nitrogenEfficiencies}
                             onChange={(e) =>
-                              setEficienciasNitrogeno(e.target.value)
+                              // setEficienciasNitrogeno(e.target.value)
+                              handleChange(e)
                             }
                           />
                         </td>
                         <td>
                           <Input
                             type="text"
-                            name="eficienciasFosforo"
-                            value={eficienciasFosforo}
+                            name="phosphorusEfficiencies"
+                            value={dataForm.phosphorusEfficiencies}
                             onChange={(e) =>
-                              setEficienciasFosforo(e.target.value)
+                              // setEficienciasFosforo(e.target.value)
+                              handleChange(e)
                             }
                           />
                         </td>
                         <td>
                           <Input
                             type="text"
-                            name="eficienciasPotasio"
-                            value={eficienciasPotasio}
+                            name="potassiumEfficiencies"
+                            value={dataForm.potassiumEfficiencies}
                             onChange={(e) =>
-                              setEficienciasPotasio(e.target.value)
+                              // setEficienciasPotasio(e.target.value)
+                              handleChange(e)
                             }
                           />
                         </td>
                         <td>
                           <Input
                             type="text"
-                            name="eficienciasAzufre"
-                            value={eficienciasAzufre}
+                            name="sulfurEfficiencies"
+                            id="sulfurEfficiencies"
+                            value={dataForm.sulfurEfficiencies}
                             onChange={(e) =>
-                              setEficienciasAzufre(e.target.value)
+                              // setEficienciasAzufre(e.target.value)
+                              handleChange(e)
                             }
                           />
                         </td>
@@ -652,13 +693,20 @@ const Fertilizante = ({ stepper }) => {
           <Col md="6" sm="12" className="mt-2 mb-2">
             <Label
               className="form-label d-flex align-items-center justify-content-between"
-              for="register-select"
+              htmlFor="costOfFertilizerApplicationAndSoilAnalysis"
             >
               Costo de aplicación del fertilizante y del análisis de suelo
               (u$s/ha){" "}
               <FiHelpCircle id="costoDeAplicación" className="fs-5 me-1" />
             </Label>
-            <Input type="number" placeholder="11" />
+            <Input
+              type="number"
+              name="costOfFertilizerApplicationAndSoilAnalysis"
+              id="costOfFertilizerApplicationAndSoilAnalysis"
+              placeholder="11"
+              value={dataForm.costOfFertilizerApplicationAndSoilAnalysis}
+              onChange={handleChange}
+            />
             <UncontrolledTooltip placement="right" target="costoDeAplicación">
               <span className="fw-bolder">
                 Costo de aplicación del fertilizante y del análisis de suelo
