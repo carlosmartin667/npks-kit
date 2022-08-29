@@ -33,8 +33,8 @@ export default function LoteProvider({ children }) {
   const navigate = useNavigate();
 
   // ** State Cultivo
-  const [dateCultivo, setDateCultivo] = useState("");
-  const [cropCultivo, setCropCultivo] = useState("Maíz grano");
+  // const [dateCultivo, setDateCultivo] = useState("");
+  // const [cropCultivo, setCropCultivo] = useState("Maíz grano");
 
   // ** State Otro Arrancador
   const [contenidoNitrogeno, setContenidoNitrogeno] = useState("");
@@ -117,7 +117,7 @@ export default function LoteProvider({ children }) {
     phStratumThree: "",
     mgiStratumThree: "",
     // ** wizard cultivo
-    crop: "Maíz grano",
+    crop: "",
     targetPerformance: "",
     date: "",
     productPrice: "",
@@ -199,18 +199,6 @@ export default function LoteProvider({ children }) {
 
     navigate("/");
   };
-
-  // setDataForm({
-  //       id: null,
-  //       name: "",
-  //       field: "",
-  //       amountOfHectarea: "",
-  //       location: "",
-  //       province: "",
-  //       crop: "",
-  //       date: "",
-  //       cropUp: true,
-  //     }
 
   const createData = (dato) => {
     dato.id = +new Date();
@@ -312,7 +300,7 @@ export default function LoteProvider({ children }) {
         phStratumThree: "",
         mgiStratumThree: "",
         // ** wizard cultivo
-        crop: "Maíz grano",
+        crop: "",
         targetPerformance: "",
         date: "",
         productPrice: "",
@@ -365,8 +353,8 @@ export default function LoteProvider({ children }) {
           deleteLoteModal,
           setDeleteLoteModal,
           // State cultivo
-          setDateCultivo,
-          setCropCultivo,
+          // setDateCultivo,
+          // setCropCultivo,
           // State arrancador
           contenidoNitrogeno,
           setContenidoNitrogeno,
@@ -491,7 +479,7 @@ export default function LoteProvider({ children }) {
                   phStratumThree: "",
                   mgiStratumThree: "",
                   // ** wizard cultivo
-                  crop: "Maíz grano",
+                  crop: "",
                   targetPerformance: "",
                   date: "",
                   productPrice: "",
