@@ -43,7 +43,7 @@ import "@styles/react/libs/react-select/_react-select.scss";
 import { DataContext } from "../../../../utility/context/LoteProvider";
 
 const Suelo = ({ stepper }) => {
-  const { backModal, setBackModal, handleChange, dataForm, setDataForm } =
+  const { backModal, setBackModal, handleChange, dataForm } =
     useContext(DataContext);
 
   const [open, setOpen] = useState("1");
@@ -64,6 +64,280 @@ const Suelo = ({ stepper }) => {
   const [modalEstratoDos, setModalEstratoDos] = useState(false);
   const [modalEstratoTres, setModalEstratoTres] = useState(false);
 
+  // ** State errors
+  const [formErrors, setFormErrors] = useState({});
+
+  // ** nextPageWizard
+  const [nextPageWizard, setNextPageWizard] = useState(false);
+
+  const validationWizardSuelo = () => {
+    setFormErrors(validate(dataForm));
+    setNextPageWizard(true);
+  };
+
+  // ** useEffect
+  useEffect(() => {
+    if (Object.keys(formErrors).length === 0 && nextPageWizard) {
+      // alert("SI FUNCAA, PASA DE PAGINA");
+      stepper.next();
+    }
+  }, [formErrors]);
+
+  const validate = (values) => {
+    const errors = {};
+
+    if (!values.compactionLevel) {
+      errors.compactionLevel = "Obligatorio";
+    }
+
+    if (!values.limitationForWaterlogging) {
+      errors.limitationForWaterlogging = "Obligatorio";
+    }
+
+    if (!values.rootableProfunity) {
+      errors.rootableProfunity = "Obligatorio";
+    } else if (values.rootableProfunity > 35 || values.rootableProfunity < 0) {
+      errors.rootableProfunity = "Se permite una profundidad de 0 a 35cm";
+    }
+
+    // Estrato 1
+
+    if (!values.depth) {
+      errors.depth = "Obligatorio";
+    } else if (values.depth === "Seleccione una profundidad") {
+      errors.depth = "Seleccione la profundidad de 0 a 20cm";
+    }
+
+    if (!values.sso4) {
+      errors.sso4 = "Obligatorio";
+    }
+
+    if (!values.phosphate) {
+      errors.phosphate = "Obligatorio";
+    }
+
+    if (!values.cic) {
+      errors.cic = "Obligatorio";
+    }
+
+    if (!values.nai) {
+      errors.nai = "Obligatorio";
+    }
+
+    if (!values.soilDensity) {
+      errors.soilDensity = "Obligatorio";
+    }
+
+    if (!values.totalN) {
+      errors.totalN = "Obligatorio";
+    }
+
+    if (!values.ce) {
+      errors.ce = "Obligatorio";
+    }
+
+    if (!values.cai) {
+      errors.cai = "Obligatorio";
+    }
+
+    if (!values.ki) {
+      errors.ki = "Obligatorio";
+    }
+
+    if (!values.nno3) {
+      errors.nno3 = "Obligatorio";
+    }
+
+    if (!values.fmin) {
+      errors.fmin = "Obligatorio";
+    }
+
+    if (!values.ph) {
+      errors.ph = "Obligatorio";
+    }
+
+    if (!values.mgi) {
+      errors.mgi = "Obligatorio";
+    }
+
+    // Estrato 2
+
+    if (estratoDos) {
+      if (!values.depthStratumTwo) {
+        errors.depthStratumTwo = "Obligatorio";
+      } else if (values.depthStratumTwo === "Seleccione una profundidad") {
+        errors.depthStratumTwo =
+          "Seleccione una profundidad de 20 a 40 o 20 a 60cm";
+      }
+    }
+    if (estratoDos) {
+      if (!values.sso4StratumTwo) {
+        errors.sso4StratumTwo = "Obligatorio";
+      }
+    }
+
+    if (estratoDos) {
+      if (!values.phosphateStratumTwo) {
+        errors.phosphateStratumTwo = "Obligatorio";
+      }
+    }
+
+    if (estratoDos) {
+      if (!values.cicStratumTwo) {
+        errors.cicStratumTwo = "Obligatorio";
+      }
+    }
+
+    if (estratoDos) {
+      if (!values.naiStratumTwo) {
+        errors.naiStratumTwo = "Obligatorio";
+      }
+    }
+
+    if (estratoDos) {
+      if (!values.soilDensityStratumTwo) {
+        errors.soilDensityStratumTwo = "Obligatorio";
+      }
+    }
+
+    if (estratoDos) {
+      if (!values.totalNStratumTwo) {
+        errors.totalNStratumTwo = "Obligatorio";
+      }
+    }
+
+    if (estratoDos) {
+      if (!values.ceStratumTwo) {
+        errors.ceStratumTwo = "Obligatorio";
+      }
+    }
+
+    if (estratoDos) {
+      if (!values.caiStratumTwo) {
+        errors.caiStratumTwo = "Obligatorio";
+      }
+    }
+
+    if (estratoDos) {
+      if (!values.kiStratumTwo) {
+        errors.kiStratumTwo = "Obligatorio";
+      }
+    }
+
+    if (estratoDos) {
+      if (!values.nno3StratumTwo) {
+        errors.nno3StratumTwo = "Obligatorio";
+      }
+    }
+
+    if (estratoDos) {
+      if (!values.fminStratumTwo) {
+        errors.fminStratumTwo = "Obligatorio";
+      }
+    }
+
+    if (estratoDos) {
+      if (!values.phStratumTwo) {
+        errors.phStratumTwo = "Obligatorio";
+      }
+    }
+
+    if (estratoDos) {
+      if (!values.mgiStratumTwo) {
+        errors.mgiStratumTwo = "Obligatorio";
+      }
+    }
+
+    // Estrato 3
+
+    if (estratoTres) {
+      if (!values.depthStratumThree) {
+        errors.depthStratumThree = "Obligatorio";
+      } else if (values.depthStratumThree === "Seleccione una profundidad") {
+        errors.depthStratumThree = "Seleccione la profundidad de 40 a 60cm";
+      }
+    }
+    if (estratoTres) {
+      if (!values.sso4StratumThree) {
+        errors.sso4StratumThree = "Obligatorio";
+      }
+    }
+
+    if (estratoTres) {
+      if (!values.phosphateStratumThree) {
+        errors.phosphateStratumThree = "Obligatorio";
+      }
+    }
+
+    if (estratoTres) {
+      if (!values.cicStratumThree) {
+        errors.cicStratumThree = "Obligatorio";
+      }
+    }
+
+    if (estratoTres) {
+      if (!values.naiStratumThree) {
+        errors.naiStratumThree = "Obligatorio";
+      }
+    }
+
+    if (estratoTres) {
+      if (!values.soilDensityStratumThree) {
+        errors.soilDensityStratumThree = "Obligatorio";
+      }
+    }
+
+    if (estratoTres) {
+      if (!values.totalNStratumThree) {
+        errors.totalNStratumThree = "Obligatorio";
+      }
+    }
+
+    if (estratoTres) {
+      if (!values.ceStratumThree) {
+        errors.ceStratumThree = "Obligatorio";
+      }
+    }
+
+    if (estratoTres) {
+      if (!values.caiStratumThree) {
+        errors.caiStratumThree = "Obligatorio";
+      }
+    }
+
+    if (estratoTres) {
+      if (!values.kiStratumThree) {
+        errors.kiStratumThree = "Obligatorio";
+      }
+    }
+
+    if (estratoTres) {
+      if (!values.nno3StratumThree) {
+        errors.nno3StratumThree = "Obligatorio";
+      }
+    }
+
+    if (estratoTres) {
+      if (!values.fminStratumThree) {
+        errors.fminStratumThree = "Obligatorio";
+      }
+    }
+
+    if (estratoTres) {
+      if (!values.phStratumThree) {
+        errors.phStratumThree = "Obligatorio";
+      }
+    }
+
+    if (estratoTres) {
+      if (!values.mgiStratumThree) {
+        errors.mgiStratumThree = "Obligatorio";
+      }
+    }
+
+    return errors;
+  };
+
   return (
     <>
       <Card>
@@ -82,6 +356,9 @@ const Suelo = ({ stepper }) => {
                   type="select"
                   name="compactionLevel"
                   id="compactionLevel"
+                  className={
+                    formErrors.compactionLevel ? `error_input_register` : null
+                  }
                   onChange={handleChange}
                 >
                   <option value={"Mullido"}>Mullido</option>
@@ -91,6 +368,11 @@ const Suelo = ({ stepper }) => {
                   </option>
                   <option value={"Muy compacto"}>Muy compacto</option>
                 </Input>
+                {formErrors.compactionLevel && (
+                  <em className="error_input_message_register">
+                    {formErrors.compactionLevel}
+                  </em>
+                )}
               </Col>
 
               <Col md="6" sm="12" className="mb-1">
@@ -101,6 +383,11 @@ const Suelo = ({ stepper }) => {
                   type="select"
                   name="limitationForWaterlogging"
                   id="limitationForWaterlogging"
+                  className={
+                    formErrors.limitationForWaterlogging
+                      ? `error_input_register`
+                      : null
+                  }
                   onChange={handleChange}
                 >
                   <option value={"Suelo imperfectamente drenado o peor"}>
@@ -113,6 +400,11 @@ const Suelo = ({ stepper }) => {
                     Suelo bien drenado o mejor
                   </option>
                 </Input>
+                {formErrors.limitationForWaterlogging && (
+                  <em className="error_input_message_register">
+                    {formErrors.limitationForWaterlogging}
+                  </em>
+                )}
               </Col>
 
               <Col md="6" sm="12" className="mb-1">
@@ -126,9 +418,17 @@ const Suelo = ({ stepper }) => {
                   name="rootableProfunity"
                   id="rootableProfunity"
                   placeholder="35"
+                  className={
+                    formErrors.rootableProfunity ? `error_input_register` : null
+                  }
                   value={dataForm.rootableProfunity}
                   onChange={handleChange}
                 />
+                {formErrors.rootableProfunity && (
+                  <em className="error_input_message_register">
+                    {formErrors.rootableProfunity}
+                  </em>
+                )}
               </Col>
             </Row>
 
@@ -156,13 +456,21 @@ const Suelo = ({ stepper }) => {
                         type="select"
                         name="depth"
                         id="depth"
+                        className={
+                          formErrors.depth ? `error_input_register` : null
+                        }
                         onChange={handleChange}
                       >
-                        <option selected value={" "}>
+                        <option selected value={"Seleccione una profundidad"}>
                           - Seleccione una profundidad -
                         </option>
                         <option value="0 a 20">0 a 20</option>
                       </Input>
+                      {formErrors.depth && (
+                        <em className="error_input_message_register">
+                          {formErrors.depth}
+                        </em>
+                      )}
 
                       {/* S-SO4  */}
                       <Label
@@ -176,9 +484,17 @@ const Suelo = ({ stepper }) => {
                         name="sso4"
                         id="s-so4"
                         placeholder="8"
+                        className={
+                          formErrors.sso4 ? `error_input_register` : null
+                        }
                         value={dataForm.sso4}
                         onChange={handleChange}
                       />
+                      {formErrors.sso4 && (
+                        <em className="error_input_message_register">
+                          {formErrors.sso4}
+                        </em>
+                      )}
 
                       <UncontrolledTooltip placement="right" target="sso4">
                         <span className="fw-bolder">S-SO4 </span> Azufre de
@@ -198,9 +514,18 @@ const Suelo = ({ stepper }) => {
                         name="phosphate"
                         id="p-hosphate"
                         placeholder="14"
+                        className={
+                          formErrors.phosphate ? `error_input_register` : null
+                        }
                         value={dataForm.phosphate}
                         onChange={handleChange}
                       />
+
+                      {formErrors.phosphate && (
+                        <em className="error_input_message_register">
+                          {formErrors.phosphate}
+                        </em>
+                      )}
 
                       <UncontrolledTooltip placement="right" target="phosphate">
                         <span className="fw-bolder">P</span> Fosforo extraíble.
@@ -220,6 +545,9 @@ const Suelo = ({ stepper }) => {
                         name="cic"
                         id="cic"
                         placeholder="14"
+                        className={
+                          formErrors.cic ? `error_input_register` : null
+                        }
                         value={dataForm.cic}
                         onChange={handleChange}
                       />
@@ -230,6 +558,12 @@ const Suelo = ({ stepper }) => {
                         <span className="fw-bolder">Unidades</span>: meq/100gr o
                         cmolc/kg
                       </UncontrolledTooltip>
+
+                      {formErrors.cic && (
+                        <em className="error_input_message_register">
+                          {formErrors.cic}
+                        </em>
+                      )}
 
                       {/* Nai */}
                       <Label
@@ -243,9 +577,18 @@ const Suelo = ({ stepper }) => {
                         name="nai"
                         id="nai"
                         placeholder="0.3"
+                        className={
+                          formErrors.nai ? `error_input_register` : null
+                        }
                         value={dataForm.nai}
                         onChange={handleChange}
                       />
+
+                      {formErrors.nai && (
+                        <em className="error_input_message_register">
+                          {formErrors.nai}
+                        </em>
+                      )}
 
                       <UncontrolledTooltip placement="right" target="Nai">
                         <span className="fw-bolder">Nai</span> Sodio
@@ -272,9 +615,18 @@ const Suelo = ({ stepper }) => {
                         name="soilDensity"
                         id="soilDensity"
                         placeholder="1.35"
+                        className={
+                          formErrors.soilDensity ? `error_input_register` : null
+                        }
                         value={dataForm.soilDensity}
                         onChange={handleChange}
                       />
+
+                      {formErrors.soilDensity && (
+                        <em className="error_input_message_register">
+                          {formErrors.soilDensity}
+                        </em>
+                      )}
 
                       <UncontrolledTooltip
                         placement="right"
@@ -298,9 +650,18 @@ const Suelo = ({ stepper }) => {
                         name="totalN"
                         id="totalN"
                         placeholder="0.12"
+                        className={
+                          formErrors.totalN ? `error_input_register` : null
+                        }
                         value={dataForm.totalN}
                         onChange={handleChange}
                       />
+
+                      {formErrors.totalN && (
+                        <em className="error_input_message_register">
+                          {formErrors.totalN}
+                        </em>
+                      )}
 
                       <UncontrolledTooltip placement="right" target="nTotal">
                         <span className="fw-bolder">Nitrógeno total</span>{" "}
@@ -321,9 +682,18 @@ const Suelo = ({ stepper }) => {
                         name="ce"
                         id="ce"
                         placeholder="0.5"
+                        className={
+                          formErrors.ce ? `error_input_register` : null
+                        }
                         value={dataForm.ce}
                         onChange={handleChange}
                       />
+
+                      {formErrors.ce && (
+                        <em className="error_input_message_register">
+                          {formErrors.ce}
+                        </em>
+                      )}
 
                       <UncontrolledTooltip placement="right" target="CE">
                         <span className="fw-bolder">CE</span> Conductividad
@@ -343,7 +713,18 @@ const Suelo = ({ stepper }) => {
                         name="cai"
                         id="cai"
                         placeholder="9"
+                        className={
+                          formErrors.cai ? `error_input_register` : null
+                        }
+                        value={dataForm.cai}
+                        onChange={handleChange}
                       />
+
+                      {formErrors.cai && (
+                        <em className="error_input_message_register">
+                          {formErrors.cai}
+                        </em>
+                      )}
 
                       <UncontrolledTooltip placement="right" target="Cai">
                         <span className="fw-bolder">Cai</span> Calcio
@@ -364,9 +745,18 @@ const Suelo = ({ stepper }) => {
                         name="ki"
                         id="ki"
                         placeholder="2"
+                        className={
+                          formErrors.ki ? `error_input_register` : null
+                        }
                         value={dataForm.ki}
                         onChange={handleChange}
                       />
+
+                      {formErrors.ki && (
+                        <em className="error_input_message_register">
+                          {formErrors.ki}
+                        </em>
+                      )}
 
                       <UncontrolledTooltip placement="right" target="Ki">
                         <span className="fw-bolder">Ki</span> Potasio
@@ -389,9 +779,18 @@ const Suelo = ({ stepper }) => {
                         name="nno3"
                         id="nno3"
                         placeholder="15"
+                        className={
+                          formErrors.nno3 ? `error_input_register` : null
+                        }
                         value={dataForm.nno3}
                         onChange={handleChange}
                       />
+
+                      {formErrors.nno3 && (
+                        <em className="error_input_message_register">
+                          {formErrors.nno3}
+                        </em>
+                      )}
 
                       <UncontrolledTooltip placement="right" target="N-NO3">
                         <span className="fw-bolder">N-NO3</span> N de Nitratos a
@@ -411,7 +810,18 @@ const Suelo = ({ stepper }) => {
                         name="fmin"
                         id="fmin"
                         placeholder="0.11"
+                        className={
+                          formErrors.fmin ? `error_input_register` : null
+                        }
+                        value={dataForm.fmin}
+                        onChange={handleChange}
                       />
+
+                      {formErrors.fmin && (
+                        <em className="error_input_message_register">
+                          {formErrors.fmin}
+                        </em>
+                      )}
 
                       <UncontrolledTooltip placement="right" target="Fmin">
                         <span className="fw-bolder">Fmin</span> Factor de
@@ -434,9 +844,18 @@ const Suelo = ({ stepper }) => {
                         name="ph"
                         id="ph"
                         placeholder="6.7"
+                        className={
+                          formErrors.ph ? `error_input_register` : null
+                        }
                         value={dataForm.ph}
                         onChange={handleChange}
                       />
+
+                      {formErrors.ph && (
+                        <em className="error_input_message_register">
+                          {formErrors.ph}
+                        </em>
+                      )}
 
                       <UncontrolledTooltip placement="right" target="PH">
                         <span className="fw-bolder">PH</span> Reacción del
@@ -455,9 +874,18 @@ const Suelo = ({ stepper }) => {
                         name="mgi"
                         id="mgi"
                         placeholder="1.2"
+                        className={
+                          formErrors.mgi ? `error_input_register` : null
+                        }
                         value={dataForm.mgi}
                         onChange={handleChange}
                       />
+
+                      {formErrors.mgi && (
+                        <em className="error_input_message_register">
+                          {formErrors.mgi}
+                        </em>
+                      )}
 
                       <UncontrolledTooltip placement="right" target="Mgi">
                         <span className="fw-bolder">Mgi</span> Magnesio
@@ -516,9 +944,17 @@ const Suelo = ({ stepper }) => {
                             //   let selectedValue = e.target.value;
                             //   setProfundidadEstratoDos(selectedValue);
                             // }}
+                            className={
+                              formErrors.depthStratumTwo
+                                ? `error_input_register`
+                                : null
+                            }
                             onChange={handleChange}
                           >
-                            <option selected value={" "}>
+                            <option
+                              selected
+                              value={"Seleccione una profundidad"}
+                            >
                               - Seleccione una profundidad -
                             </option>
                             <option value={"20 a 40"}>20 a 40</option>
@@ -526,6 +962,12 @@ const Suelo = ({ stepper }) => {
                               <option value={"20 a 60"}>20 a 60</option>
                             )}
                           </Input>
+
+                          {formErrors.depthStratumTwo && (
+                            <em className="error_input_message_register">
+                              {formErrors.depthStratumTwo}
+                            </em>
+                          )}
 
                           {/* S-SO4  */}
                           <Label
@@ -540,9 +982,20 @@ const Suelo = ({ stepper }) => {
                             name="sso4StratumTwo"
                             id="sso4StratumTwo"
                             placeholder="8"
+                            className={
+                              formErrors.sso4StratumTwo
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.sso4StratumTwo}
                             onChange={handleChange}
                           />
+
+                          {formErrors.sso4StratumTwo && (
+                            <em className="error_input_message_register">
+                              {formErrors.sso4StratumTwo}
+                            </em>
+                          )}
 
                           <UncontrolledTooltip placement="right" target="S-SO4">
                             <span className="fw-bolder">S-SO4 </span> Azufre de
@@ -563,9 +1016,20 @@ const Suelo = ({ stepper }) => {
                             name="phosphateStratumTwo"
                             id="phosphateStratumTwo"
                             placeholder="14"
+                            className={
+                              formErrors.phosphateStratumTwo
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.phosphateStratumTwo}
                             onChange={handleChange}
                           />
+
+                          {formErrors.phosphateStratumTwo && (
+                            <em className="error_input_message_register">
+                              {formErrors.phosphateStratumTwo}
+                            </em>
+                          )}
 
                           <UncontrolledTooltip
                             placement="right"
@@ -589,9 +1053,20 @@ const Suelo = ({ stepper }) => {
                             name="cicStratumTwo"
                             id="cicStratumTwo"
                             placeholder="14"
+                            className={
+                              formErrors.cicStratumTwo
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.cicStratumTwo}
                             onChange={handleChange}
                           />
+
+                          {formErrors.cicStratumTwo && (
+                            <em className="error_input_message_register">
+                              {formErrors.cicStratumTwo}
+                            </em>
+                          )}
 
                           <UncontrolledTooltip placement="right" target="CIC">
                             <span className="fw-bolder">CIC</span> Capacidad de
@@ -612,9 +1087,20 @@ const Suelo = ({ stepper }) => {
                             name="naiStratumTwo"
                             id="naiStratumTwo"
                             placeholder="0.3"
+                            className={
+                              formErrors.naiStratumTwo
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.naiStratumTwo}
                             onChange={handleChange}
                           />
+
+                          {formErrors.naiStratumTwo && (
+                            <em className="error_input_message_register">
+                              {formErrors.naiStratumTwo}
+                            </em>
+                          )}
 
                           <UncontrolledTooltip placement="right" target="Nai">
                             <span className="fw-bolder">Nai</span> Sodio
@@ -641,9 +1127,20 @@ const Suelo = ({ stepper }) => {
                             name="soilDensityStratumTwo"
                             id="soilDensityStratumTwo"
                             placeholder="1.35"
+                            className={
+                              formErrors.soilDensityStratumTwo
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.soilDensityStratumTwo}
                             onChange={handleChange}
                           />
+
+                          {formErrors.soilDensityStratumTwo && (
+                            <em className="error_input_message_register">
+                              {formErrors.soilDensityStratumTwo}
+                            </em>
+                          )}
 
                           <UncontrolledTooltip
                             placement="right"
@@ -669,9 +1166,20 @@ const Suelo = ({ stepper }) => {
                             name="totalNStratumTwo"
                             id="totalNStratumTwo"
                             placeholder="0.12"
+                            className={
+                              formErrors.totalNStratumTwo
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.totalNStratumTwo}
                             onChange={handleChange}
                           />
+
+                          {formErrors.totalNStratumTwo && (
+                            <em className="error_input_message_register">
+                              {formErrors.totalNStratumTwo}
+                            </em>
+                          )}
 
                           <UncontrolledTooltip
                             placement="right"
@@ -695,9 +1203,20 @@ const Suelo = ({ stepper }) => {
                             name="ceStratumTwo"
                             id="ceStratumTwo"
                             placeholder="0.5"
+                            className={
+                              formErrors.ceStratumTwo
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.ceStratumTwo}
                             onChange={handleChange}
                           />
+
+                          {formErrors.ceStratumTwo && (
+                            <em className="error_input_message_register">
+                              {formErrors.ceStratumTwo}
+                            </em>
+                          )}
 
                           <UncontrolledTooltip placement="right" target="CE">
                             <span className="fw-bolder">CE</span> Conductividad
@@ -717,9 +1236,20 @@ const Suelo = ({ stepper }) => {
                             name="caiStratumTwo"
                             id="caiStratumTwo"
                             placeholder="9"
+                            className={
+                              formErrors.caiStratumTwo
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.caiStratumTwo}
                             onChange={handleChange}
                           />
+
+                          {formErrors.caiStratumTwo && (
+                            <em className="error_input_message_register">
+                              {formErrors.caiStratumTwo}
+                            </em>
+                          )}
 
                           <UncontrolledTooltip placement="right" target="Cai">
                             <span className="fw-bolder">Cai</span> Calcio
@@ -740,9 +1270,20 @@ const Suelo = ({ stepper }) => {
                             name="kiStratumTwo"
                             id="kiStratumTwo"
                             placeholder="2"
+                            className={
+                              formErrors.kiStratumTwo
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.kiStratumTwo}
                             onChange={handleChange}
                           />
+
+                          {formErrors.kiStratumTwo && (
+                            <em className="error_input_message_register">
+                              {formErrors.kiStratumTwo}
+                            </em>
+                          )}
 
                           <UncontrolledTooltip placement="right" target="Ki">
                             <span className="fw-bolder">Ki</span> Potasio
@@ -766,9 +1307,20 @@ const Suelo = ({ stepper }) => {
                             name="nno3StratumTwo"
                             id="nno3StratumTwo"
                             placeholder="15"
+                            className={
+                              formErrors.nno3StratumTwo
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.nno3StratumTwo}
                             onChange={handleChange}
                           />
+
+                          {formErrors.nno3StratumTwo && (
+                            <em className="error_input_message_register">
+                              {formErrors.nno3StratumTwo}
+                            </em>
+                          )}
 
                           <UncontrolledTooltip placement="right" target="N-NO3">
                             <span className="fw-bolder">N-NO3</span> N de
@@ -780,19 +1332,30 @@ const Suelo = ({ stepper }) => {
                           {/* Fmin */}
                           <Label
                             className="mt-1 d-flex align-items-center justify-content-between"
-                            htmlFor="phStratumTwo"
+                            htmlFor="fminStratumTwo"
                           >
                             Fmin{" "}
                             <FiHelpCircle id="Fmin" className="fs-5 me-1" />
                           </Label>
                           <Input
                             type="number"
-                            name="phStratumTwo"
-                            id="phStratumTwo"
+                            name="fminStratumTwo"
+                            id="fminStratumTwo"
                             placeholder="0.11"
-                            value={dataForm.phStratumTwo}
+                            className={
+                              formErrors.fminStratumTwo
+                                ? `error_input_register`
+                                : null
+                            }
+                            value={dataForm.fminStratumTwo}
                             onChange={handleChange}
                           />
+
+                          {formErrors.fminStratumTwo && (
+                            <em className="error_input_message_register">
+                              {formErrors.fminStratumTwo}
+                            </em>
+                          )}
 
                           <UncontrolledTooltip placement="right" target="Fmin">
                             <span className="fw-bolder">Fmin</span> Factor de
@@ -806,18 +1369,29 @@ const Suelo = ({ stepper }) => {
                           {/* PH */}
                           <Label
                             className="mt-1 d-flex align-items-center justify-content-between"
-                            htmlFor="mgiStratumTwo"
+                            htmlFor="phStratumTwo"
                           >
                             PH <FiHelpCircle id="PH" className="fs-5 me-1" />
                           </Label>
                           <Input
                             type="number"
-                            name="mgiStratumTwo"
-                            id="mgiStratumTwo"
+                            name="phStratumTwo"
+                            id="phStratumTwo"
                             placeholder="6.7"
-                            value={dataForm.mgiStratumTwo}
+                            className={
+                              formErrors.phStratumTwo
+                                ? `error_input_register`
+                                : null
+                            }
+                            value={dataForm.phStratumTwo}
                             onChange={handleChange}
                           />
+
+                          {formErrors.phStratumTwo && (
+                            <em className="error_input_message_register">
+                              {formErrors.phStratumTwo}
+                            </em>
+                          )}
 
                           <UncontrolledTooltip placement="right" target="PH">
                             <span className="fw-bolder">PH</span> Reacción del
@@ -836,9 +1410,20 @@ const Suelo = ({ stepper }) => {
                             name="mgiStratumTwo"
                             id="mgiStratumTwo"
                             placeholder="1.2"
+                            className={
+                              formErrors.mgiStratumTwo
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.mgiStratumTwo}
                             onChange={handleChange}
                           />
+
+                          {formErrors.mgiStratumTwo && (
+                            <em className="error_input_message_register">
+                              {formErrors.mgiStratumTwo}
+                            </em>
+                          )}
 
                           <UncontrolledTooltip placement="right" target="Mgi">
                             <span className="fw-bolder">Mgi</span> Magnesio
@@ -911,13 +1496,24 @@ const Suelo = ({ stepper }) => {
                           type="select"
                           name="depthStratumThree"
                           id="depthStratumThree"
+                          className={
+                            formErrors.depthStratumThree
+                              ? `error_input_register`
+                              : null
+                          }
                           onChange={handleChange}
                         >
-                          <option selected value={" "}>
+                          <option selected value={"Seleccione una profundidad"}>
                             - Seleccione una profundidad -
                           </option>
                           <option value={"40 a 60"}>40 a 60</option>
                         </Input>
+
+                        {formErrors.depthStratumThree && (
+                          <em className="error_input_message_register">
+                            {formErrors.depthStratumThree}
+                          </em>
+                        )}
 
                         {/* S-SO4  */}
                         <Label
@@ -932,9 +1528,20 @@ const Suelo = ({ stepper }) => {
                           name="sso4StratumThree"
                           id="sso4StratumThree"
                           placeholder="8"
+                          className={
+                            formErrors.sso4StratumThree
+                              ? `error_input_register`
+                              : null
+                          }
                           value={dataForm.sso4StratumThree}
                           onChange={handleChange}
                         />
+
+                        {formErrors.sso4StratumThree && (
+                          <em className="error_input_message_register">
+                            {formErrors.sso4StratumThree}
+                          </em>
+                        )}
 
                         <UncontrolledTooltip placement="right" target="S-SO4">
                           <span className="fw-bolder">S-SO4 </span> Azufre de
@@ -954,9 +1561,20 @@ const Suelo = ({ stepper }) => {
                           name="phosphateStratumThree"
                           id="phosphateStratumThree"
                           placeholder="14"
+                          className={
+                            formErrors.phosphateStratumThree
+                              ? `error_input_register`
+                              : null
+                          }
                           value={dataForm.phosphateStratumThree}
                           onChange={handleChange}
                         />
+
+                        {formErrors.phosphateStratumThree && (
+                          <em className="error_input_message_register">
+                            {formErrors.phosphateStratumThree}
+                          </em>
+                        )}
 
                         <UncontrolledTooltip placement="right" target="Fosforo">
                           <span className="fw-bolder">P</span> Fosforo
@@ -977,9 +1595,20 @@ const Suelo = ({ stepper }) => {
                           name="cicStratumThree"
                           id="cicStratumThree"
                           placeholder="14"
+                          className={
+                            formErrors.cicStratumThree
+                              ? `error_input_register`
+                              : null
+                          }
                           value={dataForm.cicStratumThree}
                           onChange={handleChange}
                         />
+
+                        {formErrors.cicStratumThree && (
+                          <em className="error_input_message_register">
+                            {formErrors.cicStratumThree}
+                          </em>
+                        )}
 
                         <UncontrolledTooltip placement="right" target="CIC">
                           <span className="fw-bolder">CIC</span> Capacidad de
@@ -1000,9 +1629,20 @@ const Suelo = ({ stepper }) => {
                           name="naiStratumThree"
                           id="naiStratumThree"
                           placeholder="0.3"
+                          className={
+                            formErrors.naiStratumThree
+                              ? `error_input_register`
+                              : null
+                          }
                           value={dataForm.naiStratumThree}
                           onChange={handleChange}
                         />
+
+                        {formErrors.naiStratumThree && (
+                          <em className="error_input_message_register">
+                            {formErrors.naiStratumThree}
+                          </em>
+                        )}
 
                         <UncontrolledTooltip placement="right" target="Nai">
                           <span className="fw-bolder">Nai</span> Sodio
@@ -1029,9 +1669,20 @@ const Suelo = ({ stepper }) => {
                           name="soilDensityStratumThree"
                           id="soilDensityStratumThree"
                           placeholder="1.35"
+                          className={
+                            formErrors.soilDensityStratumThree
+                              ? `error_input_register`
+                              : null
+                          }
                           value={dataForm.soilDensityStratumThree}
                           onChange={handleChange}
                         />
+
+                        {formErrors.soilDensityStratumThree && (
+                          <em className="error_input_message_register">
+                            {formErrors.soilDensityStratumThree}
+                          </em>
+                        )}
 
                         <UncontrolledTooltip
                           placement="right"
@@ -1055,9 +1706,20 @@ const Suelo = ({ stepper }) => {
                           name="totalNStratumThree"
                           id="totalNStratumThree"
                           placeholder="0.12"
+                          className={
+                            formErrors.totalNStratumThree
+                              ? `error_input_register`
+                              : null
+                          }
                           value={dataForm.totalNStratumThree}
                           onChange={handleChange}
                         />
+
+                        {formErrors.totalNStratumThree && (
+                          <em className="error_input_message_register">
+                            {formErrors.totalNStratumThree}
+                          </em>
+                        )}
 
                         <UncontrolledTooltip placement="right" target="nTotal">
                           <span className="fw-bolder">Nitrógeno total</span>{" "}
@@ -1078,9 +1740,20 @@ const Suelo = ({ stepper }) => {
                           name="ceStratumThree"
                           id="ceStratumThree"
                           placeholder="0.5"
+                          className={
+                            formErrors.ceStratumThree
+                              ? `error_input_register`
+                              : null
+                          }
                           value={dataForm.ceStratumThree}
                           onChange={handleChange}
                         />
+
+                        {formErrors.ceStratumThree && (
+                          <em className="error_input_message_register">
+                            {formErrors.ceStratumThree}
+                          </em>
+                        )}
 
                         <UncontrolledTooltip placement="right" target="CE">
                           <span className="fw-bolder">CE</span> Conductividad
@@ -1100,9 +1773,20 @@ const Suelo = ({ stepper }) => {
                           name="caiStratumThree"
                           id="caiStratumThree"
                           placeholder="9"
+                          className={
+                            formErrors.caiStratumThree
+                              ? `error_input_register`
+                              : null
+                          }
                           value={dataForm.caiStratumThree}
                           onChange={handleChange}
                         />
+
+                        {formErrors.caiStratumThree && (
+                          <em className="error_input_message_register">
+                            {formErrors.caiStratumThree}
+                          </em>
+                        )}
 
                         <UncontrolledTooltip placement="right" target="Cai">
                           <span className="fw-bolder">Cai</span> Calcio
@@ -1123,9 +1807,20 @@ const Suelo = ({ stepper }) => {
                           name="kiStratumThree"
                           id="kiStratumThree"
                           placeholder="2"
+                          className={
+                            formErrors.kiStratumThree
+                              ? `error_input_register`
+                              : null
+                          }
                           value={dataForm.kiStratumThree}
                           onChange={handleChange}
                         />
+
+                        {formErrors.kiStratumThree && (
+                          <em className="error_input_message_register">
+                            {formErrors.kiStratumThree}
+                          </em>
+                        )}
 
                         <UncontrolledTooltip placement="right" target="Ki">
                           <span className="fw-bolder">Ki</span> Potasio
@@ -1149,9 +1844,20 @@ const Suelo = ({ stepper }) => {
                           name="nno3StratumThree"
                           id="nno3StratumThree"
                           placeholder="15"
+                          className={
+                            formErrors.nno3StratumThree
+                              ? `error_input_register`
+                              : null
+                          }
                           value={dataForm.nno3StratumThree}
                           onChange={handleChange}
                         />
+
+                        {formErrors.nno3StratumThree && (
+                          <em className="error_input_message_register">
+                            {formErrors.nno3StratumThree}
+                          </em>
+                        )}
 
                         <UncontrolledTooltip placement="right" target="N-NO3">
                           <span className="fw-bolder">N-NO3</span> N de Nitratos
@@ -1172,9 +1878,20 @@ const Suelo = ({ stepper }) => {
                           name="fminStratumThree"
                           id="fminStratumThree"
                           placeholder="0.11"
+                          className={
+                            formErrors.fminStratumThree
+                              ? `error_input_register`
+                              : null
+                          }
                           value={dataForm.fminStratumThree}
                           onChange={handleChange}
                         />
+
+                        {formErrors.fminStratumThree && (
+                          <em className="error_input_message_register">
+                            {formErrors.fminStratumThree}
+                          </em>
+                        )}
 
                         <UncontrolledTooltip placement="right" target="Fmin">
                           <span className="fw-bolder">Fmin</span> Factor de
@@ -1197,9 +1914,20 @@ const Suelo = ({ stepper }) => {
                           name="phStratumThree"
                           id="phStratumThree"
                           placeholder="6.7"
+                          className={
+                            formErrors.phStratumThree
+                              ? `error_input_register`
+                              : null
+                          }
                           value={dataForm.phStratumThree}
                           onChange={handleChange}
                         />
+
+                        {formErrors.phStratumThree && (
+                          <em className="error_input_message_register">
+                            {formErrors.phStratumThree}
+                          </em>
+                        )}
 
                         <UncontrolledTooltip placement="right" target="PH">
                           <span className="fw-bolder">PH</span> Reacción del
@@ -1218,9 +1946,20 @@ const Suelo = ({ stepper }) => {
                           name="mgiStratumThree"
                           id="mgiStratumThree"
                           placeholder="1.2"
+                          className={
+                            formErrors.mgiStratumThree
+                              ? `error_input_register`
+                              : null
+                          }
                           value={dataForm.mgiStratumThree}
                           onChange={handleChange}
                         />
+
+                        {formErrors.mgiStratumThree && (
+                          <em className="error_input_message_register">
+                            {formErrors.mgiStratumThree}
+                          </em>
+                        )}
 
                         <UncontrolledTooltip placement="right" target="Mgi">
                           <span className="fw-bolder">Mgi</span> Magnesio
@@ -1271,7 +2010,8 @@ const Suelo = ({ stepper }) => {
             <Button
               color="primary"
               className="btn-next"
-              onClick={() => stepper.next()}
+              // onClick={() => stepper.next()}
+              onClick={() => validationWizardSuelo()}
             >
               <span className="align-middle d-sm-inline-block d-none">
                 Siguiente

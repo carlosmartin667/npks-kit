@@ -1,5 +1,5 @@
 // ** React Imports
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 // ** Icons Imports
 import { ArrowLeft, ArrowRight } from "react-feather";
@@ -27,6 +27,59 @@ import { DataContext } from "../../../../utility/context/LoteProvider";
 const Cultivo = ({ stepper }) => {
   const { handleChange, dataForm } = useContext(DataContext);
 
+  // ** State errors
+  const [formErrors, setFormErrors] = useState({});
+
+  // ** nextPageWizard
+  const [nextPageWizard, setNextPageWizard] = useState(false);
+
+  const validationWizardCultivo = () => {
+    setFormErrors(validate(dataForm));
+    setNextPageWizard(true);
+  };
+
+  // ** useEffect
+  useEffect(() => {
+    if (Object.keys(formErrors).length === 0 && nextPageWizard) {
+      // alert("SI FUNCAA, PASA DE PAGINA");
+      stepper.next();
+    }
+  }, [formErrors]);
+
+  const validate = (values) => {
+    const errors = {};
+
+    if (!values.crop) {
+      errors.crop = "Obligatorio";
+    }
+
+    if (!values.targetPerformance) {
+      errors.targetPerformance = "Obligatorio";
+    }
+
+    if (!values.date) {
+      errors.date = "Obligatorio";
+    }
+
+    if (!values.productPrice) {
+      errors.productPrice = "Obligatorio";
+    }
+
+    if (!values.predecessorCrop) {
+      errors.predecessorCrop = "Obligatorio";
+    }
+
+    if (!values.yieldOfThePredecessorCrop) {
+      errors.yieldOfThePredecessorCrop = "Obligatorio";
+    }
+
+    if (!values.timeElapsedBetweenHarvestAndSowing) {
+      errors.timeElapsedBetweenHarvestAndSowing = "Obligatorio";
+    }
+
+    return errors;
+  };
+
   return (
     <>
       <Card>
@@ -38,13 +91,14 @@ const Cultivo = ({ stepper }) => {
           <Form>
             <Row>
               <Col md="6" sm="12" className="mb-1">
-                <Label className="form-label" for="register-select">
+                <Label className="form-label" htmlFor="crop">
                   Cultivo a fertilizar
                 </Label>
                 <Input
                   type="select"
                   name="crop"
-                  id="register-select"
+                  id="crop"
+                  className={formErrors.crop ? `error_input_register` : null}
                   onChange={handleChange}
                 >
                   <option value={"Alfalfa"}>Alfalfa</option>
@@ -95,6 +149,12 @@ const Cultivo = ({ stepper }) => {
                   </option>
                   <option value={"Trigo"}>Trigo</option>
                 </Input>
+
+                {formErrors.crop && (
+                  <em className="error_input_message_register">
+                    {formErrors.crop}
+                  </em>
+                )}
               </Col>
 
               <Col md="6" sm="12" className="mb-1">
@@ -113,10 +173,20 @@ const Cultivo = ({ stepper }) => {
                   name="targetPerformance"
                   id="targetPerformance"
                   placeholder="90"
-                  className="margin-bajo"
+                  className={
+                    formErrors.targetPerformance
+                      ? `error_input_register margin-bajo`
+                      : `margin-bajo`
+                  }
                   value={dataForm.targetPerformance}
                   onChange={handleChange}
                 />
+
+                {formErrors.targetPerformance && (
+                  <em className="error_input_message_register">
+                    {formErrors.targetPerformance}
+                  </em>
+                )}
 
                 <UncontrolledTooltip
                   placement="right"
@@ -139,8 +209,15 @@ const Cultivo = ({ stepper }) => {
                   id="date"
                   name="date"
                   placeholder="8/03/2022"
+                  className={formErrors.date ? `error_input_register` : null}
                   onChange={handleChange}
                 />
+
+                {formErrors.date && (
+                  <em className="error_input_message_register">
+                    {formErrors.date}
+                  </em>
+                )}
               </Col>
 
               <Col md="6" sm="12">
@@ -156,10 +233,21 @@ const Cultivo = ({ stepper }) => {
                   name="productPrice"
                   id="productPrice"
                   placeholder="1"
-                  className="margin-bajoDos"
+                  // className="margin-bajoDos"
+                  className={
+                    formErrors.productPrice
+                      ? `error_input_register margin-bajoDos`
+                      : `margin-bajoDos`
+                  }
                   value={dataForm.productPrice}
                   onChange={handleChange}
                 />
+
+                {formErrors.productPrice && (
+                  <em className="error_input_message_register">
+                    {formErrors.productPrice}
+                  </em>
+                )}
 
                 <UncontrolledTooltip
                   placement="right"
@@ -183,6 +271,9 @@ const Cultivo = ({ stepper }) => {
                   type="select"
                   name="predecessorCrop"
                   id="predecessorCrop"
+                  className={
+                    formErrors.predecessorCrop ? `error_input_register` : null
+                  }
                   onChange={handleChange}
                 >
                   <option value={"Alfalfa"}>Alfalfa</option>
@@ -238,6 +329,12 @@ const Cultivo = ({ stepper }) => {
                     Vicia/caupí/otra leguminosa post cosecha
                   </option>
                 </Input>
+
+                {formErrors.predecessorCrop && (
+                  <em className="error_input_message_register">
+                    {formErrors.predecessorCrop}
+                  </em>
+                )}
               </Col>
 
               <Col md="6" sm="12" className="mb-1">
@@ -252,9 +349,20 @@ const Cultivo = ({ stepper }) => {
                   name="yieldOfThePredecessorCrop"
                   id="yieldOfThePredecessorCrop"
                   placeholder="28"
+                  className={
+                    formErrors.yieldOfThePredecessorCrop
+                      ? `error_input_register`
+                      : null
+                  }
                   value={dataForm.yieldOfThePredecessorCrop}
                   onChange={handleChange}
                 />
+
+                {formErrors.yieldOfThePredecessorCrop && (
+                  <em className="error_input_message_register">
+                    {formErrors.yieldOfThePredecessorCrop}
+                  </em>
+                )}
               </Col>
 
               <Col md="6" sm="12" className="mb-1">
@@ -270,6 +378,11 @@ const Cultivo = ({ stepper }) => {
                   type="select"
                   name="timeElapsedBetweenHarvestAndSowing"
                   id="timeElapsedBetweenHarvestAndSowing"
+                  className={
+                    formErrors.timeElapsedBetweenHarvestAndSowing
+                      ? `error_input_register`
+                      : null
+                  }
                   onChange={handleChange}
                 >
                   <option value={"Menos de 2 meses"}>Menos de 2 meses</option>
@@ -278,6 +391,12 @@ const Cultivo = ({ stepper }) => {
                     Mas de 4 meses
                   </option>
                 </Input>
+
+                {formErrors.timeElapsedBetweenHarvestAndSowing && (
+                  <em className="error_input_message_register">
+                    {formErrors.timeElapsedBetweenHarvestAndSowing}
+                  </em>
+                )}
 
                 <UncontrolledTooltip
                   placement="right"
@@ -333,7 +452,8 @@ const Cultivo = ({ stepper }) => {
             <Button
               color="primary"
               className="btn-next"
-              onClick={() => stepper.next()}
+              // onClick={() => stepper.next()}
+              onClick={() => validationWizardCultivo()}
             >
               <span className="align-middle d-sm-inline-block d-none">
                 Siguiente

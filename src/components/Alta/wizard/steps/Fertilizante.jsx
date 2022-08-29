@@ -1,5 +1,5 @@
 // ** React Imports
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useState, useEffect } from "react";
 
 // ** Icons Imports
 import { ArrowLeft } from "react-feather";
@@ -52,12 +52,122 @@ const Fertilizante = ({ stepper }) => {
     "Fosfato monoamónico MAP"
   );
 
+  // ** State errors
+  const [formErrors, setFormErrors] = useState({});
+
+  // ** nextPageWizard
+  const [nextPageWizard, setNextPageWizard] = useState(false);
+
+  // event to handle
+  const [eventClickHandle, setEventClickHandle] = useState(null);
+
+  const validationWizardFertilizante = (e) => {
+    setFormErrors(validate(dataForm));
+    setNextPageWizard(true);
+    setEventClickHandle(e);
+  };
+
+  // ** useEffect
+  useEffect(() => {
+    if (Object.keys(formErrors).length === 0 && nextPageWizard) {
+      // alert("SI FUNCAA, PASA DE PAGINA");
+      handleWizard(eventClickHandle);
+      // stepper.next();
+    }
+  }, [formErrors]);
+
+  const validate = (values) => {
+    const errors = {};
+
+    if (!values.starterOrOrganicFertilizer) {
+      errors.starterOrOrganicFertilizer = "Obligatorio";
+    }
+
+    if (arrancadorAbonoOrganico !== "Ninguno") {
+      if (!values.quantity) {
+        errors.quantity = "Obligatorio";
+      }
+    }
+
+    if (arrancadorAbonoOrganico !== "Ninguno") {
+      if (!values.price) {
+        errors.price = "Obligatorio";
+      }
+    }
+
+    if (arrancadorAbonoOrganico === "Arrancador") {
+      if (!values.starter) {
+        errors.starter = "Obligatorio";
+      }
+    }
+
+    if (arrancadorAbonoOrganico === "Abono orgánico") {
+      if (!values.organicFertilizer) {
+        errors.organicFertilizer = "Obligatorio";
+      }
+    }
+
+    if (selectedDefaultArrancador === "Otro") {
+      if (!values.nitrogenContent) {
+        errors.nitrogenContent = "Obligatorio";
+      }
+    }
+
+    if (selectedDefaultArrancador === "Otro") {
+      if (!values.phosphorusContent) {
+        errors.phosphorusContent = "Obligatorio";
+      }
+    }
+
+    if (selectedDefaultArrancador === "Otro") {
+      if (!values.potassiumContent) {
+        errors.potassiumContent = "Obligatorio";
+      }
+    }
+
+    if (selectedDefaultArrancador === "Otro") {
+      if (!values.sulphurContent) {
+        errors.sulphurContent = "Obligatorio";
+      }
+    }
+
+    if (selectedDefaultArrancador === "Otro") {
+      if (!values.nitrogenEfficiencies) {
+        errors.nitrogenEfficiencies = "Obligatorio";
+      }
+    }
+
+    if (selectedDefaultArrancador === "Otro") {
+      if (!values.phosphorusEfficiencies) {
+        errors.phosphorusEfficiencies = "Obligatorio";
+      }
+    }
+
+    if (selectedDefaultArrancador === "Otro") {
+      if (!values.potassiumEfficiencies) {
+        errors.potassiumEfficiencies = "Obligatorio";
+      }
+    }
+
+    if (selectedDefaultArrancador === "Otro") {
+      if (!values.sulfurEfficiencies) {
+        errors.sulfurEfficiencies = "Obligatorio";
+      }
+    }
+
+    if (!values.costOfFertilizerApplicationAndSoilAnalysis) {
+      errors.costOfFertilizerApplicationAndSoilAnalysis = "Obligatorio";
+    }
+
+    return errors;
+  };
+
   return (
     <Fragment>
       <div className="content-header">
         <h3 className="mb-0">Fertilizantes</h3>
       </div>
-      <Form onSubmit={handleWizard}>
+      <Form>
         <Row className="match-height mt-1">
           <Col md="6" sm="12" className="mb-1">
             <Label
@@ -71,6 +181,11 @@ const Fertilizante = ({ stepper }) => {
               type="select"
               name="starterOrOrganicFertilizer"
               id="starterOrOrganicFertilizer"
+              className={
+                formErrors.starterOrOrganicFertilizer
+                  ? `error_input_register`
+                  : null
+              }
               // onChange={handleChange}
               onChange={(e) => {
                 // e.preventDefault();
@@ -86,6 +201,12 @@ const Fertilizante = ({ stepper }) => {
               <option value={"Abono orgánico"}>Abono orgánico</option>
             </Input>
 
+            {formErrors.starterOrOrganicFertilizer && (
+              <em className="error_input_message_register">
+                {formErrors.starterOrOrganicFertilizer}
+              </em>
+            )}
+
             <UncontrolledTooltip placement="right" target="Arrancador">
               <span className="fw-bolder">Arrancador o abono orgánico: </span>{" "}
               Si utiliza alguno de estos seleccione, de lo contrario seleccione
@@ -93,7 +214,6 @@ const Fertilizante = ({ stepper }) => {
             </UncontrolledTooltip>
           </Col>
 
-          {/* {arrancadorAbonoOrganico === "Ninguno" ? null : ( */}
           {arrancadorAbonoOrganico !== "Ninguno" ? (
             <>
               <Col md="6" sm="12" className="mb-1">
@@ -109,9 +229,19 @@ const Fertilizante = ({ stepper }) => {
                   name="quantity"
                   id="quantity"
                   placeholder="50"
+                  className={
+                    formErrors.quantity ? `error_input_register` : null
+                  }
                   value={dataForm.quantity}
                   onChange={handleChange}
                 />
+
+                {formErrors.quantity && (
+                  <em className="error_input_message_register">
+                    {formErrors.quantity}
+                  </em>
+                )}
+
                 <UncontrolledTooltip placement="right" target="Cantidad">
                   <span className="fw-bolder">Cantidad (kg/ha): </span> Cantidad
                   en kg/ha del arrancador o abono orgánico que utiliza a la
@@ -136,6 +266,9 @@ const Fertilizante = ({ stepper }) => {
                       type="select"
                       name="starter"
                       id="starter"
+                      className={
+                        formErrors.starter ? `error_input_register` : null
+                      }
                       onChange={(e) => {
                         // e.preventDefault();
                         handleChange(e);
@@ -163,6 +296,13 @@ const Fertilizante = ({ stepper }) => {
 
                       <option value={"Otro"}>Otro</option>
                     </Input>
+
+                    {formErrors.starter && (
+                      <em className="error_input_message_register">
+                        {formErrors.starter}
+                      </em>
+                    )}
+
                     <UncontrolledTooltip
                       placement="right"
                       target="arrancadorOAbonoOrganico"
@@ -191,6 +331,11 @@ const Fertilizante = ({ stepper }) => {
                       type="select"
                       name="organicFertilizer"
                       id="organicFertilizer"
+                      className={
+                        formErrors.organicFertilizer
+                          ? `error_input_register`
+                          : null
+                      }
                       onChange={(e) => {
                         // e.preventDefault();
                         handleChange(e);
@@ -221,6 +366,13 @@ const Fertilizante = ({ stepper }) => {
                       </option>
                       <option value={"Estiércol ovino"}>Estiércol ovino</option>
                     </Input>
+
+                    {formErrors.organicFertilizer && (
+                      <em className="error_input_message_register">
+                        {formErrors.organicFertilizer}
+                      </em>
+                    )}
+
                     {/* <UncontrolledTooltip
                       placement="right"
                       target="arrancadorOAbonoOrganico"
@@ -245,9 +397,16 @@ const Fertilizante = ({ stepper }) => {
                   name="price"
                   id="price"
                   placeholder="1100"
+                  className={formErrors.price ? `error_input_register` : null}
                   value={dataForm.price}
                   onChange={handleChange}
                 />
+
+                {formErrors.price && (
+                  <em className="error_input_message_register">
+                    {formErrors.price}
+                  </em>
+                )}
                 <UncontrolledTooltip placement="right" target="Precio">
                   <span className="fw-bolder">Precio (u$s/tn): </span> Precio en
                   u$s/tn de dicho arrancador o abono orgánico. <br />{" "}
@@ -558,6 +717,11 @@ const Fertilizante = ({ stepper }) => {
                             type="text"
                             name="nitrogenContent"
                             id="nitrogenContent"
+                            className={
+                              formErrors.nitrogenContent
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.nitrogenContent}
                             onChange={(e) =>
                               // setContenidoNitrogeno(e.target.value)
@@ -570,6 +734,11 @@ const Fertilizante = ({ stepper }) => {
                             type="text"
                             name="phosphorusContent"
                             id="phosphorusContent"
+                            className={
+                              formErrors.phosphorusContent
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.phosphorusContent}
                             onChange={(e) =>
                               // setContenidoFosforo(e.target.value)
@@ -582,6 +751,11 @@ const Fertilizante = ({ stepper }) => {
                             type="text"
                             name="potassiumContent"
                             id="potassiumContent"
+                            className={
+                              formErrors.potassiumContent
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.potassiumContent}
                             onChange={(e) =>
                               // setContenidoPotasio(e.target.value)
@@ -594,6 +768,11 @@ const Fertilizante = ({ stepper }) => {
                             type="text"
                             name="sulphurContent"
                             id="sulphurContent"
+                            className={
+                              formErrors.sulphurContent
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.sulphurContent}
                             onChange={(e) =>
                               // setContenidoAzufre(e.target.value)
@@ -628,6 +807,11 @@ const Fertilizante = ({ stepper }) => {
                             type="text"
                             name="nitrogenEfficiencies"
                             id="nitrogenEfficiencies"
+                            className={
+                              formErrors.nitrogenEfficiencies
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.nitrogenEfficiencies}
                             onChange={(e) =>
                               // setEficienciasNitrogeno(e.target.value)
@@ -639,6 +823,12 @@ const Fertilizante = ({ stepper }) => {
                           <Input
                             type="text"
                             name="phosphorusEfficiencies"
+                            id="phosphorusEfficiencies"
+                            className={
+                              formErrors.phosphorusEfficiencies
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.phosphorusEfficiencies}
                             onChange={(e) =>
                               // setEficienciasFosforo(e.target.value)
@@ -650,6 +840,12 @@ const Fertilizante = ({ stepper }) => {
                           <Input
                             type="text"
                             name="potassiumEfficiencies"
+                            id="potassiumEfficiencies"
+                            className={
+                              formErrors.potassiumEfficiencies
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.potassiumEfficiencies}
                             onChange={(e) =>
                               // setEficienciasPotasio(e.target.value)
@@ -662,6 +858,11 @@ const Fertilizante = ({ stepper }) => {
                             type="text"
                             name="sulfurEfficiencies"
                             id="sulfurEfficiencies"
+                            className={
+                              formErrors.sulfurEfficiencies
+                                ? `error_input_register`
+                                : null
+                            }
                             value={dataForm.sulfurEfficiencies}
                             onChange={(e) =>
                               // setEficienciasAzufre(e.target.value)
@@ -704,6 +905,11 @@ const Fertilizante = ({ stepper }) => {
               name="costOfFertilizerApplicationAndSoilAnalysis"
               id="costOfFertilizerApplicationAndSoilAnalysis"
               placeholder="11"
+              className={
+                formErrors.costOfFertilizerApplicationAndSoilAnalysis
+                  ? `error_input_register`
+                  : null
+              }
               value={dataForm.costOfFertilizerApplicationAndSoilAnalysis}
               onChange={handleChange}
             />
@@ -715,6 +921,12 @@ const Fertilizante = ({ stepper }) => {
               Costo de la técnica que se vera reflejado en el análisis de
               sensibilidad de los resultados. <br />{" "}
             </UncontrolledTooltip>
+
+            {formErrors.costOfFertilizerApplicationAndSoilAnalysis && (
+              <em className="error_input_message_register">
+                {formErrors.costOfFertilizerApplicationAndSoilAnalysis}
+              </em>
+            )}
           </Col>
         </Row>
 
@@ -730,7 +942,15 @@ const Fertilizante = ({ stepper }) => {
             ></ArrowLeft>
             <span className="align-middle d-sm-inline-block d-none">Atras</span>
           </Button>
-          <Button type="submit" color="success" className="btn-submit">
+          <Button
+            // type="submit"
+            color="success"
+            className="btn-submit"
+            onClick={(e) => {
+              e.preventDefault();
+              validationWizardFertilizante(e);
+            }}
+          >
             Guardar
           </Button>
         </div>
